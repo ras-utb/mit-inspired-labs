@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UTB MIT-Inspired Lab Series</title>
 <style>
-/* Dark mode with light purple accents */
 body {
     font-family: Arial, sans-serif;
     background-color: #121212;
@@ -14,24 +13,32 @@ body {
     padding: 0;
 }
 
-/* Header */
+/* Header with logos on left */
 header {
+    display: flex;
+    align-items: center;
     background-color: #000000;
-    color: #ffffff;
-    text-align: center;
     padding: 50px 20px;
 }
-header img {
-    height: 140px;
-    margin: 0 20px;
-    vertical-align: middle;
+header .logo-section {
+    flex: 1;
+    text-align: center;
 }
-header h1 {
+header .logo-section img {
+    height: 140px;
+    display: block;
+    margin: 10px auto;
+}
+header .text-section {
+    flex: 3;
+    text-align: center;
+}
+header .text-section h1 {
     font-size: 3.8em;
     color: #c29fff;
-    margin: 20px 0 10px 0;
+    margin: 0 0 10px 0;
 }
-header p {
+header .text-section p {
     font-size: 1.3em;
     color: #bbbbbb;
     margin: 0;
@@ -86,12 +93,12 @@ nav a:hover {
 }
 .sidebar img {
     width: 100%;
-    max-width: 300px;
+    max-width: 400px;
     border-radius: 8px;
     margin-bottom: 10px;
 }
 .sidebar .r2d2 {
-    font-size: 1.4em;
+    font-size: 1.5em;
     font-weight: bold;
     margin-bottom: 20px;
     color: #c29fff;
@@ -170,10 +177,14 @@ footer {
 <body>
 
 <header>
-    <img src="utblogo.png" alt="UTB Logo">
-    <img src="raslogo.pngG" alt="RAS Club Logo">
-    <h1>Welcome Engineers!</h1>
-    <p>MIT-Inspired Lab Workshops organized by Robotics & Automation Society (RAS) Club at UTB</p>
+    <div class="logo-section">
+        <img src="UTBLOGO.PNG" alt="UTB Logo">
+        <img src="RASLOGO.PNG" alt="RAS Club Logo">
+    </div>
+    <div class="text-section">
+        <h1>Welcome Engineers!</h1>
+        <p>MIT-Inspired Lab Workshops organized by Robotics & Automation Society (RAS) Club at UTB</p>
+    </div>
 </header>
 
 <nav>
@@ -201,7 +212,7 @@ footer {
                 </tr>
                 <tr>
                     <td><a href="lab1.html" style="color:white;">Lab 1: 3D Printing a Keychain</a></td>
-                    <td>Tue 18 Nov 12-2 PM<br>Thu 20 Nov 1-3 PM</td>
+                    <td>Tuesday 12-2 PM<br>Thursday 1-3 PM</td>
                     <td>
                         - Bring laptop<br>
                         - Bring headphones<br>
@@ -211,13 +222,13 @@ footer {
                 </tr>
                 <tr>
                     <td style="color:white;">Lab 2: Building a Mr. Roboto</td>
-                    <td>Tue 25 Nov<br>Thu 27 Nov</td>
+                    <td>Tuesday 12-2 PM<br>Thursday 1-3 PM</td>
                     <td>- Bring laptop</td>
                     <td>Project tasks</td>
                 </tr>
                 <tr>
                     <td style="color:white;">Lab 3: GUI & Guitar Hero</td>
-                    <td>Tue 2 Dec 2025<br>Thu 4 Dec 2025</td>
+                    <td>Tuesday 12-2 PM<br>Thursday 1-3 PM</td>
                     <td>- Bring laptop</td>
                     <td>Project tasks</td>
                 </tr>
@@ -228,9 +239,9 @@ footer {
             <h2>Labs</h2>
             <p>All lab sections take place in <strong>ROOM 017 (Ground Floor)</strong>. You are expected to complete all check-offs.</p>
             <ul class="labs-list">
-                <li><strong>Lab 1:</strong> 3D Printing a Keychain | Tue 18 Nov 12-2 PM, Thu 20 Nov 1-3 PM</li>
-                <li><strong>Lab 2:</strong> Building a Mr. Roboto | Tue 25 Nov, Thu 27 Nov</li>
-                <li><strong>Lab 3:</strong> GUI & Guitar Hero | Tue 2 Dec 2025, Thu 4 Dec 2025</li>
+                <li><strong>Lab 1:</strong> 3D Printing a Keychain | Tuesday 12-2 PM, Thursday 1-3 PM</li>
+                <li><strong>Lab 2:</strong> Building a Mr. Roboto | Tuesday 12-2 PM, Thursday 1-3 PM</li>
+                <li><strong>Lab 3:</strong> GUI & Guitar Hero | Tuesday 12-2 PM, Thursday 1-3 PM</li>
             </ul>
         </div>
     </div>
@@ -265,4 +276,3 @@ footer {
 
 </body>
 </html>
-
