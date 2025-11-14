@@ -12,94 +12,25 @@ body {
     margin: 0;
     padding: 0;
 }
-
-/* Header */
 header {
-    background-color: #000000;
+    background-color: #000;
     padding: 40px 20px;
     text-align: center;
 }
-header h1 {
-    color: #c29fff;
-    font-size: 3.5em;
-    margin: 0 0 10px 0;
-}
-header p {
-    color: #bbbbbb;
-    font-size: 1.2em;
-    margin: 0 0 20px 0;
-}
-
-/* Navbar */
-nav {
-    background-color: #111111;
-    padding: 14px 0;
-    text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-nav a {
-    margin: 0 20px;
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 1.1em;
-}
-nav a:hover {
-    color: #c29fff;
-}
-
-/* Container */
-.container {
-    width: 90%;
-    max-width: 1000px;
-    margin: 25px auto;
-}
-
-/* Lab Boxes */
+header h1 { color: #c29fff; margin: 0; }
+header p { color: #bbbbbb; margin: 5px 0 20px 0; }
+.container { width: 90%; max-width: 1000px; margin: 20px auto; }
 .lab-box {
     background-color: #1e1e2e;
     padding: 20px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
 }
-.lab-box h2 {
-    color: #c29fff;
-    margin-top: 0;
-}
-.lab-box ul {
-    list-style: none;
-    padding-left: 0;
-}
-.lab-box ul li {
-    margin-bottom: 8px;
-}
-a {
-    color: #ffffff;
-    text-decoration: none;
-}
-a:hover {
-    color: #c29fff;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #111111;
-    color: #bbbbbb;
-    margin-top: 20px;
-    font-size: 0.9em;
-}
-
-/* Responsive */
-@media (max-width: 1000px) {
-    .container {
-        width: 95%;
-    }
-}
+.lab-box h2 { color: #c29fff; margin-top: 0; }
+.lab-box ul { list-style: none; padding-left: 0; }
+.lab-box ul li { margin-bottom: 8px; }
+a { color: #ffffff; text-decoration: none; }
+a:hover { color: #c29fff; }
 </style>
 </head>
 <body>
@@ -109,16 +40,8 @@ footer {
 <p>Click on a lab to view session details and instructions</p>
 </header>
 
-<nav>
-  <a href="index.html">Home</a>
-  <a href="labs.html">Labs</a>
-  <a href="instructors.html">Instructors</a>
-  <a href="index.html#about">About</a>
-</nav>
-
 <div class="container">
 
-  <!-- Lab 1 -->
   <div class="lab-box">
     <h2>Lab 1: 3D Printing a Keychain</h2>
     <ul>
@@ -127,7 +50,6 @@ footer {
     </ul>
   </div>
 
-  <!-- Lab 2 -->
   <div class="lab-box">
     <h2>Lab 2: Building a Mr. Roboto</h2>
     <ul>
@@ -136,7 +58,6 @@ footer {
     </ul>
   </div>
 
-  <!-- Lab 3 -->
   <div class="lab-box">
     <h2>Lab 3: GUI & Guitar Hero</h2>
     <ul>
@@ -147,7 +68,7 @@ footer {
 
 </div>
 
-<footer>
+<footer style="text-align:center; padding:20px; color:#bbbbbb;">
 &copy; 2025 UTB Student Labs | MIT-Inspired Series
 </footer>
 
