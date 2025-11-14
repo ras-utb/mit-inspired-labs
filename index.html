@@ -13,15 +13,16 @@ body {
     padding: 0;
 }
 
-/* Header with logos on left and centered text */
+/* Header with centered text and logos on left */
 header {
     display: flex;
     align-items: center;
+    justify-content: center;
     background-color: #000000;
     padding: 50px 20px;
+    gap: 50px;
 }
 header .logo-section {
-    flex: 1;
     text-align: center;
 }
 header .logo-section img {
@@ -30,7 +31,6 @@ header .logo-section img {
     margin: 10px auto;
 }
 header .text-section {
-    flex: 3;
     text-align: center;
 }
 header .text-section h1 {
@@ -134,26 +134,35 @@ nav a:hover {
     margin-bottom: 12px;
 }
 
-/* Table */
-table {
+/* Labs and Schedule boxes */
+.labs-box, .schedule-box {
+    background-color: #1e1e2e;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+/* Schedule table white text */
+.schedule-box table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 12px;
 }
-table, th, td {
+.schedule-box table, .schedule-box th, .schedule-box td {
     border: 1px solid #c29fff;
 }
-th, td {
-    padding: 10px;
-    text-align: left;
-}
-th {
+.schedule-box th {
     background-color: #000000;
     color: #ffffff;
 }
-td {
+.schedule-box td {
     background-color: #1e1e2e;
-    color: #e0e0e0;
+    color: #ffffff; /* white text */
+}
+.schedule-box a {
+    color: #ffffff;
+    text-decoration: none;
 }
 
 /* Footer */
@@ -205,51 +214,57 @@ footer {
             <h2>Course Overview</h2>
             <p>This student-led lab series at UTB is inspired by the AUBH MIT MISTI program. Students explore hands-on STEM projects including 3D modeling, rapid prototyping, electronics, and interactive GUIs through mini-projects and instructor check-ins.</p>
 
-            <h2 style="color:#caa1ff;">Labs</h2>
-            <ul class="labs-list">
-                <li><strong>Lab 1:</strong> 3D Printing a Keychain | Tuesday 12-2 PM, Thursday 1-3 PM</li>
-                <li><strong>Lab 2:</strong> Building a Mr. Roboto | Tuesday 12-2 PM, Thursday 1-3 PM</li>
-                <li><strong>Lab 3:</strong> GUI & Guitar Hero | Tuesday 12-2 PM, Thursday 1-3 PM</li>
-            </ul>
+            <!-- Labs Box -->
+            <div class="labs-box">
+                <h2 style="color:#caa1ff;">Labs</h2>
+                <ul class="labs-list">
+                    <li><strong>Lab 1:</strong> 3D Printing a Keychain | Tuesday 12-2 PM, Thursday 1-3 PM</li>
+                    <li><strong>Lab 2:</strong> Building a Mr. Roboto | Tuesday 12-2 PM, Thursday 1-3 PM</li>
+                    <li><strong>Lab 3:</strong> GUI & Guitar Hero | Tuesday 12-2 PM, Thursday 1-3 PM</li>
+                </ul>
+            </div>
 
-            <h2 style="color:#caa1ff;">Schedule & Notes</h2>
-            <table>
-                <tr>
-                    <th>Lab</th>
-                    <th>Date & Time</th>
-                    <th>Before Class</th>
-                    <th>Deliverable</th>
-                </tr>
-                <tr>
-                    <td><a href="lab1.html" style="color:white;">Lab 1: 3D Printing a Keychain</a></td>
-                    <td>Tuesday 12-2 PM<br>Thursday 1-3 PM</td>
-                    <td>
-                        - Bring laptop<br>
-                        - Bring headphones<br>
-                        - Install Autodesk Fusion 360
-                    </td>
-                    <td>Complete check-off tasks</td>
-                </tr>
-                <tr>
-                    <td style="color:white;">Lab 2: Building a Mr. Roboto</td>
-                    <td>Tuesday 12-2 PM<br>Thursday 1-3 PM</td>
-                    <td>- Bring laptop</td>
-                    <td>Project tasks</td>
-                </tr>
-                <tr>
-                    <td style="color:white;">Lab 3: GUI & Guitar Hero</td>
-                    <td>Tuesday 12-2 PM<br>Thursday 1-3 PM</td>
-                    <td>- Bring laptop</td>
-                    <td>Project tasks</td>
-                </tr>
-            </table>
+            <!-- Schedule & Notes Box -->
+            <div class="schedule-box">
+                <h2 style="color:#caa1ff;">Schedule & Notes</h2>
+                <table>
+                    <tr>
+                        <th>Lab</th>
+                        <th>Date & Time</th>
+                        <th>Before Class</th>
+                        <th>Deliverable</th>
+                    </tr>
+                    <tr>
+                        <td><a href="lab1.html">Lab 1: 3D Printing a Keychain</a></td>
+                        <td>Tuesday 12-2 PM<br>Thursday 1-3 PM</td>
+                        <td>
+                            - Bring laptop<br>
+                            - Bring headphones<br>
+                            - Install Autodesk Fusion 360
+                        </td>
+                        <td>Complete check-off tasks</td>
+                    </tr>
+                    <tr>
+                        <td>Lab 2: Building a Mr. Roboto</td>
+                        <td>Tuesday 12-2 PM<br>Thursday 1-3 PM</td>
+                        <td>- Bring laptop</td>
+                        <td>Project tasks</td>
+                    </tr>
+                    <tr>
+                        <td>Lab 3: GUI & Guitar Hero</td>
+                        <td>Tuesday 12-2 PM<br>Thursday 1-3 PM</td>
+                        <td>- Bring laptop</td>
+                        <td>Project tasks</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 
     <!-- Sidebar -->
     <div class="sidebar">
         <img src="starwars.png" alt="Star Wars">
-        <div class="r2d2">R2D2 says hello! :)</div>
+        <div class="r2d2">r2-d2 says hello! :)</div>
 
         <h3>Instructors</h3>
         <ul class="instructors-list" style="text-align:left; padding-left:15px;">
