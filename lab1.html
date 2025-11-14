@@ -12,29 +12,22 @@ header p { color:#bbbbbb; margin:5px 0 20px 0; }
 nav { background-color:#111; padding:14px 0; text-align:center; position:sticky; top:0; z-index:100; }
 nav a { margin:0 20px; text-decoration:none; color:#fff; font-weight:bold; font-size:1.1em; }
 nav a:hover { color:#c29fff; }
-.container { width:90%; max-width:1000px; margin:20px auto; }
+.container { width:90%; max-width:1000px; margin:20px auto; display:flex; flex-wrap:wrap; gap:20px; }
+.main-content { flex:3; min-width:300px; }
+.sidebar { flex:1; min-width:200px; background-color:#1e1e2e; padding:15px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.5); text-align:center; }
+.sidebar img { display:block; margin:10px auto; max-width:100%; height:auto; border-radius:8px; }
+.section { background-color:#1e1e2e; padding:25px; margin-bottom:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.5); }
+.section h2 { color:#c29fff; margin-top:0; }
 .lab-box { background-color:#1e1e2e; padding:20px; margin-bottom:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.5); text-align:left; }
-.lab-box h2 { color:#c29fff; margin-top:0; font-size:1.8em; }
+.lab-box h2 { color:#c29fff; margin-top:0; font-size:1.6em; }
 .lab-box ul { list-style:none; padding-left:0; }
 .lab-box ul li { margin-bottom:8px; }
 a { color:#ffffff; text-decoration:none; }
 a:hover { color:#c29fff; }
-img.center { display:block; margin: 20px auto; max-width:400px; width:100%; height:auto; border-radius:8px; }
+img.center { display:block; margin:20px auto; max-width:400px; width:100%; height:auto; border-radius:8px; }
 .red-check { color:red; font-weight:bold; }
-
-/* Sidebar */
-.sidebar { background-color:#1e1e2e; padding:15px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.5); text-align:center; margin-bottom:20px; }
-.sidebar img { display:block; margin:10px auto; max-width:200px; width:100%; height:auto; border-radius:8px; }
-
-/* Sections */
-.section { background-color:#1e1e2e; padding:25px; margin-bottom:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.5); }
-.section h2 { color:#c29fff; margin-top:0; }
 footer { text-align:center; padding:20px; background-color:#111; color:#bbbbbb; margin-top:20px; font-size:0.9em; }
-
-/* Responsive */
-@media (max-width:1000px){
-  .container{ flex-direction:column; }
-}
+@media (max-width:1000px){ .container{ flex-direction:column; } .sidebar img{ max-width:100%; height:auto; } }
 </style>
 </head>
 <body>
@@ -53,166 +46,143 @@ footer { text-align:center; padding:20px; background-color:#111; color:#bbbbbb; 
 
 <div class="container">
 
-  <!-- Introduction & Safety -->
-  <div class="lab-box">
-    <h2>Introduction & Safety</h2>
-    <p>3D printing is an additive (add material) manufacturing process where computer-aided G-code (instruction code for the machine) is translated to build up material layer by layer. It has various techniques, including FDM, SLA, and Polyjet 3D printing.</p>
-    <p>In this lab, you will learn how to:</p>
-    <ul>
-      <li>✅ Learn advanced 3D modeling Techniques (Revolve, Sweep, Warp)</li>
-      <li>✅ Design for Multimaterial 3D Printing</li>
-      <li>✅ CAD a simple rotating element around a shaft</li>
-      <li>✅ CAD a threaded object</li>
-      <li>✅ Make a Mechanical Assembly</li>
-      <li>✅ Render a 3D Model in Fusion360</li>
-      <li>✅ Export files and prepare them for 3D printing</li>
-    </ul>
-    <img src="keychain2.png" alt="Intro Keychain Image" class="center">
-  </div>
+  <div class="main-content">
 
-  <!-- Fabrication Quest -->
-  <div class="lab-box">
-    <h2>Fabrication Quest of the Day</h2>
-    <ul>
-      <li>(a) Assemble your Rotating Keychain</li>
-      <li>(b) Post-process your 3D print</li>
-    </ul>
-  </div>
+    <!-- Part 0: Introduction -->
+    <div class="lab-box">
+      <h2>Introduction & Safety</h2>
+      <p>3D printing is an additive (add material) manufacturing process where computer-aided G-code is translated to build material layer by layer. Techniques include FDM, SLA, and Polyjet printing.</p>
+      <p>In this lab, you will:</p>
+      <ul>
+        <li>✅ Learn advanced 3D modeling Techniques (Revolve, Sweep, Warp)</li>
+        <li>✅ Design for Multimaterial 3D Printing</li>
+        <li>✅ CAD a simple rotating element around a shaft</li>
+        <li>✅ CAD a threaded object</li>
+        <li>✅ Make a Mechanical Assembly</li>
+        <li>✅ Render a 3D Model in Fusion360</li>
+        <li>✅ Export files for 3D printing</li>
+      </ul>
+      <img src="keychain2.png" alt="Intro Keychain Image" class="center">
+    </div>
 
-  <!-- Software & Hardware -->
-  <div class="lab-box">
-    <h2>Software & Hardware</h2>
-    <p><strong>Software:</strong> Fusion360</p>
-    <p><strong>Machines:</strong> 3D Printer</p>
-  </div>
+    <!-- Part 1 -->
+    <div class="lab-box">
+      <h2>Part (1): Creating Variables & Equations (10 minutes)</h2>
+      <p><a href="https://youtu.be/6S8xpPzyGAQ" target="_blank">Video Link</a></p>
+      <p>Dimensioning models through variables allows modification with ease...</p>
+      <table border="1" cellpadding="5" style="border-collapse:collapse; width:100%; margin-top:10px;">
+        <tr><th>Part Name</th><th>Variable Name</th><th>Expression</th><th>Unit</th></tr>
+        <tr><td>Shaft Outer Diameter</td><td>shaft_outer_d</td><td>9</td><td>mm</td></tr>
+        <tr><td>Shaft Length for 3 Rotating Blocks</td><td>shaft_length_3b</td><td>36.2</td><td>mm</td></tr>
+        <tr><td>Shaft Length for 4 Rotating Blocks</td><td>shaft_length_4b</td><td>48.2</td><td>mm</td></tr>
+        <tr><td>Shaft Threaded Hole Depth</td><td>thread_depth</td><td>10</td><td>mm</td></tr>
+        <tr><td>Keychain Hole Diameter</td><td>keychain_hole_d</td><td>4</td><td>mm</td></tr>
+        <tr><td>Rotating Block Size</td><td>rot_b_size</td><td>12</td><td>mm</td></tr>
+        <tr><td>Rotating Block thickness</td><td>rot_b_thick</td><td>12</td><td>mm</td></tr>
+        <tr><td>Rotating Block Hole Tolerance</td><td>tolerance</td><td>0.6</td><td>mm</td></tr>
+        <tr><td>Rotating Block Hole Diameter</td><td>rot_b_hole_d</td><td>shaft_outer_d + tolerance</td><td>mm</td></tr>
+      </table>
+      <p class="red-check">Checkoff 1: Ask your instructor for a check-off on completing Part (1)</p>
+    </div>
 
-  <!-- Part 1 -->
-  <div class="lab-box">
-    <h2>Part (1): Creating Variables & Equations for Dynamic Dimensioning! (10 minutes)</h2>
-    <p><a href="https://youtu.be/6S8xpPzyGAQ" target="_blank">Video Link</a></p>
-    <p>Dimensioning models through variables allows for model dimension modification with ease...</p>
-    <table border="1" cellpadding="5" style="border-collapse:collapse; width:100%; margin-top:10px;">
-      <tr>
-        <th>Part Name (do not add to Fusion)</th>
-        <th>Variable Name (add in Fusion)</th>
-        <th>Expression</th>
-        <th>Unit</th>
-      </tr>
-      <tr><td>Shaft Outer Diameter</td><td>shaft_outer_d</td><td>9</td><td>mm</td></tr>
-      <tr><td>Shaft Length for 3 Rotating Blocks</td><td>shaft_length_3b</td><td>36.2</td><td>mm</td></tr>
-      <tr><td>Shaft Length for 4 Rotating Blocks</td><td>shaft_length_4b</td><td>48.2</td><td>mm</td></tr>
-      <tr><td>Shaft Threaded Hole Depth</td><td>thread_depth</td><td>10</td><td>mm</td></tr>
-      <tr><td>Keychain Hole Diameter</td><td>keychain_hole_d</td><td>4</td><td>mm</td></tr>
-      <tr><td>Rotating Block Size</td><td>rot_b_size</td><td>12</td><td>mm</td></tr>
-      <tr><td>Rotating Block thickness</td><td>rot_b_thick</td><td>12</td><td>mm</td></tr>
-      <tr><td>Rotating Block Hole Tolerance</td><td>tolerance</td><td>0.6</td><td>mm</td></tr>
-      <tr><td>Rotating Block Hole Diameter</td><td>rot_b_hole_d</td><td>shaft_outer_d + tolerance</td><td>mm</td></tr>
-    </table>
-    <p class="red-check">Checkoff 1: Ask your instructor for a check-off on completing Part (1)</p>
-  </div>
+    <!-- Part 2 -->
+    <div class="lab-box">
+      <h2>Part (2): Sketch and Dimension Parametrically (5 minutes)</h2>
+      <img src="lab1s1.png" class="center" alt="Sketch Keychain Shaft">
+      <ul>
+        <li>Draw a circle at the center (0,0)</li>
+        <li>Dimension the circle with “shaft_outer_d”</li>
+        <li>Exit Sketch and rename it "shaft-circle"</li>
+      </ul>
+    </div>
 
-  <!-- Part 2 -->
-  <div class="lab-box">
-    <h2>Part (2): Sketch and Dimension Parametrically (Sketching Keychain Shaft) (5 minutes)</h2>
-    <img src="lab1s1.png" alt="Sketch Keychain Shaft" class="center">
-    <ul>
-      <li>Draw a circle at the center (0,0).</li>
-      <li>Dimension the first circle with “shaft_outer_d.”</li>
-      <li>Exit Sketch, and rename the Sketch to "shaft-circle".</li>
-    </ul>
-  </div>
+    <!-- Part 3 -->
+    <div class="lab-box">
+      <h2>Part (3): Extruding the Sketch (5 minutes)</h2>
+      <img src="lab1s11.png" class="center" alt="Extrude Sketch">
+      <ul>
+        <li>Click on Create → Extrude Tool</li>
+        <li>Select circle profile</li>
+        <li>Set Direction to One Side</li>
+        <li>Type distance as “shaft_length_3b” or “shaft_length_4b”</li>
+        <li>Operation: New Component</li>
+        <li>Rename component to "Shaft"</li>
+      </ul>
+    </div>
 
-  <!-- Part 3 -->
-  <div class="lab-box">
-    <h2>Part (3): Extruding the Sketch (5 minutes)</h2>
-    <img src="lab1s11.png" alt="Extrude Sketch" class="center">
-    <ul>
-      <li>Click on Create.</li>
-      <li>Select the Extrude Tool.</li>
-      <li>Under Profile, select the area formed by the circle from your "shaft-circle" sketch.</li>
-      <li>Set the Direction to One Side.</li>
-      <li>Type the Distance as “shaft_length_3b” or "shaft_length_4b".</li>
-      <li>Choose the operation as New Component.</li>
-      <li>Click Ok to create the solid cylinder.</li>
-      <li>Rename the component to "Shaft".</li>
-    </ul>
-  </div>
+    <!-- Part 4 -->
+    <div class="lab-box">
+      <h2>Part (4): Making a Threaded Hole (7 minutes)</h2>
+      <p><a href="https://youtu.be/wXWqRJZoUgk" target="_blank">Video Link</a></p>
+      <ul>
+        <li>Toggle "Shaft-circle" sketch back on</li>
+        <li>Create → Hole Tool, select top face</li>
+        <li>Reference: center of circle</li>
+        <li>Hole Type: Simple, Tap Type: Tapped</li>
+        <li>Thread Offset: Full, Drill Point: Angle, Depth: "thread_depth"</li>
+        <li>Size: 7mm, Designation: M7mmx1mm, Modeled: ON</li>
+        <li>Click OK</li>
+      </ul>
+      <p class="red-check">Checkoff 2: Show your shaft with its threaded hole to your instructor.</p>
+    </div>
 
-  <!-- Part 4 -->
-  <div class="lab-box">
-    <h2>Part (4): Making a Threaded Hole (7 minutes)</h2>
-    <p><a href="https://youtu.be/wXWqRJZoUgk" target="_blank">Video Link</a></p>
-    <ul>
-      <li>Toggle "Shaft-circle" sketch back on.</li>
-      <li>Go to Create &gt; Hole Tool.</li>
-      <li>Select top face of cylinder.</li>
-      <li>Set Reference to center of circle sketch.</li>
-      <li>Set Hole Type to Simple and Tap Type to Tapped.</li>
-      <li>Set Thread Offset to Full, Drill Point to Angle, Depth to "thread_depth", Size 7mm, Designation M7mmx1mm.</li>
-      <li>Have Modeled checked ON.</li>
-      <li>Click Ok.</li>
-    </ul>
-    <p class="red-check">Checkoff 2: Show your shaft with its threaded hole to your instructor.</p>
-  </div>
+    <!-- Part 5 -->
+    <div class="lab-box">
+      <h2>Part (5): Creating Profile of Keychain Holder Head (20 minutes)</h2>
+      <p><a href="https://youtu.be/m07_IYGyhos" target="_blank">Video Link</a></p>
+      <img src="lab1s111.png" class="center" alt="Top Holder Profile">
+      <ul>
+        <li>Axis Through Cylinder → Construct → Axis</li>
+        <li>Plane at Angle → Construct → Plane (angle 0)</li>
+        <li>Sketch profile on plane, project geometry from top circle</li>
+        <li>Finish Sketch → Revolve to create top holder</li>
+      </ul>
+      <p class="red-check">Checkoff 3: Show your sketched profile to your instructor.</p>
+    </div>
 
-  <!-- Part 5 -->
-  <div class="lab-box">
-    <h2>Part (5): Creating Profile of Keychain Holder Head (🚨REMIX OPTIONAL🚨) (20 minutes)</h2>
-    <p><a href="https://youtu.be/m07_IYGyhos" target="_blank">Video Link</a></p>
-    <img src="lab1s111.png" alt="Top Holder Profile" class="center">
-    <ul>
-      <li>Create Axis Through Cylinder: Construct &gt; Axis Through Cylinder.</li>
-      <li>Create Plane at Angle: Construct &gt; Plane at Angle &gt; angle 0.</li>
-      <li>Sketch the profile on the new plane.</li>
-      <li>Project geometry from cylinder top circle.</li>
-      <li>Ensure sketch is symmetric and closed.</li>
-      <li>Finish Sketch &gt; Revolve to create top holder.</li>
-    </ul>
-    <p class="red-check">Checkoff 3: Show & explain your sketched profile to your instructor.</p>
-  </div>
+    <!-- Part 6 -->
+    <div class="lab-box">
+      <h2>Part (6): Revolving Radially Symmetric Geometry (5 minutes)</h2>
+      <p><a href="https://youtu.be/owtCM5rS0ps" target="_blank">Video Link</a></p>
+      <ul>
+        <li>Create → Revolve</li>
+        <li>Select profile</li>
+        <li>Select axis of symmetry (cylinder axis)</li>
+        <li>Set angle 360°</li>
+        <li>Click OK</li>
+      </ul>
+    </div>
 
-  <!-- Part 6 -->
-  <div class="lab-box">
-    <h2>Part (6): Revolving Radially Symmetric Geometry (5 minutes)</h2>
-    <p><a href="https://youtu.be/owtCM5rS0ps" target="_blank">Video Link</a></p>
-    <ul>
-      <li>Revolve Command: Create &gt; Revolve.</li>
-      <li>Select Profile to revolve.</li>
-      <li>Select axis of symmetry (cylinder axis).</li>
-      <li>Set Angle to 360° (or desired angle for partial revolution).</li>
-      <li>Click OK to complete operation.</li>
-    </ul>
-  </div>
+    <!-- Part 7 -->
+    <div class="lab-box">
+      <h2>Part (7): Making Hole for Keychain (5 minutes)</h2>
+      <p><a href="https://youtu.be/0mJ34pklLXE" target="_blank">Video Link</a></p>
+      <ul>
+        <li>Create Tangent Plane → Construct</li>
+        <li>Sketch circle for hole, diameter 4mm</li>
+        <li>Extrude Cut → Symmetric</li>
+      </ul>
+      <p class="red-check">Checkoff 4: Show your shaft's keychain hole to your instructor.</p>
+    </div>
 
-  <!-- Part 7 -->
-  <div class="lab-box">
-    <h2>Part (7): Making Hole for Keychain (5 minutes)</h2>
-    <p><a href="https://youtu.be/0mJ34pklLXE" target="_blank">Video Link</a></p>
-    <ul>
-      <li>Create a Tangent Plane: Construct &gt; Tangent Plane.</li>
-      <li>Sketch a circle for the hole.</li>
-      <li>Dimension circle to 4mm.</li>
-      <li>Extrude Cut the Hole: Create &gt; Extrude &gt; Cut Symmetric.</li>
-    </ul>
-    <p class="red-check">Checkoff 4: Show your shaft's keychain hole to your instructor.</p>
-  </div>
+    <!-- Part 8 -->
+    <div class="lab-box">
+      <h2>Part (8): Understanding Sketch Relationships & Constraints (5 minutes)</h2>
+      <p><a href="https://youtu.be/Vb8D2daPgbA" target="_blank">Video Link</a></p>
+    </div>
 
-  <!-- Part 8 -->
-  <div class="lab-box">
-    <h2>Part (8): Understanding Sketch Relationships & Constraints (5 minutes)</h2>
-    <p><a href="https://youtu.be/Vb8D2daPgbA" target="_blank">Video Link</a></p>
-  </div>
+    <!-- Part 9 -->
+    <div class="lab-box">
+      <h2>Part (9) [OPTIONAL]: Wrapping/Embossing a Design on your cylindrical shaft (5 minutes)</h2>
+      <p><a href="https://youtu.be/c4Ie6-YZrfM" target="_blank">Video Link</a></p>
+      <ul>
+        <li>Select sketch</li>
+        <li>Select surface</li>
+        <li>Emboss/Add or Deboss/Cut</li>
+        <li>Set depth/height</li>
+      </ul>
+    </div>
 
-  <!-- Part 9 -->
-  <div class="lab-box">
-    <h2>Part (9) [OPTIONAL]: Wrapping/Embossing a Design on your cylindrical shaft (5 minutes)</h2>
-    <p><a href="https://youtu.be/c4Ie6-YZrfM" target="_blank">Video Link</a></p>
-    <ul>
-      <li>Select the sketch you want to emboss.</li>
-      <li>Select the surface to emboss onto.</li>
-      <li>Emboss Type: Emboss/Add or Deboss/Cut.</li>
-      <li>Set desired depth/height.</li>
-    </ul>
   </div>
 
   <!-- Sidebar -->
@@ -220,13 +190,13 @@ footer { text-align:center; padding:20px; background-color:#111; color:#bbbbbb; 
     <img src="keychain.png" alt="Final Keychain">
   </div>
 
-  <!-- Instructors Placeholder -->
+  <!-- Instructors -->
   <div class="section" id="instructors">
     <h2>Instructors</h2>
     <p>Instructor details will be added here.</p>
   </div>
 
-  <!-- About Section -->
+  <!-- About -->
   <div class="section" id="about">
     <h2>About</h2>
     <p>All instructions are credited to the MISTI teaching team. This lab is organized by UTB students inspired by MIT labs.</p>
