@@ -13,33 +13,33 @@ body {
     padding: 0;
 }
 
-/* Header with centered text and logos on left */
+/* Header */
 header {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     background-color: #000000;
-    padding: 50px 20px;
-    gap: 50px;
+    padding: 25px 20px; /* Reduced height */
 }
 header .logo-section {
-    text-align: center;
+    display: flex;
+    gap: 30px;
+    align-items: center;
 }
 header .logo-section img {
-    height: 140px;
-    display: block;
-    margin: 10px auto;
+    height: 120px; /* slightly smaller */
 }
 header .text-section {
     text-align: center;
+    flex: 1;
 }
 header .text-section h1 {
-    font-size: 3.8em;
+    font-size: 3em; /* smaller header */
     color: #c29fff;
     margin: 0 0 10px 0;
 }
 header .text-section p {
-    font-size: 1.3em;
+    font-size: 1.1em;
     color: #bbbbbb;
     margin: 0;
 }
@@ -47,7 +47,7 @@ header .text-section p {
 /* Navbar */
 nav {
     background-color: #111111;
-    padding: 14px 0;
+    padding: 12px 0;
     text-align: center;
     position: sticky;
     top: 0;
@@ -104,19 +104,6 @@ nav a:hover {
     color: #c29fff;
 }
 
-/* About Box (now below main content) */
-.about-box {
-    background-color: #2b1e3b; /* lighter purple */
-    padding: 25px;
-    border-radius: 8px;
-    margin: 20px auto;
-    color: #f0f0f0;
-    font-size: 1em;
-    text-align: left;
-    width: 90%;
-    max-width: 1300px;
-}
-
 /* Sections */
 .section {
     background-color: #1e1e2e;
@@ -130,7 +117,7 @@ nav a:hover {
     margin-top: 0;
 }
 .section h3 {
-    color: #caa1ff; /* light purple for subsection headings */
+    color: #caa1ff;
 }
 .labs-list li, .instructors-list li {
     margin-bottom: 12px;
@@ -160,11 +147,24 @@ nav a:hover {
 }
 .schedule-box td {
     background-color: #1e1e2e;
-    color: #ffffff; /* white text */
+    color: #ffffff;
 }
 .schedule-box a {
     color: #ffffff;
     text-decoration: none;
+}
+
+/* About Box */
+.about-box {
+    background-color: #2b1e3b;
+    padding: 25px;
+    border-radius: 8px;
+    margin: 20px auto;
+    color: #f0f0f0;
+    font-size: 1em;
+    text-align: left;
+    width: 90%;
+    max-width: 1300px;
 }
 
 /* Footer */
@@ -214,11 +214,11 @@ footer {
     <div class="main-content">
         <div class="section" id="home">
             <h2>Course Overview</h2>
-            <p>This student-led lab series at UTB is inspired by the AUBH MIT MISTI program. Students explore hands-on STEM projects including 3D modeling, rapid prototyping, electronics, and interactive GUIs through mini-projects and instructor check-ins.</p>
+            <p style="margin-bottom:30px;">This student-led lab series at UTB is inspired by the AUBH MIT MISTI program. Students explore hands-on STEM projects including 3D modeling, rapid prototyping, electronics, and interactive GUIs through mini-projects and instructor check-ins.</p>
 
             <!-- Labs Box -->
             <div class="labs-box" id="labs">
-                <h2 style="color:#caa1ff;">Labs</h2>
+                <h2 style="color:#caa1ff; margin-bottom:15px;">Labs</h2>
                 <ul class="labs-list">
                     <li><strong>Lab 1:</strong> 3D Printing a Keychain | Tuesday 12-2 PM, Thursday 1-3 PM</li>
                     <li><strong>Lab 2:</strong> Building a Mr. Roboto | Tuesday 12-2 PM, Thursday 1-3 PM</li>
@@ -228,7 +228,7 @@ footer {
 
             <!-- Schedule & Notes Box -->
             <div class="schedule-box">
-                <h2 style="color:#caa1ff;">Schedule & Notes</h2>
+                <h2 style="color:#caa1ff; margin-bottom:15px;">Schedule & Notes</h2>
                 <table>
                     <tr>
                         <th>Lab</th>
@@ -293,5 +293,7 @@ footer {
 </footer>
 
 </body>
+</html>
+
 </html>
 
