@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lab 1 – 3D Printing a Keychain</title>
+<title>Labs – MIT-Inspired Lab Series</title>
 
 <style>
 body {
@@ -11,87 +11,64 @@ body {
     background-color: #121212;
     color: #e0e0e0;
     margin: 0;
+    padding: 0;
 }
 
 /* Header */
 header {
     background-color: #000;
-    padding: 40px;
+    padding: 40px 20px;
     text-align: center;
 }
 header h1 {
-    font-size: 3em;
     color: #c29fff;
     margin: 0;
 }
-
-/* NAVBAR */
-nav {
-    background-color: #111;
-    text-align: center;
-    padding: 14px 0;
-}
-nav a {
-    margin: 0 20px;
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 1.15em;
-}
-nav a:hover {
-    color: #c29fff;
+header p {
+    color: #bbbbbb;
+    margin: 5px 0 20px 0;
 }
 
-/* CONTENT */
+/* Container */
 .container {
     width: 90%;
-    max-width: 1100px;
-    margin: 30px auto;
+    max-width: 1000px;
+    margin: 20px auto;
+}
+
+.lab-box {
     background-color: #1e1e2e;
-    padding: 25px;
-    border-radius: 10px;
-}
-
-/* Section Headings */
-h2 {
-    color: #c29fff;
-    margin-top: 40px;
-}
-
-/* Images */
-img {
-    width: 100%;
-    max-width: 600px;
-    border-radius: 10px;
-    margin: 15px 0;
-}
-
-/* Checkoff boxes */
-.checkoff {
-    background-color: #2b1e3b;
-    border-left: 4px solid #c29fff;
-    padding: 15px;
-    margin: 20px 0;
+    padding: 20px;
     border-radius: 8px;
-    font-weight: bold;
+    margin-bottom: 20px;
+}
+.lab-box h2 {
+    color: #c29fff;
+    margin-top: 0;
+}
+.lab-box ul {
+    list-style: none;
+    padding-left: 0;
+}
+.lab-box ul li {
+    margin-bottom: 8px;
 }
 
-/* Table */
-table {
-    width: 100%;
-    border-collapse: collapse;
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+a:hover {
+    color: #c29fff;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #bbbbbb;
+    background-color: #111;
     margin-top: 20px;
-}
-th, td {
-    border: 1px solid #c29fff;
-    padding: 10px;
-    text-align: left;
-}
-th {
-    background-color: #000;
-}
-td {
-    background-color: #1e1e2e;
 }
 </style>
 </head>
@@ -99,168 +76,44 @@ td {
 <body>
 
 <header>
-    <h1>Lab 1 – 3D Printing a Keychain</h1>
+    <h1>Labs & Sessions</h1>
+    <p>Click on a lab to view session details and instructions</p>
 </header>
-
-<nav>
-  <a href="index.html">Home</a>
-  <a href="lab.html">Labs</a>
-  <a href="#about">About</a>
-</nav>
 
 <div class="container">
 
-<!-- INTRO -->
-<h2>Introduction & Safety<br><span style="font-size:0.7em;">(1 minute read)</span></h2>
+    <!-- LAB 1 -->
+    <div class="lab-box">
+        <h2>Lab 1: 3D Printing a Keychain</h2>
+        <ul>
+            <li><a href="lab1.html">Session 1 – Tuesday 18 Nov 12-2 PM</a></li>
+            <li><a href="lab1.html">Session 2 – Thursday 20 Nov 1-3 PM</a></li>
+        </ul>
+    </div>
 
-<p>
-3D printing is an additive manufacturing process where computer-aided G-code is translated 
-to build up material layer by layer. It includes FDM (extruding hot thermoplastics), 
-SLA (photoresin polymers cured with light), and Polyjet printing.
-</p>
+    <!-- LAB 2 -->
+    <div class="lab-box">
+        <h2>Lab 2: Building a Mr. Roboto</h2>
+        <ul>
+            <li><a href="lab2.html">Session 1 – Tuesday 25 Nov 12-2 PM</a></li>
+            <li><a href="lab2.html">Session 2 – Thursday 27 Nov 1-3 PM</a></li>
+        </ul>
+    </div>
 
-<p>In this lab, you will learn how to:</p>
-
-<ul>
-<li>✅ Learn advanced 3D modeling techniques (Revolve, Sweep, Warp)</li>
-<li>✅ Design for multimaterial 3D printing</li>
-<li>✅ CAD a rotating element around a shaft</li>
-<li>✅ CAD a threaded object</li>
-<li>✅ Make a mechanical assembly</li>
-<li>✅ Render a 3D model in Fusion360</li>
-<li>✅ Export files for 3D printing</li>
-</ul>
-
-<h3>Fabrication Quest of the Day</h3>
-<p>Today, you will:</p>
-<ul>
-<li>(a) Assemble your Rotating Keychain</li>
-<li>(b) Post-process your 3D print</li>
-</ul>
-
-<h3>Software & Hardware</h3>
-<p><strong>Software:</strong> Fusion360<br>
-<strong>Machines:</strong> 3D Printer</p>
-
-<hr>
-
-<!-- PART 1 -->
-<h2>Part (1): Creating Variables & Equations for Dynamic Dimensioning! (10 minutes)</h2>
-
-<p><strong>Video:</strong>  
-<a href="https://youtu.be/6S8xpPzyGAQ" target="_blank">Click here to watch</a></p>
-
-<p><strong>Video Summary:</strong><br>
-Dimensioning models through variables allows for modifying model dimensions with ease.
-To create dimension variables, go to:<br>
-<b>Modify → Change Parameters → Add User Parameter</b>
-</p>
-
-<p>Create a variable for <b>shaft_outer_d</b> (9mm). Then add the following:</p>
-
-<table>
-<tr>
-<th>Part Name</th>
-<th>Variable Name</th>
-<th>Expression</th>
-<th>Unit</th>
-</tr>
-
-<tr><td>(Do not add)</td><td>shaft_outer_d</td><td>9</td><td>mm</td></tr>
-<tr><td>Shaft Length for 3 Blocks</td><td>shaft_length_3b</td><td>36.2</td><td>mm</td></tr>
-<tr><td>Shaft Length for 4 Blocks</td><td>shaft_length_4b</td><td>48.2</td><td>mm</td></tr>
-<tr><td>Threaded Hole Depth</td><td>thread_depth</td><td>10</td><td>mm</td></tr>
-<tr><td>Keychain Hole Diameter</td><td>keychain_hole_d</td><td>4</td><td>mm</td></tr>
-<tr><td>Rotating Block Size</td><td>rot_b_size</td><td>12</td><td>mm</td></tr>
-<tr><td>Rotating Block Thickness</td><td>rot_b_thick</td><td>12</td><td>mm</td></tr>
-<tr><td>Hole Tolerance</td><td>tolerance</td><td>0.6</td><td>mm</td></tr>
-<tr><td>Rotating Block Hole Diameter</td><td>rot_b_hole_d</td><td>shaft_outer_d + tolerance</td><td>mm</td></tr>
-</table>
-
-<div class="checkoff">✔ Checkoff 1 — Ask your instructor to verify Part (1)</div>
-
-<hr>
-
-<!-- PART 2 -->
-<h2>Part (2): Sketch and Dimension Parametrically (5 minutes)</h2>
-
-<img src="lab1s1.png" alt="Sketch Image">
-
-<p><strong>Instructions:</strong></p>
-<ul>
-<li>Draw a circle at the origin (0,0)</li>
-<li>Dimension the circle using “shaft_outer_d”</li>
-<li>Exit sketch and rename it <b>shaft-circle</b></li>
-</ul>
-
-<hr>
-
-<!-- PART 3 -->
-<h2>Part (3): Extruding the Sketch (5 minutes)</h2>
-
-<img src="lab1s11.png" alt="Extrude Image">
-
-<p><strong>Steps:</strong></p>
-<ul>
-<li>Select <b>Create → Extrude</b></li>
-<li>Select the circle from your sketch</li>
-<li>Set distance to <b>shaft_length_3b</b> or <b>shaft_length_4b</b></li>
-<li>Operation: <b>New Component</b></li>
-<li>Rename component to <b>Shaft</b></li>
-</ul>
-
-<hr>
-
-<!-- PART 4 -->
-<h2>Part (4): Making a Threaded Hole (7 minutes)</h2>
-
-<p><strong>Video:</strong>  
-<a href="https://youtu.be/wXWqRJZoUgk" target="_blank">How to Make a Threaded Hole</a></p>
-
-<p><strong>Steps:</strong></p>
-<ul>
-<li>Toggle “shaft-circle” sketch ON</li>
-<li>Create → Hole</li>
-<li>Select the top face</li>
-<li>Reference: center point of circle</li>
-<li>Hole Type: <b>Simple</b></li>
-<li>Tap Type: <b>Tapped</b></li>
-<li>Thread Offset: <b>Full</b></li>
-<li>Drill Point: <b>Angle</b></li>
-<li>Depth: <b>thread_depth</b></li>
-<li>Size: <b>7mm</b></li>
-<li>Designation: <b>M7mm x 1mm</b></li>
-</ul>
-
-<div class="checkoff">✔ Checkoff 2 — Show your shaft with threaded hole</div>
-
-<hr>
-
-<!-- PART 5 -->
-<h2>Part (5): Creating Profile of Keychain Holder Head (20 minutes)</h2>
-
-<p><strong>Video:</strong>  
-<a href="https://youtu.be/m07_IYGyhos" target="_blank">Click here to watch</a></p>
-
-<p><strong>Steps:</strong></p>
-<ul>
-<li>Create → Axis Through Cylinder</li>
-<li>Create → Plane at Angle → set angle to 0°</li>
-<li>Right-click plane → Create Sketch</li>
-<li>Project the circle boundary (keep Projection Link ON)</li>
-<li>Draw your remix profile (must be closed + symmetric)</li>
-</ul>
-
-<img src="lab1s111.png" alt="Sketch Profile">
-
-<div class="checkoff">✔ Checkoff 3 — Show your sketched profile to your instructor</div>
+    <!-- LAB 3 -->
+    <div class="lab-box">
+        <h2>Lab 3: GUI & Guitar Hero</h2>
+        <ul>
+            <li><a href="lab3.html">Session 1 – Tuesday 2 Dec 12-2 PM</a></li>
+            <li><a href="lab3.html">Session 2 – Thursday 4 Dec 1-3 PM</a></li>
+        </ul>
+    </div>
 
 </div>
 
-<footer style="text-align:center; padding:20px; color:#bbb;">
-&copy; 2025 UTB Student Labs | Lab 1 Instructions
+<footer>
+    &copy; 2025 UTB Student Labs | MIT-Inspired Series
 </footer>
 
 </body>
 </html>
-
