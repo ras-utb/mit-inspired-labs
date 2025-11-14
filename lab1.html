@@ -13,13 +13,7 @@ body {
     padding: 0;
     font-size: 1.05em;
 }
-
-/* Header */
-header {
-    background-color: #000;
-    padding: 40px 20px;
-    text-align: center;
-}
+header { background-color: #000; padding: 40px 20px; text-align: center; }
 header h1 { color: #c29fff; margin: 0; }
 header p { color: #bbbbbb; margin: 5px 0 20px 0; }
 
@@ -52,10 +46,7 @@ nav a:hover { color: #c29fff; }
 }
 
 /* Main content */
-.main-content {
-    flex: 3;
-    min-width: 300px;
-}
+.main-content { flex: 3; min-width: 300px; }
 
 /* Sidebar */
 .sidebar {
@@ -81,22 +72,31 @@ nav a:hover { color: #c29fff; }
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.5);
 }
-.section h2 {
-    color: #c29fff;
-    margin-top: 0;
-}
+.section h2 { color: #c29fff; margin-top: 0; }
 .section img {
     display: block;
     margin: 15px auto;
     max-width: 100%;
 }
 
-/* Red Checkoff */
-.checkoff {
-    color: red;
-    font-weight: bold;
-    margin: 10px 0;
+/* Video Embeds */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    margin: 15px 0;
 }
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Red Checkoff */
+.checkoff { color: red; font-weight: bold; margin: 10px 0; }
 
 /* Footer */
 footer {
@@ -110,13 +110,8 @@ footer {
 
 /* Responsive */
 @media (max-width: 1000px) {
-    .container {
-        flex-direction: column;
-    }
-    .sidebar img {
-        max-width: 100%;
-        height: auto;
-    }
+    .container { flex-direction: column; }
+    .sidebar img { max-width: 100%; height: auto; }
 }
 </style>
 </head>
@@ -142,7 +137,8 @@ footer {
         <!-- Part 1 -->
         <div class="section">
             <h2>Part 1: Introduction & Safety</h2>
-            <p>3D printing is an additive manufacturing process. You will learn:</p>
+            <p>3D printing is an additive manufacturing process. You will learn advanced modeling, assembly, and fabrication skills. Follow all safety instructions while using machines and tools.</p>
+            <img src="keychain2.png" alt="Keychain Preview">
             <ol>
                 <li>Learn advanced 3D modeling Techniques (Revolve, Sweep, Warp).</li>
                 <li>Design for Multimaterial 3D Printing.</li>
@@ -162,7 +158,6 @@ footer {
                 <li>Software: Fusion360</li>
                 <li>Machines: 3D Printer</li>
             </ol>
-            <img src="keychain1.png" alt="Keychain preview">
         </div>
 
         <!-- Part 2 -->
@@ -197,7 +192,9 @@ footer {
         <div class="section">
             <h2>Part 4: Making a Threaded Hole</h2>
             <p>(7 minutes)</p>
-            <p><a href="https://youtu.be/wXWqRJZoUgk" target="_blank">Video Link</a></p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/wXWqRJZoUgk" allowfullscreen></iframe>
+            </div>
             <ol>
                 <li>Toggle "Shaft-circle" sketch back on.</li>
                 <li>Go to Create &gt; Hole Tool.</li>
@@ -214,7 +211,9 @@ footer {
             <h2>Part 5: Creating Profile of Keychain Holder Head (Remix Optional)</h2>
             <p>(20 minutes)</p>
             <img src="lab1s111.png" alt="Keychain Holder Profile">
-            <p><a href="https://youtu.be/m07_IYGyhos" target="_blank">Video Link</a></p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/m07_IYGyhos" allowfullscreen></iframe>
+            </div>
             <ol>
                 <li>Create Axis Through Cylinder (Construct → Axis Through Cylinder).</li>
                 <li>Create Plane at Angle (Construct → Plane at Angle → 0°).</li>
@@ -229,7 +228,9 @@ footer {
         <div class="section">
             <h2>Part 6: Revolving Radially Symmetric Geometry</h2>
             <p>(5 minutes)</p>
-            <p><a href="https://youtu.be/owtCM5rS0ps" target="_blank">Video Link</a></p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/owtCM5rS0ps" allowfullscreen></iframe>
+            </div>
             <ol>
                 <li>Create &gt; Revolve.</li>
                 <li>Select profile and axis of symmetry.</li>
@@ -242,7 +243,9 @@ footer {
         <div class="section">
             <h2>Part 7: Making Hole for Keychain</h2>
             <p>(5 minutes)</p>
-            <p><a href="https://youtu.be/0mJ34pklLXE" target="_blank">Video Link</a></p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/0mJ34pklLXE" allowfullscreen></iframe>
+            </div>
             <ol>
                 <li>Create tangent plane.</li>
                 <li>Sketch circle where hole should be.</li>
@@ -256,14 +259,18 @@ footer {
         <div class="section">
             <h2>Part 8: Understanding Sketch Relationships & Constraints</h2>
             <p>(5 minutes)</p>
-            <p><a href="https://youtu.be/Vb8D2daPgbA" target="_blank">Video Link</a></p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/Vb8D2daPgbA" allowfullscreen></iframe>
+            </div>
         </div>
 
         <!-- Part 9 -->
         <div class="section">
             <h2>Part 9 (Optional): Wrapping/Embossing a Design on Your Cylindrical Shaft</h2>
             <p>(5 minutes)</p>
-            <p><a href="https://youtu.be/c4Ie6-YZrfM" target="_blank">Video Link</a></p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/c4Ie6-YZrfM" allowfullscreen></iframe>
+            </div>
             <ol>
                 <li>Profile: Select sketch to emboss.</li>
                 <li>Face: Select curved/flat surface.</li>
@@ -276,7 +283,7 @@ footer {
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <img src="keychain2.png" alt="Final Keychain">
+        <img src="keychain.png" alt="Final Keychain">
     </div>
 
 </div>
@@ -287,3 +294,4 @@ footer {
 
 </body>
 </html>
+
