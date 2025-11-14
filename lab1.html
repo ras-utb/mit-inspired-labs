@@ -1,142 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF‑8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lab 1 – 3D Printing a Keychain | MIT‑Inspired Lab Series</title>
-  <style>
-    body {
-      font‑family: Arial, sans‑serif;
-      background‑color: #121212;
-      color: #e0e0e0;
-      margin: 0;
-      padding: 0;
-      font‑size: 1.05em;
-    }
-    header {
-      background‑color: #000000;
-      padding: 40px 20px;
-      text‑align: center;
-    }
-    header h1 {
-      font‑size: 3.5em;
-      color: #c29fff;
-      margin: 0 0 10px 0;
-    }
-    header p {
-      font‑size: 1.3em;
-      color: #bbbbbb;
-      margin: 0 0 20px 0;
-    }
-    .content {
-      width: 90%;
-      max‑width: 1000px;
-      margin: 30px auto;
-      padding: 20px;
-      background‑color: #1e1e2e;
-      border‑radius: 8px;
-    }
-    .content h2 {
-      color: #c29fff;
-      margin‑top: 0;
-    }
-    .section {
-      margin‑bottom: 30px;
-    }
-    .section ul {
-      list‑style: none;
-      padding: 0;
-    }
-    .section ul li {
-      margin‑bottom: 10px;
-    }
-    .tableContainer {
-      overflow‑x: auto;
-    }
-    table {
-      width: 100%;
-      border‑collapse: collapse;
-    }
-    th, td {
-      border: 1px solid #c29fff;
-      padding: 8px;
-    }
-    th {
-      background‑color: #000000;
-      color: #ffffff;
-    }
-    td {
-      background‑color: #1e1e2e;
-      color: #ffffff;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Labs – MIT-Inspired Lab Series</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: #000;
+    padding: 40px 20px;
+    text-align: center;
+}
+header h1 { color: #c29fff; margin: 0; }
+header p { color: #bbbbbb; margin: 5px 0 20px 0; }
+.container { width: 90%; max-width: 1000px; margin: 20px auto; }
+.lab-box {
+    background-color: #1e1e2e;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+.lab-box h2 { color: #c29fff; margin-top: 0; }
+.lab-box ul { list-style: none; padding-left: 0; }
+.lab-box ul li { margin-bottom: 8px; }
+a { color: #ffffff; text-decoration: none; }
+a:hover { color: #c29fff; }
+</style>
 </head>
 <body>
 
 <header>
-  <h1>Lab 1: 3D Printing a Keychain</h1>
-  <p>Sessions: Tuesday 18 Nov 12‑2 PM & Thursday 20 Nov 1‑3 PM | All sessions in Room 017 (Ground Floor)</p>
+<h1>Labs & Sessions</h1>
+<p>Click on a lab to view session details and instructions</p>
 </header>
 
-<div class="content">
+<div class="container">
 
-  <div class="section" id="overview">
-    <h2>Course Overview & Objective</h2>
-    <p>In this lab you will learn to design a simple 3D object (a personalized keychain), prepare it for 3D printing, print it, and post‑process it. This project helps you get hands‑on with CAD modelling, slicing software, and hardware workflow.</p>
-  </div>
-
-  <div class="section" id="software‑hardware">
-    <h2>Software & Hardware</h2>
-    <h3>Software</h3>
+  <div class="lab-box">
+    <h2>Lab 1: 3D Printing a Keychain</h2>
     <ul>
-      <li>Computer with CAD software (e.g., Autodesk Fusion 360) – design your keychain</li>
-      <li>Slicing software (e.g., Ultimaker Cura or PrusaSlicer) – prepare print file</li>
-      <li>Access to your GitHub Pages repo to upload design files (optional)</li>
-    </ul>
-    <h3>Hardware</h3>
-    <ul>
-      <li>3D Printer (FDM type) with PLA filament, bed & nozzle pre‑set</li>
-      <li>Workstation/computer for design and slicing</li>
-      <li>Hand tools for finishing: sandpaper, pliers, key‑ring</li>
+      <li><a href="labs/advanced/lab1.html">Session 1 – Tuesday 18 Nov 12-2 PM</a></li>
+      <li><a href="labs/advanced/lab1.html">Session 2 – Thursday 20 Nov 1-3 PM</a></li>
     </ul>
   </div>
 
-  <div class="section" id="steps">
-    <h2>Steps</h2>
+  <div class="lab-box">
+    <h2>Lab 2: Building a Mr. Roboto</h2>
     <ul>
-      <li><strong>Step 1 – Design:</strong> Open Fusion 360, start a new design. Create a base shape (e.g., rectangle ~70 mm × 30 mm × 5 mm), add text or logo, and an integrated hole for a key‑ring (~4‑5 mm diameter).</li>
-      <li><strong>Step 2 – Export Model:</strong> Once design is complete, export as .STL file.</li>
-      <li><strong>Step 3 – Slice:</strong> Import the .STL into your slicing software. Set layer height (~0.20 mm), infill (~20 %), supports (if needed), and export G‑code.</li>
-      <li><strong>Step 4 – Print:</strong> Load PLA filament, level the bed, load G‑code, and watch for first layer adhesion. Print time ~30‑90 minutes.</li>
-      <li><strong>Step 5 – Post‑Process:</strong> Remove the print, trim or sand any rough edges, attach key‑ring, and check your finished keychain.</li>
+      <li><a href="labs/advanced/lab2.html">Session 1 – Tuesday 25 Nov 12-2 PM</a></li>
+      <li><a href="labs/advanced/lab2.html">Session 2 – Thursday 27 Nov 1-3 PM</a></li>
     </ul>
   </div>
 
-  <div class="section tableContainer" id="schedule‑notes">
-    <h2>Schedule & Notes</h2>
-    <table>
-      <tr>
-        <th>Date / Section</th>
-        <th>Before Class</th>
-        <th>Deliverable</th>
-      </tr>
-      <tr>
-        <td>Tuesday, 18 Nov 12‑2 PM</td>
-        <td>Bring laptop, headphones, install Fusion 360</td>
-        <td>Finish design of keychain</td>
-      </tr>
-      <tr>
-        <td>Thursday, 20 Nov 1‑3 PM</td>
-        <td>Bring laptop, key‑ring ready</td>
-        <td>Print and finish your keychain</td>
-      </tr>
-    </table>
+  <div class="lab-box">
+    <h2>Lab 3: GUI & Guitar Hero</h2>
+    <ul>
+      <li><a href="labs/advanced/lab3.html">Session 1 – Tuesday 2 Dec 12-2 PM</a></li>
+      <li><a href="labs/advanced/lab3.html">Session 2 – Thursday 4 Dec 1-3 PM</a></li>
+    </ul>
   </div>
 
 </div>
 
-<footer style="text‑align:center; padding:20px; color:#bbbbbb;">
-  &copy; 2025 UTB Student Labs | MIT‑Inspired Series
+<footer style="text-align:center; padding:20px; color:#bbbbbb;">
+&copy; 2025 UTB Student Labs | MIT-Inspired Series
 </footer>
 
 </body>
