@@ -1,126 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UTB MIT-Inspired Lab Series</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7f8;
-            color: #2c3e50;
-            margin: 0;
-            padding: 0;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UTB MIT-Inspired Lab Series</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f7f8;
+        color: #2c3e50;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Header */
+    header {
+        background-color: #0a0a0a;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+    }
+    header img {
+        max-height: 60px;
+        margin: 0 15px;
+        border-radius: 50%;   /* circular logos */
+        object-fit: cover;
+        border: 2px solid white;
+    }
+    header h1 {
+        margin: 10px 0 5px 0;
+        font-size: 2em;
+    }
+    header p {
+        color: #cccccc;
+        margin: 5px 0 0 0;
+        font-size: 1.1em;
+    }
+
+    /* Navbar */
+    nav {
+        background-color: #1a1a1a;
+        padding: 10px 0;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+    nav a {
+        margin: 0 15px;
+        text-decoration: none;
+        color: #ffffff;
+        font-weight: bold;
+    }
+    nav a:hover {
+        color: #cccccc;
+    }
+
+    /* Container and layout */
+    .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 20px auto;
+    }
+    .home-section {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+    .main-content {
+        flex: 3;
+        min-width: 300px;
+        margin-right: 20px;
+    }
+    .sidebar {
+        flex: 1;
+        min-width: 200px;
+        background-color: #ffffff;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+
+    /* Sections */
+    .section {
+        background-color: #ffffff;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .section h2 {
+        color: #0a0a0a;
+        margin-top: 0;
+    }
+    .labs-list li, .instructors-list li {
+        margin-bottom: 10px;
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+        padding: 15px;
+        background-color: #1a1a1a;
+        color: #cccccc;
+        margin-top: 20px;
+        font-size: 0.9em;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .home-section {
+            flex-direction: column;
         }
-        header {
-            background-color: #0a0a0a; /* Dark background */
-            color: white;
-            padding: 20px 0;
-            text-align: center;
+        .main-content {
+            margin-right: 0;
         }
-        header img {
-            max-height: 60px;
-            margin: 0 15px;
-        }
-        header h1 {
-            color: #ffffff;
-            margin: 10px 0 5px 0;
-            font-size: 2.2em;
-            font-weight: bold;
-        }
-        header .host {
-            font-size: 0.9em;
-            margin-top: 5px;
-            color: #cccccc;
-        }
-        nav {
-            background-color: #1a1a1a; /* Dark navbar */
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #ffffff;
-            font-weight: bold;
-        }
-        nav a:hover {
-            color: #cccccc;
-        }
-        .container {
-            width: 90%;
-            max-width: 1000px;
-            margin: 20px auto;
-        }
-        .section {
-            background-color: #ffffff;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .section h2 {
-            color: #0a0a0a;
-            margin-top: 0;
-        }
-        .labs-list li {
-            margin-bottom: 10px;
-        }
-        footer {
-            text-align: center;
-            padding: 15px;
-            background-color: #1a1a1a;
-            color: #cccccc;
-            margin-top: 20px;
-            font-size: 0.9em;
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
 
 <header>
-    <!-- Space for two logos -->
-    <img src="logo1.png" alt="Logo 1">
-    <img src="logo2.png" alt="Logo 2">
+    <img src="utblogo.png" alt="UTB Logo">
+    <img src="raslogo.png" alt="RAS Club Logo">
     <h1>Hello Engineers!</h1>
-    <div class="host">Hosted by RAS Club (Robotics & Automation Society)</div>
+    <p>Welcome to the MIT-Inspired Lab Series, organized by Robotics & Automation Society (RAS) Club at UTB.</p>
 </header>
 
 <nav>
-    <a href="index.html">Home</a>
-    <a href="lab1.html">Labs</a>
-    <a href="videos.html">Videos</a>
-    <a href="about.html">About</a>
+    <a href="#home">Home</a>
+    <a href="#labs">Labs</a>
+    <a href="#instructors">Instructors</a>
+    <a href="#about">About</a>
 </nav>
 
 <div class="container">
 
-    <div class="section">
-        <h2>UTB Student-Led Labs: Course Overview</h2>
-        <p>This student-led lab series at UTB is inspired by the AUBH MIT MISTI program. We aim to provide hands-on STEM learning experiences, transforming traditional concepts into interactive, real-world projects. Each lab engages participants in creative design and fabrication techniques using mechanical, electrical, or physical/chemical methods.</p>
-        <p>Students explore foundational technologies and fabrication methods including 3D modeling, rapid prototyping (3D printing and laser cutting), sensing and electronics, and graphical user interface development. Labs include individual mini-projects, instructor check-ins, and in-class reviews to guide progress.</p>
+    <!-- Home Section -->
+    <div id="home" class="home-section">
+        <div class="main-content">
+            <div class="section">
+                <h2>Course Overview</h2>
+                <p>This student-led lab series at UTB is inspired by the AUBH MIT MISTI program. We provide hands-on STEM learning experiences, transforming traditional concepts into interactive projects. Students explore 3D modeling, rapid prototyping, electronics, and more through mini-projects and instructor check-ins.</p>
+            </div>
+        </div>
+        <div class="sidebar">
+            <h3>Featured Image</h3>
+            <img src="starwars.png" alt="Star Wars Pic" style="max-width:100%; border-radius:8px;">
+            <p>Fun side content or decoration!</p>
+        </div>
     </div>
 
-    <div class="section">
-        <h2>Time Commitments</h2>
-        <ul>
-            <li><strong>Lab 1:</strong> Tuesday 18th Nov, 12-2 PM | Thursday 20th Nov, 1-3 PM</li>
-            <li><strong>Lab 2:</strong> [Day & Time TBD]</li>
-            <li><strong>Lab 3:</strong> [Day & Time TBD]</li>
-        </ul>
-    </div>
-
-    <div class="section">
+    <!-- Labs Section -->
+    <div id="labs" class="section">
         <h2>Labs</h2>
         <p>All lab sections take place in <strong>AUBH D-Lab (Room D001)</strong>. You are expected to complete all check-offs.</p>
         <ul class="labs-list">
-            <li><a href="lab1.html">Lab 1: 3D Printing a Keychain</a></li>
-            <li>Lab 2: Coming Soon</li>
-            <li>Lab 3: Coming Soon</li>
+            <li><strong>Lab 1:</strong> 3D Printing a Keychain | Tuesday 18th Nov 12-2 PM, Thursday 20th Nov 1-3 PM</li>
+            <li><strong>Lab 2:</strong> Coming Soon</li>
+            <li><strong>Lab 3:</strong> Coming Soon</li>
         </ul>
     </div>
 
-    <div class="section">
+    <!-- Instructors Section -->
+    <div id="instructors" class="section">
+        <h2>Instructors</h2>
+        <ul class="instructors-list">
+            <li>Instructor 1 - Role</li>
+            <li>Instructor 2 - Role</li>
+            <li>Instructor 3 - Role</li>
+        </ul>
+    </div>
+
+    <!-- About Section -->
+    <div id="about" class="section">
         <h2>About</h2>
         <p>This series is organized by students who previously participated in the AUBH MIT-inspired labs. Our mission is to provide UTB students with experiential STEM learning opportunities, fostering creativity, problem-solving, and technical skills through hands-on projects.</p>
     </div>
@@ -131,4 +185,6 @@
     &copy; 2025 UTB Student Labs | MIT-Inspired Series
 </footer>
 
-</bo
+</body>
+</html>
+
