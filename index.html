@@ -17,21 +17,12 @@ body {
 /* Header */
 header {
     display: flex;
+    flex-direction: column;
     align-items: center;
     background-color: #000000;
     padding: 60px 20px;
 }
-header .logo-section {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: flex-start;
-}
-header .logo-section img {
-    height: 140px;
-}
 header .text-section {
-    flex: 1;
     text-align: center;
 }
 header .text-section h1 {
@@ -42,7 +33,20 @@ header .text-section h1 {
 header .text-section p {
     font-size: 1.4em;
     color: #bbbbbb;
-    margin: 0;
+    margin: 0 0 20px 0;
+}
+/* Logos below text */
+header .logo-section {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+}
+header .logo-section img {
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #c29fff;
 }
 
 /* Navbar */
@@ -98,8 +102,8 @@ nav a:hover {
     width: 100%;
     max-width: 400px;
     border-radius: 8px;
-    flex-grow: 1; /* fills vertical space */
-    object-fit: cover; /* ensures image scales nicely */
+    flex-grow: 1;
+    object-fit: cover;
 }
 .sidebar .r2d2 {
     font-size: 1.6em;
@@ -178,36 +182,26 @@ footer {
         max-width: 100%;
         height: auto;
     }
-    header {
-        flex-direction: column;
-        align-items: center;
-    }
-    header .logo-section {
-        flex-direction: row;
-        justify-content: center;
-        gap: 30px;
-        margin-bottom: 20px;
-    }
 }
 </style>
 </head>
 <body>
 
 <header>
-    <div class="logo-section">
-        <img src="utblogo.png" alt="UTB Logo">
-        <img src="raslogo.png" alt="RAS Club Logo">
-    </div>
     <div class="text-section">
         <h1>Welcome Engineers!</h1>
         <p>MIT-Inspired Lab Workshops organized by Robotics & Automation Society (RAS) Club at UTB</p>
+    </div>
+    <div class="logo-section">
+        <img src="utblogo.png" alt="UTB Logo">
+        <img src="raslogo.png" alt="RAS Club Logo">
     </div>
 </header>
 
 <nav>
     <a href="#home">Home</a>
     <a href="#labs">Labs</a>
-    <a href="#instructors">Instructors</a> <!-- placeholder tab -->
+    <a href="#instructors">Instructors</a> <!-- placeholder -->
     <a href="#about">About</a>
 </nav>
 
@@ -280,4 +274,3 @@ footer {
 
 </body>
 </html>
-
