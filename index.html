@@ -11,36 +11,36 @@ body {
     color: #e0e0e0;
     margin: 0;
     padding: 0;
-    font-size: 1.05em; /* slightly bigger font */
+    font-size: 1.15em; /* slightly bigger font */
 }
 
 /* Header */
 header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     background-color: #000000;
-    padding: 60px 20px; /* bigger header */
+    padding: 60px 20px;
 }
 header .logo-section {
     display: flex;
-    gap: 30px;
-    align-items: center;
+    flex-direction: column; /* logos vertically */
+    gap: 20px;
+    align-items: flex-start;
 }
 header .logo-section img {
     height: 140px;
 }
 header .text-section {
-    text-align: center;
     flex: 1;
+    text-align: center;
 }
 header .text-section h1 {
-    font-size: 4.2em; /* bigger header text */
+    font-size: 4.5em; /* bigger header text */
     color: #c29fff;
     margin: 0 0 10px 0;
 }
 header .text-section p {
-    font-size: 1.4em; /* bigger subtext */
+    font-size: 1.5em; /* bigger subtext */
     color: #bbbbbb;
     margin: 0;
 }
@@ -59,7 +59,7 @@ nav a {
     text-decoration: none;
     color: #ffffff;
     font-weight: bold;
-    font-size: 1.15em; /* slightly bigger links */
+    font-size: 1.2em; /* slightly bigger links */
 }
 nav a:hover {
     color: #c29fff;
@@ -99,7 +99,7 @@ nav a:hover {
     margin-bottom: 10px;
 }
 .sidebar .r2d2 {
-    font-size: 1.6em;
+    font-size: 1.8em;
     font-weight: bold;
     margin-bottom: 20px;
     color: #c29fff;
@@ -121,7 +121,7 @@ nav a:hover {
     margin-bottom: 12px;
 }
 
-/* Schedule table white text */
+/* Schedule table */
 .schedule-box table {
     width: 100%;
     border-collapse: collapse;
@@ -150,7 +150,7 @@ nav a:hover {
     border-radius: 8px;
     margin: 20px auto;
     color: #f0f0f0;
-    font-size: 1.05em;
+    font-size: 1.15em; /* slightly bigger text */
     text-align: left;
     width: 90%;
     max-width: 1300px;
@@ -163,7 +163,7 @@ footer {
     background-color: #111111;
     color: #bbbbbb;
     margin-top: 20px;
-    font-size: 0.95em;
+    font-size: 1em;
 }
 
 /* Responsive */
@@ -173,6 +173,16 @@ footer {
     }
     .sidebar img {
         max-width: 100%;
+    }
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+    header .logo-section {
+        flex-direction: row;
+        justify-content: center;
+        gap: 30px;
+        margin-bottom: 20px;
     }
 }
 </style>
@@ -193,6 +203,7 @@ footer {
 <nav>
     <a href="#home">Home</a>
     <a href="#labs">Labs</a>
+    <a href="#instructors">Instructors</a> <!-- placeholder tab -->
     <a href="#about">About</a>
 </nav>
 
