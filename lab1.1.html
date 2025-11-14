@@ -1,1 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 2: 3D Printing a Keychain</title>
+<style>
+body { font-family: Arial, sans-serif; background-color:#121212; color:#e0e0e0; margin:0; padding:0; font-size:1.05em;}
+header { background-color:#000; padding:40px 20px; text-align:center; }
+header h1 { color:#c29fff; margin:0; }
+header p { color:#bbbbbb; margin:5px 0 20px 0; }
+nav { background-color:#111; padding:14px 0; text-align:center; position:sticky; top:0; z-index:100; }
+nav a { margin:0 20px; text-decoration:none; color:#fff; font-weight:bold; font-size:1.1em; }
+nav a:hover { color:#c29fff; }
+.container { display:flex; flex-wrap:wrap; justify-content:space-between; width:90%; max-width:1300px; margin:25px auto; gap:20px; }
+.main-content { flex:3; min-width:300px; }
+.sidebar { flex:1; min-width:250px; background-color:#1e1e2e; padding:10px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.5); display:flex; flex-direction:column; align-items:center; }
+.sidebar img { width:100%; max-width:400px; border-radius:8px; margin-bottom:10px; }
+.section { background-color:#1e1e2e; padding:25px; margin-bottom:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.5); }
+.section h2 { color:#c29fff; margin-top:0; }
+.checkoff { color:red; font-weight:bold; }
+img.center { display:block; margin:15px auto; max-width:90%; height:auto; }
+a.video-link { color:#ffffff; text-decoration:none; background-color:#555; padding:2px 6px; border-radius:4px; }
+a.video-link:hover { background-color:#777; }
+footer { text-align:center; padding:20px; background-color:#111; color:#bbbbbb; margin-top:20px; font-size:0.9em; }
+/* Responsive */
+@media(max-width:1000px){.container{flex-direction:column;}}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Session 2: 3D Printing a Keychain</h1>
+<p>Follow the steps to complete your keychain design</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="lab.html">Labs</a>
+  <a href="#instructors">Instructors</a>
+  <a href="#about">About</a>
+</nav>
+
+<div class="container">
+  <div class="main-content">
+
+    <!-- Part 10 -->
+    <div class="section">
+      <h2>Part 10: Creating Blocks (🚨REMIX🚨)</h2>
+      <ol>
+        <li>Create blocks as new components (even if video shows bodies)</li>
+        <li>Follow Design Constraints: Block Size: 12mm, Hole Size: 9.6mm</li>
+        <li>Minimum Feature Size: 2x Nozzle Diameter</li>
+        <li>Angles: &lt; 50° for minimal support</li>
+      </ol>
+      <p><a href="https://youtu.be/4wlEyLQyJ1Q" target="_blank" class="video-link">Video Link</a></p>
+      <p class="checkoff">Checkoff 7</p>
+    </div>
+
+    <!-- Part 11 -->
+    <div class="section">
+      <h2>Part 11 [OPTIONAL]: Sweeping for Aesthetic Corners</h2>
+      <ol>
+        <li>Construct a plane along the circular hole path</li>
+        <li>Sketch a circle with ~2mm diameter</li>
+        <li>Use Create → Sweep, set profile and path</li>
+        <li>Choose operation as Cut</li>
+      </ol>
+      <p><a href="https://youtu.be/bhVTQeAzOVw" target="_blank" class="video-link">Video Link</a></p>
+      <p class="checkoff">Checkoff 8</p>
+    </div>
+
+    <!-- Part 12 -->
+    <div class="section">
+      <h2>Part 12: Assemblies in CAD</h2>
+      <ol>
+        <li>Convert blocks to components</li>
+        <li>Create Assembly: Assemble → Joint, Shaft as Component 1, Block as Component 2</li>
+        <li>Joint type: Simple & Revolute</li>
+        <li>Add remaining blocks with joint</li>
+      </ol>
+      <p><a href="https://youtu.be/bhVTQeAzOVw" target="_blank" class="video-link">Video Link</a></p>
+      <p class="checkoff">Checkoff 9</p>
+    </div>
+
+    <!-- Part 13 -->
+    <div class="section">
+      <h2>Part 13: Assigning Materials & Colors</h2>
+      <ol>
+        <li>Right-click component → Appearance</li>
+        <li>Drag material to body or specific faces</li>
+        <li>Custom color: right-click → Edit → choose color</li>
+      </ol>
+      <p><a href="https://youtu.be/HgylKcMsB1k" target="_blank" class="video-link">Video Link</a></p>
+      <p class="checkoff">Checkoff 10</p>
+    </div>
+
+    <!-- Part 14 -->
+    <div class="section">
+      <h2>Part 14: Rendering</h2>
+      <ol>
+        <li>Switch to Render workspace</li>
+        <li>Adjust Scene Settings (lighting/background)</li>
+        <li>Render and save image</li>
+        <li>Upload render to Lab Drive as "LastName_FirstName_keychain"</li>
+      </ol>
+      <p><a href="https://youtu.be/lW3K_Cl8bww" target="_blank" class="video-link">Video Link</a></p>
+      <p class="checkoff">Checkoff 11</p>
+      <img src="keychain4.png" alt="Rendered Keychain" class="center">
+    </div>
+
+    <!-- Part 15 -->
+    <div class="section">
+      <h2>Part 15: Export STL Files & Share Fusion Project</h2>
+      <ol>
+        <li>Export each component as STL ("LastName_FirstName_Number")</li>
+        <li>Upload STL files to Drive folder</li>
+        <li>Share Fusion 360 project link with instructors</li>
+      </ol>
+      <p><a href="https://youtu.be/-lfI6YwKkOQ" target="_blank" class="video-link">Video Link</a></p>
+      <p class="checkoff">Checkoff 12</p>
+    </div>
+
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <img src="keychain3.png" alt="Keychain final product">
+  </div>
+
+</div>
+
+<footer>
+All instructions credited to MISTI Teaching Team | UTB Student Labs 2025
+</footer>
+
+</body>
+</html>
 
