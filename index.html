@@ -11,148 +11,185 @@ body {
     color: #e0e0e0;
     margin: 0;
     padding: 0;
+    font-size: 1.05em;
 }
 
 /* Header */
 header {
-    display:flex;
-    align-items:flex-start;
-    justify-content:flex-start;
-    background-color:#000;
-    padding:50px 20px;
+    display: flex;
+    align-items: center;
+    background-color: #000000;
+    padding: 60px 40px;
+    gap: 40px;
 }
 header .logo-section {
-    display:flex;
-    flex-direction:column;
-    gap:30px;
-    align-items:flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-shrink: 0;
 }
 header .logo-section img {
-    height:120px;
+    height: 140px;
+    width: auto;
 }
 header .text-section {
-    flex:1;
-    text-align:center;
-    margin-left:30px;
+    flex: 1;
+    text-align: center;
 }
 header .text-section h1 {
-    font-size:4em;
-    color:#c29fff;
-    margin:0 0 10px 0;
+    font-size: 4.2em;
+    color: #c29fff;
+    margin: 0 0 10px 0;
 }
 header .text-section p {
-    font-size:1.3em;
-    color:#bbbbbb;
-    margin:0;
+    font-size: 1.4em;
+    color: #bbbbbb;
+    margin: 0;
 }
 
 /* Navbar */
 nav {
-    background-color:#111;
-    padding:14px 0;
-    text-align:center;
-    position:sticky;
-    top:0;
-    z-index:100;
+    background-color: #111111;
+    padding: 14px 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 nav a {
-    margin:0 20px;
-    text-decoration:none;
-    color:#fff;
-    font-weight:bold;
-    font-size:1.1em;
+    margin: 0 20px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.15em;
 }
 nav a:hover {
-    color:#c29fff;
+    color: #c29fff;
 }
 
 /* Container */
 .container {
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:space-between;
-    width:90%;
-    max-width:1300px;
-    margin:25px auto;
-    gap:20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 1300px;
+    margin: 25px auto;
+    gap: 20px;
 }
+
+/* Main content */
 .main-content {
-    flex:3;
-    min-width:300px;
+    flex: 3;
+    min-width: 300px;
 }
+
+/* Sidebar */
 .sidebar {
-    flex:1;
-    min-width:250px;
-    background-color:#1e1e2e;
-    padding:20px;
-    border-radius:8px;
-    box-shadow:0 2px 6px rgba(0,0,0,0.5);
-    text-align:center;
+    flex: 1;
+    min-width: 250px;
+    background-color: #1e1e2e;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .sidebar img {
-    width:100%;
-    max-width:400px;
-    border-radius:8px;
-    margin-bottom:10px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    flex-grow: 1;
+    object-fit: cover;
 }
 .sidebar .r2d2 {
-    font-size:1.5em;
-    font-weight:bold;
-    margin-bottom:20px;
-    color:#c29fff;
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #c29fff;
+    margin-top: 10px;
 }
 
 /* Sections */
-.section {
-    background-color:#1e1e2e;
-    padding:25px;
-    margin-bottom:20px;
-    border-radius:8px;
-    box-shadow:0 2px 6px rgba(0,0,0,0.5);
+.section, .labs-box, .schedule-box {
+    background-color: #1e1e2e;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
 }
-.section h2 {
-    color:#c29fff;
-    margin-top:0;
+.section h2, .labs-box h2, .schedule-box h2 {
+    color: #c29fff;
+    margin-top: 0;
+}
+.labs-list li {
+    margin-bottom: 12px;
 }
 
-/* Labs & Schedule */
-.labs-box, .schedule-box {
-    background-color:#1e1e2e;
-    padding:20px;
-    border-radius:8px;
-    margin-bottom:20px;
-    box-shadow:0 2px 6px rgba(0,0,0,0.5);
+/* Schedule table */
+.schedule-box table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
 }
-.labs-box ul, .schedule-box ul { padding-left:0; list-style:none; }
-.labs-box li, .schedule-box li { margin-bottom:8px; }
+.schedule-box table, .schedule-box th, .schedule-box td {
+    border: 1px solid #c29fff;
+}
+.schedule-box th {
+    background-color: #000000;
+    color: #ffffff;
+}
+.schedule-box td {
+    background-color: #1e1e2e;
+    color: #ffffff;
+}
+.schedule-box a {
+    color: #ffffff;
+    text-decoration: none;
+}
 
 /* About Box */
 .about-box {
-    background-color:#2b1e3b;
-    padding:25px;
-    border-radius:8px;
-    margin:20px auto;
-    color:#f0f0f0;
-    font-size:1em;
-    text-align:left;
-    width:90%;
-    max-width:1300px;
+    background-color: #2b1e3b;
+    padding: 25px;
+    border-radius: 8px;
+    margin: 20px auto;
+    color: #f0f0f0;
+    font-size: 1em;
+    text-align: left;
+    width: 90%;
+    max-width: 1300px;
 }
 
 /* Footer */
 footer {
-    text-align:center;
-    padding:20px;
-    background-color:#111;
-    color:#bbbbbb;
-    margin-top:20px;
-    font-size:0.9em;
+    text-align: center;
+    padding: 20px;
+    background-color: #111111;
+    color: #bbbbbb;
+    margin-top: 20px;
+    font-size: 0.95em;
 }
 
 /* Responsive */
-@media (max-width:1000px){
-    .container{ flex-direction:column; }
-    .sidebar img{ max-width:100%; }
+@media (max-width: 1000px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    .logo-section {
+        flex-direction: row;
+        justify-content: center;
+        gap: 40px;
+    }
+    .container {
+        flex-direction: column;
+    }
+    .sidebar img {
+        max-width: 100%;
+        height: auto;
+    }
 }
 </style>
 </head>
@@ -169,45 +206,72 @@ footer {
     </div>
 </header>
 
-<!-- NAVIGATION BAR -->
+<!-- NAVBAR WITH LINK TO lab.html -->
 <nav>
   <a href="index.html">Home</a>
   <a href="lab.html">Labs</a>
+  <a href="#instructors">Instructors</a>
   <a href="#about">About</a>
 </nav>
 
 <div class="container">
+
+    <!-- Main Content -->
     <div class="main-content">
         <div class="section" id="home">
             <h2>Course Overview</h2>
-            <p>This student-led lab series at UTB is inspired by the AUBH MIT MISTI program. Students explore hands-on STEM projects including 3D modeling, rapid prototyping, electronics, and interactive GUIs through mini-projects and instructor check-ins.</p>
+            <p style="margin-bottom:30px;">This student-led lab series at UTB is inspired by the AUBH MIT MISTI program. Students explore hands-on STEM projects including 3D modeling, rapid prototyping, electronics, and interactive GUIs through mini-projects and instructor check-ins.</p>
         </div>
 
-        <div class="labs-box">
+        <div class="labs-box" id="labs">
             <h2>Labs & Time Commitments</h2>
-            <ul>
-                <li>Lab 1: 3D Printing a Keychain | Tuesday 12-2 PM, Thursday 1-3 PM</li>
-                <li>Lab 2: Building a Mr. Roboto | Tuesday 12-2 PM, Thursday 1-3 PM</li>
-                <li>Lab 3: GUI & Guitar Hero | Tuesday 12-2 PM, Thursday 1-3 PM</li>
+            <ul class="labs-list">
+                <li><strong>Lab 1:</strong> 3D Printing a Keychain | Tuesday 12-2 PM, Thursday 1-3 PM</li>
+                <li><strong>Lab 2:</strong> Building a Mr. Roboto | Tuesday 12-2 PM, Thursday 1-3 PM</li>
+                <li><strong>Lab 3:</strong> GUI & Guitar Hero | Tuesday 12-2 PM, Thursday 1-3 PM</li>
             </ul>
         </div>
 
         <div class="schedule-box">
             <h2>Schedule & Notes</h2>
-            <ul>
-                <li>Lab 1: Bring laptop, headphones, install Autodesk Fusion 360</li>
-                <li>Lab 2: Bring laptop</li>
-                <li>Lab 3: Bring laptop</li>
-            </ul>
+            <table>
+                <tr>
+                    <th>Lab</th>
+                    <th>Date & Time</th>
+                    <th>Before Class</th>
+                    <th>Deliverable</th>
+                </tr>
+                <tr>
+                    <td><a href="lab1.html">Lab 1: 3D Printing a Keychain</a></td>
+                    <td>Tuesday 12-2 PM<br>Thursday 1-3 PM</td>
+                    <td>- Bring laptop<br>- Bring headphones<br>- Install Autodesk Fusion 360</td>
+                    <td>Complete check-off tasks</td>
+                </tr>
+                <tr>
+                    <td>Lab 2: Building a Mr. Roboto</td>
+                    <td>Tuesday 12-2 PM<br>Thursday 1-3 PM</td>
+                    <td>- Bring laptop</td>
+                    <td>Project tasks</td>
+                </tr>
+                <tr>
+                    <td>Lab 3: GUI & Guitar Hero</td>
+                    <td>Tuesday 12-2 PM<br>Thursday 1-3 PM</td>
+                    <td>- Bring laptop</td>
+                    <td>Project tasks</td>
+                </tr>
+            </table>
         </div>
     </div>
 
+    <!-- Sidebar -->
     <div class="sidebar">
         <img src="starwars.png" alt="Star Wars">
         <div class="r2d2">R2D2 says hello! :)</div>
     </div>
+
 </div>
 
+<!-- About Section -->
 <div class="about-box" id="about">
     <h2>About</h2>
     <p>This series is organized by students who previously participated in the AUBH MIT-inspired labs. Our mission is to provide UTB students with experiential STEM learning opportunities, fostering creativity, problem-solving, and technical skills through hands-on projects.</p>
