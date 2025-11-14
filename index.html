@@ -104,15 +104,17 @@ nav a:hover {
     color: #c29fff;
 }
 
-/* About Box */
+/* About Box (now below main content) */
 .about-box {
     background-color: #2b1e3b; /* lighter purple */
-    padding: 15px;
+    padding: 25px;
     border-radius: 8px;
-    margin-top: 20px;
+    margin: 20px auto;
     color: #f0f0f0;
-    font-size: 0.95em;
+    font-size: 1em;
     text-align: left;
+    width: 90%;
+    max-width: 1300px;
 }
 
 /* Sections */
@@ -190,8 +192,8 @@ footer {
 
 <header>
     <div class="logo-section">
-        <img src="UTBLOGO.PNG" alt="UTB Logo">
-        <img src="RASLOGO.PNG" alt="RAS Club Logo">
+        <img src="utblogo.png" alt="UTB Logo">
+        <img src="raslogo.png" alt="RAS Club Logo">
     </div>
     <div class="text-section">
         <h1>Welcome Engineers!</h1>
@@ -215,7 +217,7 @@ footer {
             <p>This student-led lab series at UTB is inspired by the AUBH MIT MISTI program. Students explore hands-on STEM projects including 3D modeling, rapid prototyping, electronics, and interactive GUIs through mini-projects and instructor check-ins.</p>
 
             <!-- Labs Box -->
-            <div class="labs-box">
+            <div class="labs-box" id="labs">
                 <h2 style="color:#caa1ff;">Labs</h2>
                 <ul class="labs-list">
                     <li><strong>Lab 1:</strong> 3D Printing a Keychain | Tuesday 12-2 PM, Thursday 1-3 PM</li>
@@ -264,7 +266,7 @@ footer {
     <!-- Sidebar -->
     <div class="sidebar">
         <img src="starwars.png" alt="Star Wars">
-        <div class="r2d2">r2-d2 says hello! :)</div>
+        <div class="r2d2">R2D2 says hello! :)</div>
 
         <h3>Instructors</h3>
         <ul class="instructors-list" style="text-align:left; padding-left:15px;">
@@ -276,13 +278,14 @@ footer {
             <li>Fariha - Mechatronics Engineering, 3rd Year</li>
             <li>Layan - Mechatronics Engineering, 3rd Year</li>
         </ul>
-
-        <div class="about-box" id="about">
-            <h3>About</h3>
-            <p>This series is organized by students who previously participated in the AUBH MIT-inspired labs. Our mission is to provide UTB students with experiential STEM learning opportunities, fostering creativity, problem-solving, and technical skills through hands-on projects.</p>
-        </div>
     </div>
 
+</div>
+
+<!-- About Section Below Main Content -->
+<div class="about-box" id="about">
+    <h2 style="color:#caa1ff;">About</h2>
+    <p>This series is organized by students who previously participated in the AUBH MIT-inspired labs. Our mission is to provide UTB students with experiential STEM learning opportunities, fostering creativity, problem-solving, and technical skills through hands-on projects.</p>
 </div>
 
 <footer>
