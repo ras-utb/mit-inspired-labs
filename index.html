@@ -7,7 +7,7 @@
 <style>
 body {
     font-family: Arial, sans-serif;
-    background-color: #2b1e3b; /* main purple background */
+    background-color: #121212;
     color: #e0e0e0;
     margin: 0;
     padding: 0;
@@ -17,19 +17,18 @@ body {
 header {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    background-color: #2b1e3b; /* purple header */
-    padding: 60px 20px;
+    justify-content: space-between;
+    background-color: #000000;
+    padding: 60px 20px; /* taller header */
     position: relative;
 }
 header .logo-section {
     display: flex;
-    flex-direction: column; /* stacked logos */
-    gap: 20px;
-    align-items: flex-start;
+    gap: 30px;
+    align-items: center;
 }
 header .logo-section img {
-    height: 120px;
+    height: 140px;
 }
 header .text-section {
     position: absolute;
@@ -39,12 +38,272 @@ header .text-section {
 }
 header .text-section h1 {
     font-size: 3.8em;
-    color: #caa1ff;
+    color: #c29fff;
     margin: 0 0 10px 0;
 }
 header .text-section p {
     font-size: 1.3em;
-    color: #f0e6ff;
-    mar
+    color: #bbbbbb;
+    margin: 0;
+}
+
+/* Navbar */
+nav {
+    background-color: #111111;
+    padding: 14px 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+nav a {
+    margin: 0 20px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+nav a:hover {
+    color: #c29fff;
+}
+
+/* Container */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 1300px;
+    margin: 25px auto;
+    gap: 20px;
+}
+
+/* Main content */
+.main-content {
+    flex: 3;
+    min-width: 300px;
+}
+
+/* Sidebar */
+.sidebar {
+    flex: 1;
+    min-width: 250px;
+    background-color: #1e1e2e;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    text-align: center;
+}
+.sidebar img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.sidebar .r2d2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #c29fff;
+}
+
+/* Sections */
+.section {
+    background-color: #1e1e2e;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+.section h2 {
+    color: #c29fff;
+    margin-top: 0;
+}
+.section h3 {
+    color: #caa1ff;
+}
+.labs-list li, .instructors-list li {
+    margin-bottom: 12px;
+}
+
+/* Labs box */
+.labs-box {
+    background-color: #000000; /* black gap/box */
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Schedule table white text */
+.schedule-box {
+    background-color: #1e1e2e;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.schedule-box table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+.schedule-box table, .schedule-box th, .schedule-box td {
+    border: 1px solid #c29fff;
+}
+.schedule-box th {
+    background-color: #000000;
+    color: #ffffff;
+}
+.schedule-box td {
+    background-color: #1e1e2e;
+    color: #ffffff;
+}
+.schedule-box a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* About Box */
+.about-box {
+    background-color: #2b1e3b;
+    padding: 25px;
+    border-radius: 8px;
+    margin: 20px auto;
+    color: #f0f0f0;
+    font-size: 1em;
+    text-align: left;
+    width: 90%;
+    max-width: 1300px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #111111;
+    color: #bbbbbb;
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+    .container {
+        flex-direction: column;
+    }
+    .sidebar img {
+        max-width: 100%;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo-section">
+        <img src="utblogo.png" alt="UTB Logo">
+        <img src="raslogo.png" alt="RAS Club Logo">
+    </div>
+    <div class="text-section">
+        <h1>Welcome Engineers!</h1>
+        <p>MIT-Inspired Lab Workshops organized by Robotics & Automation Society (RAS) Club at UTB</p>
+    </div>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#labs">Labs</a>
+    <a href="#instructors">Instructors</a>
+    <a href="#about">About</a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Course Overview -->
+        <div class="section" id="home">
+            <h2>Course Overview</h2>
+            <p style="margin-bottom:30px;">This student-led lab series at UTB is inspired by the AUBH MIT MISTI program. Students explore hands-on STEM projects including 3D modeling, rapid prototyping, electronics, and interactive GUIs through mini-projects and instructor check-ins.</p>
+        </div>
+
+        <!-- Labs & Time Commitments -->
+        <div class="labs-box" id="labs">
+            <h2 style="color:#caa1ff; margin-bottom:15px;">Labs & Time Commitments</h2>
+            <ul class="labs-list">
+                <li><strong>Lab 1:</strong> 3D Printing a Keychain | Tuesday 12-2 PM, Thursday 1-3 PM</li>
+                <li><strong>Lab 2:</strong> Building a Mr. Roboto | Tuesday 12-2 PM, Thursday 1-3 PM</li>
+                <li><strong>Lab 3:</strong> GUI & Guitar Hero | Tuesday 12-2 PM, Thursday 1-3 PM</li>
+            </ul>
+        </div>
+
+        <!-- Schedule & Notes -->
+        <div class="schedule-box">
+            <h2 style="color:#caa1ff; margin-bottom:15px;">Schedule & Notes</h2>
+            <table>
+                <tr>
+                    <th>Lab</th>
+                    <th>Date & Time</th>
+                    <th>Before Class</th>
+                    <th>Deliverable</th>
+                </tr>
+                <tr>
+                    <td><a href="lab1.html">Lab 1: 3D Printing a Keychain</a></td>
+                    <td>Tuesday 12-2 PM<br>Thursday 1-3 PM</td>
+                    <td>
+                        - Bring laptop<br>
+                        - Bring headphones<br>
+                        - Install Autodesk Fusion 360
+                    </td>
+                    <td>Complete check-off tasks</td>
+                </tr>
+                <tr>
+                    <td>Lab 2: Building a Mr. Roboto</td>
+                    <td>Tuesday 12-2 PM<br>Thursday 1-3 PM</td>
+                    <td>- Bring laptop</td>
+                    <td>Project tasks</td>
+                </tr>
+                <tr>
+                    <td>Lab 3: GUI & Guitar Hero</td>
+                    <td>Tuesday 12-2 PM<br>Thursday 1-3 PM</td>
+                    <td>- Bring laptop</td>
+                    <td>Project tasks</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <img src="starwars.png" alt="Star Wars">
+        <div class="r2d2">R2D2 says hello! :)</div>
+
+        <h3>Instructors</h3>
+        <ul class="instructors-list" style="text-align:left; padding-left:15px;">
+            <li>Sana - Mechatronics Engineering, 4th Year</li>
+            <li>Natalie - Mechatronics Engineering, 4th Year</li>
+            <li>Rand - Mechatronics Engineering, 3rd Year</li>
+            <li>Fiza - Mechatronics Engineering, 4th Year</li>
+            <li>Mahanna - Mechatronics Engineering, 4th Year</li>
+            <li>Fariha - Mechatronics Engineering, 3rd Year</li>
+            <li>Layan - Mechatronics Engineering, 3rd Year</li>
+        </ul>
+    </div>
+
+</div>
+
+<!-- About Section Below Main Content -->
+<div class="about-box" id="about">
+    <h2 style="color:#caa1ff;">About</h2>
+    <p>This series is organized by students who previously participated in the AUBH MIT-inspired labs. Our mission is to provide UTB students with experiential STEM learning opportunities, fostering creativity, problem-solving, and technical skills through hands-on projects.</p>
+</div>
+
+<footer>
+    &copy; 2025 UTB Student Labs | MIT-Inspired Series
+</footer>
+
+</body>
+</html>
+
 
 
