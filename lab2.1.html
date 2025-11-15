@@ -118,9 +118,11 @@ void loop() {
 }
 </code></pre></li>
         <li>Check the ambient value in the room, then shine your flashlight directly to see max value.</li>
-        <li><span class="checkoff">Checkoff 1:</span> Ask your instructor to verify adding/testing photoresistor and show serial monitor values.</li>
-        <li>Add 2 more photoresistor + resistor pairs wired to A1 and A2, angled slightly forward. <img src="cat2.png" class="inline"><img src="cat3.png" class="inline"></li>
-        <li>Adjust code to read all three sensors and print: "Left: x  Middle: x  Right: x"
+        <p><span class="checkoff">Checkoff 1:</span> Ask your instructor to verify adding/testing photoresistor and show serial monitor values.</p>
+        <li>Add 2 more resistors and photoresistors pair, wiring to A1 and A2. Ensure you have spaced them out and 
+          angled them slightly forward. Refer to images below
+          <img src="cat2.png" class="inline"><img src="cat3.png" class="inline"></li>
+        <li>Adjust the following code to print the new values. How consistent are the values between each photoresistor?"
         <pre><code>#include &lt;AFMotor.h&gt;
 
 // Pin assignments
@@ -144,19 +146,20 @@ void loop() {
 }
 </code></pre>
         </li>
-        <li><span class="checkoff">Checkoff 2:</span> Show serial monitor values and answer why extra photoresistors were added.</li>
+        <p><span class="checkoff">Checkoff 2:</span> Show serial monitor values and answer why extra photoresistors were added.</p>
       </ol>
     </div>
 
     <!-- PART 2 -->
     <div class="section">
       <h2>Part 2: Determining Ambient Light</h2>
-      <p>Subtract ambient values from sensor readings to amplify changes from the flashlight:</p>
+      <p>Now we can read the values from our photoresistor. Before we write an algorithm for our robot to follow a bright light, we should clean our sensor data. Our algorithm will decide the driving direction based off differences between sensors, so we want to amplify the difference. A bright room will have high base values for all sensors and the change from a flashlight will be relatively small. We will subtract the ambient value from the sensors.
+        Write the values for the ambient values of each sensor. Put above setup():</p>
       <pre><code>// Threshold for ambient light
 const int ambientThresholdR = ;
 const int ambientThresholdM = ;
 const int ambientThresholdL = ;
-
+<p>Subtract it from the analog reading in the loop().</p>
 // In loop():
 int rightValue = analogRead(rightPhotoresistor) - ambientThresholdR;
 int middleValue = analogRead(middlePhotoresistor) - ambientThresholdM;
