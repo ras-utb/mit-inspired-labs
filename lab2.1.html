@@ -21,9 +21,13 @@ nav a:hover { color:#c29fff; }
 .checkoff { color:red; font-weight:bold; }
 img.inline { width:100%; border-radius:8px; margin:10px 0; }
 img.small { width:80%; border-radius:8px; margin:10px 0; }
+
+/* Code blocks */
 pre { background-color:#000; color:#fff; padding:10px; border-radius:6px; overflow-x:auto; }
 code { font-family: Consolas, monospace; }
+
 footer { text-align:center; padding:20px; background-color:#111; color:#bbbbbb; margin-top:20px; font-size:0.9em; }
+
 @media(max-width:1000px){.container{flex-direction:column;}}
 </style>
 </head>
@@ -89,7 +93,9 @@ footer { text-align:center; padding:20px; background-color:#111; color:#bbbbbb; 
       <ol>
         <li>Wire the photoresistor and 10kΩ resistor on the breadboard as shown. Yellow → A0, Red → 5V, Black → GND to create a voltage divider. <img src="cat1.png" class="inline" alt="Photoresistor wiring"></li>
         <li>Read values via analog pin A0. Use the following code:
-        <pre><code>// Pin assignments for photoresistors
+        <pre><code>#include &lt;AFMotor.h&gt;
+
+// Pin assignments for photoresistors
 const int Photoresistor = A0;
 
 void setup() {
@@ -107,26 +113,29 @@ void loop() {
         <li><span class="checkoff">Checkoff 1:</span> Ask your instructor to verify adding/testing photoresistor and show serial monitor values.</li>
         <li>Add 2 more photoresistor + resistor pairs wired to A1 and A2, angled slightly forward. <img src="cat2.png" class="inline"><img src="cat3.png" class="inline"></li>
         <li>Adjust code to read all three sensors and print: "Left: x  Middle: x  Right: x"
-        <pre><code>// Read three photoresistors
+        <pre><code>#include &lt;AFMotor.h&gt;
+
+// Pin assignments
 const int rightPhotoresistor = A0;
 const int middlePhotoresistor = A1;
 const int leftPhotoresistor = A2;
+
+void setup() {
+    Serial.begin(9600);
+}
 
 void loop() {
     int rightValue = analogRead(rightPhotoresistor);
     int middleValue = analogRead(middlePhotoresistor);
     int leftValue = analogRead(leftPhotoresistor);
 
-    Serial.print("Left: ");
-    Serial.print(leftValue);
-    Serial.print("  Middle: ");
-    Serial.print(middleValue);
-    Serial.print("  Right: ");
-    Serial.println(rightValue);
-
+    Serial.print("Left: "); Serial.print(leftValue);
+    Serial.print("  Middle: "); Serial.print(middleValue);
+    Serial.print("  Right: "); Serial.println(rightValue);
     delay(20);
 }
-</code></pre></li>
+</code></pre>
+        </li>
         <li><span class="checkoff">Checkoff 2:</span> Show serial monitor values and answer why extra photoresistors were added.</li>
       </ol>
     </div>
@@ -140,7 +149,7 @@ const int ambientThresholdR = ;
 const int ambientThresholdM = ;
 const int ambientThresholdL = ;
 
-// Subtract in loop()
+// In loop():
 int rightValue = analogRead(rightPhotoresistor) - ambientThresholdR;
 int middleValue = analogRead(middlePhotoresistor) - ambientThresholdM;
 int leftValue = analogRead(leftPhotoresistor) - ambientThresholdL;
@@ -151,16 +160,20 @@ int leftValue = analogRead(leftPhotoresistor) - ambientThresholdL;
     <!-- PART 3 -->
     <div class="section">
       <h2>Part 3: Writing a Nicer Motor Function</h2>
-      <pre><code>
+      <pre><code>#include &lt;AFMotor.h&gt;
+
+AF_DCMotor rightMotor(1);  // Motor connected to M1
+AF_DCMotor leftMotor(2);   // Motor connected to M2
+
 void setLeftSpeed(int value) {
-    if (value > ??) { leftMotor.setSpeed(value); leftMotor.run(FORWARD); }
-    else if (value < ??) { leftMotor.setSpeed(-value); leftMotor.run(BACKWARD); }
+    if (value &gt; ??) { leftMotor.setSpeed(value); leftMotor.run(FORWARD); }
+    else if (value &lt; ??) { leftMotor.setSpeed(-value); leftMotor.run(BACKWARD); }
     else { leftMotor.run(RELEASE); }
 }
 
 void setRightSpeed(int value) {
-    if (value > ??) { rightMotor.setSpeed(value); rightMotor.run(FORWARD); }
-    else if (value < ??) { rightMotor.setSpeed(-value); rightMotor.run(BACKWARD); }
+    if (value &gt; ??) { rightMotor.setSpeed(value); rightMotor.run(FORWARD); }
+    else if (value &lt; ??) { rightMotor.setSpeed(-value); rightMotor.run(BACKWARD); }
     else { rightMotor.run(RELEASE); }
 }
 
@@ -236,5 +249,26 @@ const int echoPin = 6;
         <li>IR transmitter & receiver</li>
         <li>IMU</li>
         <li>Temperature sensor</li>
-        <li>LC
+        <li>LCD/OLED</li>
+        <li>Servo motor</li>
+        <li>Stepper motor</li>
+      </ul>
+      <p><span class="checkoff">Checkoff 9:</span> Verify implementation of your chosen sensor/output.</p>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <img src="cat10.png" alt="Robot sensors sidebar">
+  </div>
+
+</div>
+
+<footer>
+All instructions credited to MISTI Teaching Team | UTB Student Labs 2025
+</footer>
+
+</body>
+</html>
 
