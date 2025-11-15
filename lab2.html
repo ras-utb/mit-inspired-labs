@@ -202,8 +202,9 @@ AF_DCMotor leftMotor(2);   // Motor connected to M2</code></pre>
       <!-- car11.png -->
       <img src="car11.png" alt="ultrasound and breadboard placement" class="inline-img">
 
-      <p>Push on the wheels (but don’t snap them). Now plug the motors and battery into the Arduino shield carefully:</p>
-      <ul>
+      <ol start="8">
+       <li>Add wheels. Push them on fully, but be careful not to snap the motor mounts. Now plug the motors and battery into the Arduino shield carefully:</li>
+      </ol>
         <li>Feed the servo wire through the rear hole and connect to shield (yellow = signal, brown = GND).</li>
         <li>Feed motor wires into screw terminals: M1 = left motor, M2 = right motor.</li>
         <li>Attach power cables, being careful not to swap polarity.</li>
@@ -223,7 +224,7 @@ AF_DCMotor leftMotor(2);   // Motor connected to M2</code></pre>
     <!-- Part 3 -->
     <div class="section">
       <h2>Part 3: Driving Straight</h2>
-      <p>Use your motor drive code and try to drive straight by setting both motors to the same speed. If it veers, adjust relative speed.</p>
+      <p>Using your motor drive code from above, try driving your robot in a straight line by setting both motors to the same speed. Does it drive straight?</p>
 
       <ol>
         <li>Adjust motor speeds until robot drives roughly straight.</li>
@@ -248,7 +249,8 @@ AF_DCMotor leftMotor(2);   // Motor connected to M2</code></pre>
     <!-- Part 4 -->
     <div class="section">
       <h2>Part 4: Creating Turning Functions</h2>
-      <p>Command the robot to turn in place ~90° CCW. Decide motor directions and a timed duration for that turn. Then implement <code>turnRight()</code> and <code>turnLeft()</code>.</p>
+      <p>Try to command your robot to turn in place exactly 90 degrees counter clockwise. How should each motor be commanded? Set a turn speed, and just alter the duration of turn to dial in 90 degrees.
+        Then implement <code>turnRight()</code> and <code>turnLeft()</code>.</p>
 
       <pre><code>void turnRight() {
   // example: right motor backward, left motor forward for x ms
@@ -278,7 +280,10 @@ void turnLeft() {
     <!-- Part 5 -->
     <div class="section">
       <h2>Part 5: Driving a Loop</h2>
-      <p>Use your drive and turn functions in <code>loop()</code> to drive a square of side ~50 cm clockwise and then counterclockwise. Observe how well it returns to the start; note sources of error and potential sensors to fix it.</p>
+      <p>In the loop() of your code, use your turning and driving functions to drive in a square with side length 50cm clockwise. Do it again going counterclockwise. 
+        How well does it return to its starting location? What might cause this? What potential sensors could we use to fix this?.</p>
+      <p> You may have noticed that it was difficult to get your robot to drive straight and turn a desired amount consistently. This is because the robot is open-loop. It has no idea where it is or where it is going. 
+      We are going to close the loop next lab by adding sensors so the robot can detect where it is and where it wants to go.</p>
      <p><span class="checkoff">Checkoff 5:</span> Ask your instructor to verify Part 5 (CCW/CW loops).</p>
     </div>
 
