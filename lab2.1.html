@@ -1,1 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 2: Building Mr. Roboto – Session 2</title>
+<style>
+body { font-family: Arial, sans-serif; background-color:#121212; color:#e0e0e0; margin:0; padding:0; font-size:1.05em;}
+header { background-color:#000; padding:40px 20px; text-align:center; }
+header h1 { color:#c29fff; margin:0; }
+header p { color:#bbbbbb; margin:5px 0 20px 0; }
+nav { background-color:#111; padding:14px 0; text-align:center; position:sticky; top:0; z-index:100; }
+nav a { margin:0 20px; text-decoration:none; color:#fff; font-weight:bold; font-size:1.1em; }
+nav a:hover { color:#c29fff; }
+.container { display:flex; flex-wrap:wrap; justify-content:space-between; width:90%; max-width:1300px; margin:25px auto; gap:20px; }
+.main-content { flex:3; min-width:300px; }
+.sidebar { flex:1; min-width:250px; background-color:#1e1e2e; padding:10px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.5); display:flex; flex-direction:column; align-items:center; }
+.sidebar img { width:100%; max-width:400px; border-radius:8px; margin-bottom:10px; }
+.section { background-color:#1e1e2e; padding:25px; margin-bottom:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.5); }
+.section h2 { color:#c29fff; margin-top:0; }
+.checkoff { color:red; font-weight:bold; }
+img.inline { width:100%; border-radius:8px; margin:10px 0; }
+img.small { width:80%; border-radius:8px; margin:10px 0; }
+footer { text-align:center; padding:20px; background-color:#111; color:#bbbbbb; margin-top:20px; font-size:0.9em; }
+@media(max-width:1000px){.container{flex-direction:column;}}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Lab 2: Building Mr. Roboto (Part 2)</h1>
+<p>Session 2 — Sensors & Closed-Loop Control</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="lab.html">Labs</a>
+  <a href="#instructors">Instructors</a>
+  <a href="#about">About</a>
+</nav>
+
+<div class="container">
+  <div class="main-content">
+
+    <!-- INTRO -->
+    <div class="section">
+      <h2>Introduction</h2>
+      <p>This is the second in a series of two labs introducing you to building and programming your own robot. In this lab, we’ll extend the functionality of your robot by adding sensors, allowing it to interact with its environment. You’ll start by integrating photoresistors to guide your robot toward the brightest 🌟 light 🌟. </p>
+      <p>Then, you’ll choose another sensor to give your robot additional behaviors, such as obstacle avoidance or wall following. By the end of the lab, your robot will sense and adapt to its surroundings autonomously.</p>
+    </div>
+
+    <!-- SAFETY -->
+    <div class="section">
+      <h2>🦺 Safety & Important Tips</h2>
+      <p><strong>(1 minute read)</strong></p>
+      <ul>
+        <li>Unpower your circuit when making any change</li>
+        <li>Double check your wiring before plugging in</li>
+        <li>Watch for solder bridges</li>
+        <li>Components can be fragile—treat them carefully</li>
+      </ul>
+    </div>
+
+    <!-- FABRICATION QUEST -->
+    <div class="section">
+      <h2>🔨 Fabrication Quest of the Day</h2>
+      <p>Today, you will use sensors to do closed-loop control of your robotic car:</p>
+      <ul>
+        <li>Understand how to read values from various sensors with your Arduino</li>
+        <li>Use photoresistors to guide the robot toward light</li>
+        <li>Implement a new behavior using an additional sensor</li>
+      </ul>
+    </div>
+
+    <!-- SOFTWARE & HARDWARE -->
+    <div class="section">
+      <h2>🏗️ Software & Hardware</h2>
+      <p><strong>Software:</strong> Arduino IDE</p>
+      <p><strong>Hardware:</strong> Assembled Mr. Roboto from previous lab, Ultrasonic Sensor + Bracket, Jumper Wires, Photoresistors (3x), 10kΩ Resistors (3x), Flashlight (x1), Misc sensors for Remix (color, IMU, ultrasonic etc.)</p>
+      <p><strong>Machines:</strong> Soldering Iron</p>
+    </div>
+
+    <!-- PART 1 -->
+    <div class="section">
+      <h2>Part 1: Reading Values from Photoresistors (1 hour)</h2>
+      <p>We’ll start with the simplest sensor: the photoresistor. It allows us to measure brightness and guide our robot toward light. ⚠️ Unplug your Arduino before breadboarding ⚠️</p>
+      <ol>
+        <li>Wire the photoresistor and 10kΩ resistor on the breadboard as shown. Yellow → A0, Red → 5V, Black → GND to create a voltage divider. <img src="cat1.png" class="inline" alt="Photoresistor wiring"></li>
+        <li>Read values via analog pin A0. Use the following code:
+        <pre><code>// Pin assignments for photoresistors
+const int Photoresistor = A0;
+
+void setup() {
+    Serial.begin(9600); // Initialize Serial Monitor
+}
+
+void loop() {
+    int photoValue = analogRead(Photoresistor);
+    Serial.print("PhotoResistor: ");
+    Serial.println(photoValue);
+    delay(20);
+}
+</code></pre></li>
+        <li>Check the ambient value in the room, then shine your flashlight directly to see max value.</li>
+        <li><span class="checkoff">Checkoff 1:</span> Ask your instructor to verify adding/testing photoresistor and show serial monitor values.</li>
+        <li>Add 2 more photoresistor + resistor pairs wired to A1 and A2, angled slightly forward. <img src="cat2.png" class="inline"><img src="cat3.png" class="inline"></li>
+        <li>Adjust code to read all three sensors and print: "Left: x  Middle: x  Right: x"</li>
+        <li><span class="checkoff">Checkoff 2:</span> Show serial monitor values and answer why extra photoresistors were added.</li>
+      </ol>
+    </div>
+
+    <!-- PART 2 -->
+    <div class="section">
+      <h2>Part 2: Determining Ambient Light</h2>
+      <p>Subtract ambient values from sensor readings to amplify changes from the flashlight:</p>
+      <pre><code>// Threshold for ambient light
+const int ambientThresholdR = ;
+const int ambientThresholdM = ;
+const int ambientThresholdL = ;
+</code></pre>
+      <p>Subtract it from readings in loop():
+<pre><code>
+int rightValue = analogRead(rightPhotoresistor) - ambientThresholdR;
+int middleValue = analogRead(middlePhotoresistor) - ambientThresholdM;
+int leftValue = analogRead(leftPhotoresistor) - ambientThresholdL;
+</code></pre></p>
+      <p><span class="checkoff">Checkoff 2:</span> Ask instructor to verify adjusted values.</p>
+    </div>
+
+    <!-- PART 3 -->
+    <div class="section">
+      <h2>Part 3: Writing a Nicer Motor Function</h2>
+      <pre><code>
+void setLeftSpeed(int value) {
+    if (value > ??) { leftMotor.setSpeed(value); leftMotor.run(FORWARD); }
+    else if (value < ??) { leftMotor.setSpeed(-value); leftMotor.run(BACKWARD); }
+    else { leftMotor.run(RELEASE); }
+}
+void setRightSpeed(int value) {
+    if (value > ??) { rightMotor.setSpeed(value); rightMotor.run(FORWARD); }
+    else if (value < ??) { rightMotor.setSpeed(-value); rightMotor.run(BACKWARD); }
+    else { rightMotor.run(RELEASE); }
+}
+
+// Test motor reaction to light values
+setLeftSpeed(leftValue);
+setRightSpeed(rightValue);
+</code></pre>
+      <p><span class="checkoff">Checkoff 3:</span> Verify motor speed changes in response to photoresistors.</p>
+    </div>
+
+    <!-- PART 4 -->
+    <div class="section">
+      <h2>Part 4: Light Following BANG-BANG</h2>
+      <p>Use a simple bang-bang controller to move toward the brightest light:</p>
+      <pre><code>
+const int variationThreshold = 50;
+const int bang = 50;
+
+// In loop(): measure light and adjust motors accordingly
+</code></pre>
+      <p><span class="checkoff">Checkoff 4:</span> Show robot following light using BANG-BANG controller.</p>
+    </div>
+
+    <!-- PART 5 -->
+    <div class="section">
+      <h2>Part 5: Light Following Proportional Controller</h2>
+      <pre><code>
+const float Kp = 1.0;
+const int BASE_SPEED = 80;
+
+// In loop(): calculate errors and adjust motors proportionally
+</code></pre>
+      <p><span class="checkoff">Checkoff 5:</span> Show proportional control in action.</p>
+    </div>
+
+    <!-- PART 6 -->
+    <div class="section">
+      <h2>Part 6: Ultrasound Connection</h2>
+      <img src="cat4.png" class="inline" alt="Ultrasound wiring">
+      <p>Connect HC-SR04 with servo. Use double female header to access pins 5 and 6. Vcc → 5V, Trig → 5, Echo → 6, GND → GND.</p>
+      <p><span class="checkoff">Checkoff 6:</span> Verify wiring of ultrasonic sensor.</p>
+    </div>
+
+    <!-- PART 7 -->
+    <div class="section">
+      <h2>Part 7: Using the Ultrasound</h2>
+      <img src="cat6.png" class="inline" alt="Ultrasound">
+      <pre><code>
+// Pin assignments
+const int trigPin = 5;
+const int echoPin = 6;
+
+// Measure distance function
+</code></pre>
+      <p><span class="checkoff">Checkoff 7:</span> Verify ultrasonic sensor measurement.</p>
+    </div>
+
+    <!-- PART 8 -->
+    <div class="section">
+      <h2>Part 8: Wall Following</h2>
+      <img src="cat7.png" class="inline" alt="Wall following setup">
+      <pre><code>
+// Use measureDistance() and proportional control to follow wall
+</code></pre>
+      <p><span class="checkoff">Checkoff 8:</span> Verify robot following wall.</p>
+    </div>
+
+    <!-- PART 9 -->
+    <div class="section">
+      <h2>Part 9: Remix Sensor</h2>
+      <p>Pick a sensor/output for your project and implement it. Options include:</p>
+      <ul>
+        <li>Color sensor</li>
+        <li>IR transmitter & receiver</li>
+        <li>IMU</li>
+        <li>Temperature sensor</li>
+        <li>LCD/OLED</li>
+        <li>Servo motor</li>
+        <li>Stepper motor</li>
+      </ul>
+      <p><span class="checkoff">Checkoff 9:</span> Verify implementation of your chosen sensor/output.</p>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <img src="cat10.png" alt="Robot sensors sidebar">
+  </div>
+
+</div>
+
+<footer>
+All instructions credited to MISTI Teaching Team | UTB Student Labs 2025
+</footer>
+
+</body>
+</html>
 
