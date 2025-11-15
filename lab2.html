@@ -1,1 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Lab 2: Building Mr. Roboto — Session 1</title>
+<style>
+  body { font-family: Arial, sans-serif; background-color:#121212; color:#e0e0e0; margin:0; padding:0; font-size:1.05em; }
+  header { background-color:#000; padding:40px 20px; text-align:center; }
+  header h1 { color:#c29fff; margin:0; }
+  header p { color:#bbbbbb; margin:5px 0 20px 0; }
+  nav { background-color:#111; padding:14px 0; text-align:center; position:sticky; top:0; z-index:100; }
+  nav a { margin:0 20px; text-decoration:none; color:#fff; font-weight:bold; font-size:1.1em; }
+  nav a:hover { color:#c29fff; }
+  .container { display:flex; flex-wrap:wrap; justify-content:space-between; width:90%; max-width:1300px; margin:25px auto; gap:20px; }
+  .main-content { flex:3; min-width:300px; }
+  .sidebar { flex:1; min-width:250px; background-color:#1e1e2e; padding:10px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.5); display:flex; flex-direction:column; align-items:center; }
+  .sidebar img { width:100%; max-width:400px; border-radius:8px; margin-bottom:10px; }
+  .section { background-color:#1e1e2e; padding:25px; margin-bottom:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.5); }
+  .section h2 { color:#c29fff; margin-top:0; }
+  .checkoff { color:red; font-weight:bold; }
+  .inline-img { width:100%; border-radius:8px; margin:12px 0; display:block; }
+  pre { background:#0f0f16; color:#e8e8e8; padding:12px; border-radius:6px; overflow:auto; }
+  code { font-family: "Courier New", Courier, monospace; }
+  footer { text-align:center; padding:20px; background-color:#111; color:#bbbbbb; margin-top:20px; font-size:0.9em; }
+  @media(max-width:1000px){ .container{ flex-direction:column; } .sidebar{ order:-1; } }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Lab 2: Building a Mr. Roboto (Part 1)</h1>
+  <p>Motors, chassis assembly, and basic motor control</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="lab.html">Labs</a>
+  <a href="#instructors">Instructors</a>
+  <a href="#about">About</a>
+</nav>
+
+<div class="container">
+  <div class="main-content">
+
+    <!-- Intro -->
+    <div class="section">
+      <h2>Overview</h2>
+      <p>This is the first of two labs on building and programming a robot. Today we introduce DC motors, motor control, and chassis assembly. By the end of this session you'll drive a trajectory you designed.</p>
+    </div>
+
+    <!-- Safety -->
+    <div class="section">
+      <h2>🦺 Safety & Important Tips</h2>
+      <p><strong>(~1 minute read)</strong></p>
+      <ol>
+        <li>Unpower your circuit when making any change.</li>
+        <li>Double-check your wiring before plugging in.</li>
+        <li>When soldering, check for bridges between pads.</li>
+        <li>Many components are cheap/fragile — use them only as instructed.</li>
+      </ol>
+    </div>
+
+    <!-- Quest -->
+    <div class="section">
+      <h2>🔨 Fabrication Quest of the Day</h2>
+      <p>Assemble a robotic car without sensors and give basic driving commands. Your instructors will provide the following:</p>
+      <ul>
+        <li>Laser cut robotic chassis (x1)</li>
+        <li>Motors + mount (x2)</li>
+        <li>Arduino + motor shield (x1)</li>
+        <li>Arduino mount (x1)</li>
+        <li>Ultrasound + bracket (x1)</li>
+        <li>Caster wheel + bracket (x1)</li>
+        <li>Fasteners</li>
+      </ul>
+    </div>
+
+    <!-- Software & Hardware -->
+    <div class="section">
+      <h2>🏗️ Software & Hardware</h2>
+      <p><strong>Software:</strong> Arduino IDE</p>
+      <p><strong>Hardware (machines you might use):</strong></p>
+      <ul>
+        <li>Soldering Iron</li>
+        <li>Small screwdrivers</li>
+        <li>Multimeter</li>
+      </ul>
+
+      <!-- car2.png under Software & Hardware -->
+      <img src="car2.png" alt="robot hardware illustration" class="inline-img">
+    </div>
+
+    <!-- Part 1 -->
+    <div class="section">
+      <h2>Part 1: Understanding Code and Testing the Motors (25 mins)</h2>
+      <p>We are using the L293D motor shield (Adafruit style). It supports 4 DC motors (or 2 steppers) and 2 servos. The AFMotor library simplifies control so we don't manage low-level PWM and pins manually.</p>
+
+      <ol>
+        <li><strong>Download Motor Library:</strong> In the Arduino IDE click the library manager (books icon) and install <code>"Adafruit Motor Shield library"</code>.</li>
+      </ol>
+
+      <!-- car3.png after download note -->
+      <img src="car3.png" alt="install library screenshot" class="inline-img">
+
+      <p>Initialize the library at the top of your sketch (above <code>setup()</code>):</p>
+      <pre><code>#include &lt;AFMotor.h&gt;</code></pre>
+
+      <p>Create motor objects for the two motors (above <code>setup()</code>):</p>
+      <pre><code>AF_DCMotor rightMotor(1);  // Motor connected to M1
+AF_DCMotor leftMotor(2);   // Motor connected to M2</code></pre>
+
+      <p>Set motor speed in <code>setup()</code> (0-255):</p>
+      <pre><code>void setup() {
+  rightMotor.setSpeed(255);
+  leftMotor.setSpeed(255);
+}</code></pre>
+
+      <p>Set initial motor direction in <code>setup()</code>:</p>
+      <pre><code>void setup() {
+  rightMotor.setSpeed(255);
+  leftMotor.setSpeed(255);
+  rightMotor.run(FORWARD);
+  leftMotor.run(FORWARD);
+}</code></pre>
+
+      <p><strong>Hardware note:</strong> Plug the motor shield into the Arduino, aligning all pins. Insert the two yellow TT motors into M1 and M2. If motors spin the wrong way, swap the wires or reverse direction in code.</p>
+
+      <!-- car4.png after plug note -->
+      <img src="car4.png" alt="motors plugged into shield" class="inline-img">
+
+      <p>Upload the code. It should drive motors forward, but speed will be low if powered from USB. We'll connect a battery next.</p>
+
+      <p><strong>Now alter your code (exercise):</strong> drive forward 3s, stop 1s, backward 3s, repeat (use <code>loop()</code>).</p>
+
+      <p class="checkoff">Checkoff 1</p>
+    </div>
+
+    <!-- Part 2 -->
+    <div class="section">
+      <h2>Part 2: Assembling the Chassis</h2>
+      <p>Make sure you have the following pieces before starting (images show orientation):</p>
+      <ul>
+        <li>Laser cut chassis (x1)</li>
+        <li>Motor + mount (x2)</li>
+        <li>Arduino + motor shield (x1)</li>
+        <li>Arduino mount (x1)</li>
+        <li>Caster wheel + bracket (x2)</li>
+        <li>M2x12 (servo screws)</li>
+        <li>M3x10 (motor mount screws)</li>
+        <li>M3x25 / M3x30 (motor screws)</li>
+      </ul>
+
+      <p>Follow this assembly order (do not skip steps):</p>
+      <ol>
+        <li>Attach the ball caster to its mount using the small pointy screws, then fasten the mount to the chassis using M3x8 (x2).</li>
+      </ol>
+
+      <!-- car5.png -->
+      <img src="car5.png" alt="attach ball caster" class="inline-img">
+
+      <ol start="2">
+        <li>Attach the Arduino (without shield) to its mount and to the chassis using M3x16 (x3). Then add the motor shield on top.</li>
+      </ol>
+
+      <!-- car6.png -->
+      <img src="car6.png" alt="attach arduino and shield" class="inline-img">
+
+      <ol start="3">
+        <li>Use small screws to attach the servo to the front of the chassis. The hole is offset to align the servo axis with the midline.</li>
+      </ol>
+
+      <!-- car7.png -->
+      <img src="car7.png" alt="attach servo to chassis" class="inline-img">
+
+      <ol start="4">
+        <li>Attach the motor mounts to the chassis with M3x10 (x4). Insert an M3 nut into each hex slot first.</li>
+      </ol>
+
+      <!-- car8.png -->
+      <img src="car8.png" alt="motor mounts" class="inline-img">
+
+      <ol start="5">
+        <li>Use M3x25 (x2) to mount the motors to their brackets.</li>
+      </ol>
+
+      <!-- car9.png -->
+      <img src="car9.png" alt="mount motors" class="inline-img">
+
+      <ol start="6">
+        <li>Attach the battery pack to the bottom of the chassis with double-sided tape (switch faces down).</li>
+      </ol>
+
+      <!-- car10.png -->
+      <img src="car10.png" alt="attach battery pack" class="inline-img">
+
+      <ol start="7">
+        <li>Insert the mini breadboard and attach the ultrasound sensor bracket to the servo as shown.</li>
+      </ol>
+
+      <!-- car11.png -->
+      <img src="car11.png" alt="ultrasound and breadboard placement" class="inline-img">
+
+      <p>Push on the wheels (but don’t snap them). Now plug the motors and battery into the Arduino shield carefully:</p>
+      <ul>
+        <li>Feed the servo wire through the rear hole and connect to shield (yellow = signal, brown = GND).</li>
+        <li>Feed motor wires into screw terminals: M1 = left motor, M2 = right motor.</li>
+        <li>Attach power cables, being careful not to swap polarity.</li>
+      </ul>
+
+      <!-- car12.png -->
+      <img src="car12.png" alt="wiring and power" class="inline-img">
+
+      <p>Congrats — you have built a robot.</p>
+
+      <!-- car13.png -->
+      <img src="car13.png" alt="completed robot" class="inline-img">
+
+      <p class="checkoff">Checkoff 2</p>
+    </div>
+
+    <!-- Part 3 -->
+    <div class="section">
+      <h2>Part 3: Driving Straight</h2>
+      <p>Use your motor drive code and try to drive straight by setting both motors to the same speed. If it veers, adjust relative speed.</p>
+
+      <ol>
+        <li>Adjust motor speeds until robot drives roughly straight.</li>
+        <li>Create a helper function <code>driveStraight(int durationMs)</code> that drives forward for a given time.</li>
+      </ol>
+
+      <pre><code>void driveStraight(int durationMs) {
+  // set motor speed and directions (use values you tuned)
+  rightMotor.setSpeed(200);
+  leftMotor.setSpeed(200);
+  rightMotor.run(FORWARD);
+  leftMotor.run(FORWARD);
+  delay(durationMs);
+  rightMotor.run(RELEASE);
+  leftMotor.run(RELEASE);
+}</code></pre>
+
+      <p>Test with durations: 500, 1000, 3000 ms.</p>
+      <p class="checkoff">Checkoff 3</p>
+    </div>
+
+    <!-- Part 4 -->
+    <div class="section">
+      <h2>Part 4: Creating Turning Functions</h2>
+      <p>Command the robot to turn in place ~90° CCW. Decide motor directions and a timed duration for that turn. Then implement <code>turnRight()</code> and <code>turnLeft()</code>.</p>
+
+      <pre><code>void turnRight() {
+  // example: right motor backward, left motor forward for x ms
+  rightMotor.setSpeed(200);
+  leftMotor.setSpeed(200);
+  rightMotor.run(BACKWARD);
+  leftMotor.run(FORWARD);
+  delay(350); // tune this value for ~90°
+  rightMotor.run(RELEASE);
+  leftMotor.run(RELEASE);
+}
+
+void turnLeft() {
+  // opposite directions and tuned delay
+  rightMotor.setSpeed(200);
+  leftMotor.setSpeed(200);
+  rightMotor.run(FORWARD);
+  leftMotor.run(BACKWARD);
+  delay(350); // tune this value for ~90°
+  rightMotor.run(RELEASE);
+  leftMotor.run(RELEASE);
+}</code></pre>
+
+      <p class="checkoff">Checkoff 4</p>
+    </div>
+
+    <!-- Part 5 -->
+    <div class="section">
+      <h2>Part 5: Driving a Loop</h2>
+      <p>Use your drive and turn functions in <code>loop()</code> to drive a square of side ~50 cm clockwise and then counterclockwise. Observe how well it returns to the start; note sources of error and potential sensors to fix it.</p>
+      <p class="checkoff">Checkoff 5</p>
+    </div>
+
+    <!-- Part 6 -->
+    <div class="section">
+      <h2>Part 6: Remix Driving!</h2>
+      <p>Now experiment with creative trajectories. Some ideas:</p>
+      <ul>
+        <li>Drive in a circle with a desired radius</li>
+        <li>Drive an n-sided polygon (square, hexagon, octagon)</li>
+        <li>Drive an infinity symbol</li>
+        <li>Drive a mathematical function path</li>
+      </ul>
+
+      <!-- car14.png -->
+      <img src="car14.png" alt="remix driving ideas" class="inline-img">
+
+      <p class="checkoff">Checkoff 6</p>
+    </div>
+
+    <!-- Closing notes -->
+    <div class="section">
+      <h2>Wrap-up</h2>
+      <p>Great work! In the next session we'll add sensors and close the loop so your robot can localize and follow paths more robustly.</p>
+    </div>
+
+  </div>
+
+  <!-- Sidebar with car.png -->
+  <div class="sidebar">
+    <img src="car.png" alt="Robot side view (car.png)">
+    <div style="color:#bbbbbb; font-size:0.95em; text-align:center;">
+      <strong>Lab 2 • Session 1</strong><br>
+      Motors & Assembly
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  &copy; 2025 UTB Student Labs | MIT-Inspired Series — All instructions adapted from MISTI Teaching Team
+</footer>
+
+</body>
+</html>
+
+
+
 
