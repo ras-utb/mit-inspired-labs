@@ -47,33 +47,53 @@ html, body {
 }
 
 /* allow flex children to shrink below their min-width */
+/* Mobile adjustments */
 @media (max-width: 600px) {
-@media (max-width: 600px) {
+  /* Stack content vertically and center */
   .container {
-    flex-direction: column;   /* stack main + sidebar vertically */
-    align-items: center;      /* center horizontally */
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     padding: 0 10px;
   }
+
+  /* Make main content and sidebar full width */
   .main-content, .sidebar {
-    min-width: 0;             /* allow shrinking */
-    width: 100%;              /* full width */
-    max-width: 500px;         /* optional: prevents very wide boxes */
+    width: 100%;
+    max-width: 500px; /* optional: prevent too wide */
+    margin: 0 auto;
   }
-  nav a {
-    display: block;
-    margin: 5px 0;            /* stack nav links vertically */
-  }
+
+  /* Center header text */
   header h1, header p {
     text-align: center;
   }
+
+  /* Stack nav links vertically and center */
+  nav {
+    text-align: center;
+  }
+  nav a {
+    display: block;
+    margin: 5px 0;
+  }
+
+  /* Center sidebar images and captions */
   .sidebar img {
-    margin: 10px auto;        /* center sidebar images */
+    display: block;
+    margin: 10px auto;
   }
   .sidebar p {
-    text-align: center;       /* center sidebar captions */
+    text-align: center;
+  }
+
+  /* Ensure code blocks wrap */
+  pre {
+    white-space: pre-wrap;
+    word-break: break-word;
   }
 }
+
 
 
 </style>
