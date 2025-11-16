@@ -37,6 +37,48 @@ code {
 footer { text-align:center; padding:20px; background-color:#111; color:#bbbbbb; margin-top:20px; font-size:0.9em; }
 
 @media(max-width:1000px){.container{flex-direction:column;}}
+  /* MOBILE / OVERFLOW FIXES */
+
+/* prevent horizontal scrolling */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* allow flex children to shrink below their min-width */
+@media (max-width: 600px) {
+  .main-content, .sidebar {
+    min-width: 0;
+  }
+  .container {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+/* allow code blocks to wrap on small screens */
+pre {
+  white-space: pre-wrap;      /* wrap long lines */
+  word-break: break-word;     /* break long words if needed */
+  overflow-wrap: anywhere;
+}
+
+/* allow inline code to wrap as well */
+code {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* images should always fit container */
+img, .inline, .small, .sidebar img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 </style>
 </head>
 <body>
