@@ -48,36 +48,33 @@ html, body {
 
 /* allow flex children to shrink below their min-width */
 @media (max-width: 600px) {
-  .main-content, .sidebar {
-    min-width: 0;
-  }
+@media (max-width: 600px) {
   .container {
+    flex-direction: column;   /* stack main + sidebar vertically */
+    align-items: center;      /* center horizontally */
     width: 100%;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 0 10px;
+  }
+  .main-content, .sidebar {
+    min-width: 0;             /* allow shrinking */
+    width: 100%;              /* full width */
+    max-width: 500px;         /* optional: prevents very wide boxes */
+  }
+  nav a {
+    display: block;
+    margin: 5px 0;            /* stack nav links vertically */
+  }
+  header h1, header p {
+    text-align: center;
+  }
+  .sidebar img {
+    margin: 10px auto;        /* center sidebar images */
+  }
+  .sidebar p {
+    text-align: center;       /* center sidebar captions */
   }
 }
 
-/* allow code blocks to wrap on small screens */
-pre {
-  white-space: pre-wrap;      /* wrap long lines */
-  word-break: break-word;     /* break long words if needed */
-  overflow-wrap: anywhere;
-}
-
-/* allow inline code to wrap as well */
-code {
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-
-/* images should always fit container */
-img, .inline, .small, .sidebar img {
-  max-width: 100%;
-  width: 100%;
-  height: auto;
-  display: block;
-}
 
 </style>
 </head>
