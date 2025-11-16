@@ -1,133 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instructors</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #5a3f8b; /* purple theme */
-            color: #fff;
-            margin: 0;
-            padding: 20px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UTB MIT-Inspired Lab Series | Instructors</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    font-size: 1.05em;
+}
 
-        h1 {
-            margin-bottom: 40px;
-        }
+/* Header */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+    padding: 50px 20px;
+    text-align: center;
+}
+header h1 {
+    font-size: 3.5em;
+    color: #c29fff;
+    margin: 0;
+}
 
-        .instructors-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-        }
+/* Navbar */
+nav {
+    background-color: #111111;
+    padding: 14px 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+nav a {
+    margin: 0 20px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.15em;
+}
+nav a:hover {
+    color: #c29fff;
+}
 
-        .instructor-card {
-            background-color: #fdfdfd;
-            color: #000;
-            border-radius: 10px;
-            width: 200px;
-            padding: 15px;
-            box-shadow: 0px 8px 12px rgba(0,0,0,0.3);
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-family: 'Comic Sans MS', cursive;
-        }
+/* Container */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    width: 90%;
+    max-width: 1400px;
+    margin: 30px auto;
+}
 
-        .instructor-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0px 12px 20px rgba(0,0,0,0.5);
-        }
+/* Polaroid card */
+.polaroid {
+    background-color: #1e1e2e;
+    border: 2px solid #c29fff;
+    border-radius: 10px;
+    width: 200px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.7);
+    transition: transform 0.2s;
+}
+.polaroid img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.polaroid:hover {
+    transform: scale(1.05);
+}
+.polaroid h3 {
+    color: #c29fff;
+    margin: 5px 0;
+}
+.polaroid p {
+    color: #e0e0e0;
+    margin: 0;
+}
 
-        .instructor-card img {
-            width: 150px;
-            height: 150px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            object-fit: cover;
-            border: 4px solid #5a3f8b; /* polaroid frame in purple */
-            background-color: white;
-        }
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #111111;
+    color: #bbbbbb;
+    margin-top: 20px;
+    font-size: 0.95em;
+}
 
-        .instructor-card h3 {
-            margin: 5px 0;
-        }
-
-        .instructor-card p {
-            margin: 0;
-            font-size: 14px;
-            color: #555;
-        }
-
-        @media (max-width: 600px) {
-            .instructors-container {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-        .back-button {
-            display: inline-block;
-            margin-bottom: 30px;
-            padding: 10px 20px;
-            background-color: #7b5fc0;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 16px;
-            transition: background-color 0.2s;
-        }
-
-        .back-button:hover {
-            background-color: #9675d1;
-        }
-    </style>
+/* Responsive */
+@media (max-width: 1000px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+</style>
 </head>
 <body>
-    <a class="back-button" href="index.html">← Back to Main Page</a>
+
+<header>
     <h1>Meet Our Instructors</h1>
-    <div class="instructors-container">
-        <div class="instructor-card">
-            <img src="instructor1.jpg" alt="Instructor 1">
-            <h3>Sana</h3>
-            <p>Mechatronics Engineering, 4th year</p>
-        </div>
-        <div class="instructor-card">
-            <img src="instructor2.jpg" alt="Instructor 2">
-            <h3>Rand</h3>
-            <p>Mechatronics Engineering, 3rd year</p>
-        </div>
-        <div class="instructor-card">
-            <img src="instructor3.jpg" alt="Instructor 3">
-            <h3>Natalie</h3>
-            <p>Mechatronics Engineering, 4th year</p>
-        </div>
-        <div class="instructor-card">
-            <img src="instructor4.jpg" alt="Instructor 4">
-            <h3>Fiza</h3>
-            <p>Mechatronics Engineering, 4th year</p>
-        </div>
-        <div class="instructor-card">
-            <img src="instructor5.jpg" alt="Instructor 5">
-            <h3>Mahanna</h3>
-            <p>Mechatronics Engineering, 4th year</p>
-        </div>
-        <div class="instructor-card">
-            <img src="instructor6.jpg" alt="Instructor 6">
-            <h3>Fariha</h3>
-            <p>Mechatronics Engineering, 3rd year</p>
-        </div>
-        <div class="instructor-card">
-            <img src="instructor7.jpg" alt="Instructor 7">
-            <h3>Layan</h3>
-            <p>Mechatronics Engineering, 3rd year</p>
-        </div>
+</header>
+
+<!-- Navbar -->
+<nav>
+  <a href="index.html">Home</a>
+  <a href="lab.html">Labs</a>
+  <a href="instructors.html">Instructors</a>
+  <a href="#about">About</a>
+</nav>
+
+<div class="container">
+    <div class="polaroid">
+        <img src="instructor1.jpg" alt="Instructor 1">
+        <h3>Dr. Sarah Ahmed</h3>
+        <p>Electrical Engineering</p>
     </div>
+    <div class="polaroid">
+        <img src="instructor2.jpg" alt="Instructor 2">
+        <h3>Prof. Omar Khalid</h3>
+        <p>Mechanical Engineering</p>
+    </div>
+    <div class="polaroid">
+        <img src="instructor3.jpg" alt="Instructor 3">
+        <h3>Dr. Lina Mansour</h3>
+        <p>Computer Science</p>
+    </div>
+    <div class="polaroid">
+        <img src="instructor4.jpg" alt="Instructor 4">
+        <h3>Eng. Faisal Rahman</h3>
+        <p>Robotics</p>
+    </div>
+    <div class="polaroid">
+        <img src="instructor5.jpg" alt="Instructor 5">
+        <h3>Prof. Nadia Saleh</h3>
+        <p>Materials Science</p>
+    </div>
+    <div class="polaroid">
+        <img src="instructor6.jpg" alt="Instructor 6">
+        <h3>Dr. Tariq Javed</h3>
+        <p>Software Engineering</p>
+    </div>
+    <div class="polaroid">
+        <img src="instructor7.jpg" alt="Instructor 7">
+        <h3>Eng. Amina Yusuf</h3>
+        <p>Design & Fabrication</p>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 UTB Student Labs | MIT-Inspired Series
+</footer>
+
 </body>
 </html>
+
