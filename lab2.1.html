@@ -39,60 +39,48 @@ footer { text-align:center; padding:20px; background-color:#111; color:#bbbbbb; 
 @media(max-width:1000px){.container{flex-direction:column;}}
   /* MOBILE / OVERFLOW FIXES */
 
-/* prevent horizontal scrolling */
+/* MOBILE / OVERFLOW FIXES (paste near end of your <style>) */
+
+/* ensure the page doesn't accidentally grow wider than the screen */
 html, body {
   max-width: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
 }
 
-/* allow flex children to shrink below their min-width */
-/* Mobile adjustments */
+/* make all images scale and never exceed their container */
+img, .inline-img, .sidebar img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* allow long code lines to wrap on small screens instead of forcing horizontal scroll */
+pre {
+  white-space: pre-wrap;      /* wrap long lines */
+  word-break: break-word;     /* break long words/URLs if needed */
+  overflow-wrap: anywhere;    /* extra break behavior */
+}
+
+/* allow inline code to wrap if necessary */
+code {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* on very small screens allow flex children to shrink below min-width */
 @media (max-width: 600px) {
-  /* Stack content vertically and center */
-  .container {
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    padding: 0 10px;
-  }
-
-  /* Make main content and sidebar full width */
   .main-content, .sidebar {
-    width: 100%;
-    max-width: 500px; /* optional: prevent too wide */
-    margin: 0 auto;
+    min-width: 0;     /* allow flex children to shrink */
   }
-
-  /* Center header text */
-  header h1, header p {
-    text-align: center;
-  }
-
-  /* Stack nav links vertically and center */
-  nav {
-    text-align: center;
-  }
-  nav a {
-    display: block;
-    margin: 5px 0;
-  }
-
-  /* Center sidebar images and captions */
-  .sidebar img {
-    display: block;
-    margin: 10px auto;
-  }
-  .sidebar p {
-    text-align: center;
-  }
-
-  /* Ensure code blocks wrap */
-  pre {
-    white-space: pre-wrap;
-    word-break: break-word;
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+    width: calc(100% - 24px);
   }
 }
+
 
 
 
