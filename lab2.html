@@ -46,7 +46,8 @@
     <!-- Intro -->
     <div class="section">
       <h2>Overview</h2>
-      <p>This is the first of two labs on building and programming a robot. Today we introduce DC motors, motor control, and chassis assembly. By the end of this session you'll drive a trajectory you designed.</p>
+      <p>This is the first of two labs on building and programming a robot. Today we introduce DC motors, motor control, and chassis assembly.
+        By the end of this session you'll drive a trajectory you designed.</p>
     </div>
 
     <!-- Safety -->
@@ -94,10 +95,12 @@
     <!-- Part 1 -->
     <div class="section">
       <h2>Part 1: Understanding Code and Testing the Motors (25 mins)</h2>
-      <p>We are using the L293D motor shield (Adafruit style). It supports 4 DC motors (or 2 steppers) and 2 servos. The AFMotor library simplifies control so we don't manage low-level PWM and pins manually.</p>
+      <p>We are using the L293D motor shield (Adafruit style). It supports 4 DC motors (or 2 steppers) and 2 servos.
+        The AFMotor library simplifies control so we don't manage low-level PWM and pins manually.</p>
 
       <ol>
-        <li><strong>Download Motor Library:</strong> In the Arduino IDE click the library manager (books icon) and install <code>"Adafruit Motor Shield library"</code>.</li>
+        <li><strong>Download Motor Library:</strong> In the Arduino IDE click the library manager (books icon) and
+          install <code>"Adafruit Motor Shield library"</code>.</li>
       </ol>
 
       <!-- car3.png after download note -->
@@ -124,7 +127,8 @@ AF_DCMotor leftMotor(2);   // Motor connected to M2</code></pre>
   leftMotor.run(FORWARD);
 }</code></pre>
 
-      <p><strong>Hardware note:</strong> Plug the motor shield into the Arduino, aligning all pins. Insert the two yellow TT motors into M1 and M2. If motors spin the wrong way, swap the wires or reverse direction in code.</p>
+      <p><strong>Hardware note:</strong> Plug the motor shield into the Arduino, aligning all pins. Insert the two yellow TT motors
+        into M1 and M2. If motors spin the wrong way, swap the wires or reverse direction in code.</p>
 
       <!-- car4.png after plug note -->
       <img src="car4.png" alt="motors plugged into shield" class="inline-img">
@@ -203,7 +207,8 @@ AF_DCMotor leftMotor(2);   // Motor connected to M2</code></pre>
       <img src="car11.png" alt="ultrasound and breadboard placement" class="inline-img">
 
       <ol start="8">
-       <li>Add wheels. Push them on fully, but be careful not to snap the motor mounts. Now plug the motors and battery into the Arduino shield carefully:</li>
+       <li>Add wheels. Push them on fully, but be careful not to snap the motor mounts. Now plug the motors and battery into the
+         Arduino shield carefully:</li>
       </ol>
         <li>Feed the servo wire through the rear hole and connect to shield (yellow = signal, brown = GND).</li>
         <li>Feed motor wires into screw terminals: M1 = left motor, M2 = right motor.</li>
@@ -224,7 +229,8 @@ AF_DCMotor leftMotor(2);   // Motor connected to M2</code></pre>
     <!-- Part 3 -->
     <div class="section">
       <h2>Part 3: Driving Straight</h2>
-      <p>Using your motor drive code from above, try driving your robot in a straight line by setting both motors to the same speed. Does it drive straight?</p>
+      <p>Using your motor drive code from above, try driving your robot in a straight line by setting both motors to the same speed. Does it drive
+        straight?</p>
 
       <ol>
         <li>Adjust motor speeds until robot drives roughly straight.</li>
@@ -249,7 +255,8 @@ AF_DCMotor leftMotor(2);   // Motor connected to M2</code></pre>
     <!-- Part 4 -->
     <div class="section">
       <h2>Part 4: Creating Turning Functions</h2>
-      <p>Try to command your robot to turn in place exactly 90 degrees counter clockwise. How should each motor be commanded? Set a turn speed, and just alter the duration of turn to dial in 90 degrees.
+      <p>Try to command your robot to turn in place exactly 90 degrees counter clockwise. How should each motor be commanded? Set a turn speed,
+        and just alter the duration of turn to dial in 90 degrees.
         Then implement <code>turnRight()</code> and <code>turnLeft()</code>.</p>
 
       <pre><code>void turnRight() {
@@ -280,9 +287,11 @@ void turnLeft() {
     <!-- Part 5 -->
     <div class="section">
       <h2>Part 5: Driving a Loop</h2>
-      <p>In the loop() of your code, use your turning and driving functions to drive in a square with side length 50cm clockwise. Do it again going counterclockwise. 
+      <p>In the loop() of your code, use your turning and driving functions to drive in a square with side length 50cm clockwise. Do it again going
+        counterclockwise. 
         How well does it return to its starting location? What might cause this? What potential sensors could we use to fix this?.</p>
-      <p> You may have noticed that it was difficult to get your robot to drive straight and turn a desired amount consistently. This is because the robot is open-loop. It has no idea where it is or where it is going. 
+      <p> You may have noticed that it was difficult to get your robot to drive straight and turn a desired amount consistently.
+        This is because the robot is open-loop. It has no idea where it is or where it is going. 
       We are going to close the loop next lab by adding sensors so the robot can detect where it is and where it wants to go.</p>
      <p><span class="checkoff">Checkoff 5:</span> Ask your instructor to verify Part 5 (CCW/CW loops).</p>
     </div>
