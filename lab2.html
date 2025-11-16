@@ -31,6 +31,47 @@
   margin:12px 0 8px;
   text-align:center;
 }
+/* MOBILE / OVERFLOW FIXES (paste near end of your <style>) */
+
+/* ensure the page doesn't accidentally grow wider than the screen */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* make all images scale and never exceed their container */
+img, .inline-img, .sidebar img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* allow long code lines to wrap on small screens instead of forcing horizontal scroll */
+pre {
+  white-space: pre-wrap;      /* wrap long lines */
+  word-break: break-word;     /* break long words/URLs if needed */
+  overflow-wrap: anywhere;    /* extra break behavior */
+}
+
+/* allow inline code to wrap if necessary */
+code {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* on very small screens allow flex children to shrink below min-width */
+@media (max-width: 600px) {
+  .main-content, .sidebar {
+    min-width: 0;     /* allow flex children to shrink */
+  }
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+    width: calc(100% - 24px);
+  }
+}
 
 </style>
 </head>
