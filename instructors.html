@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructors</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #5a3f8b; /* purple theme */
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 40px;
+        }
+
+        .instructors-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .instructor-card {
+            background-color: #fdfdfd;
+            color: #000;
+            border-radius: 10px;
+            width: 200px;
+            padding: 15px;
+            box-shadow: 0px 8px 12px rgba(0,0,0,0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Comic Sans MS', cursive;
+        }
+
+        .instructor-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 12px 20px rgba(0,0,0,0.5);
+        }
+
+        .instructor-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            object-fit: cover;
+            border: 4px solid #5a3f8b; /* polaroid frame in purple */
+            background-color: white;
+        }
+
+        .instructor-card h3 {
+            margin: 5px 0;
+        }
+
+        .instructor-card p {
+            margin: 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+        @media (max-width: 600px) {
+            .instructors-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-bottom: 30px;
+            padding: 10px 20px;
+            background-color: #7b5fc0;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #9675d1;
+        }
+    </style>
+</head>
+<body>
+    <a class="back-button" href="index.html">← Back to Main Page</a>
+    <h1>Meet Our Instructors</h1>
+    <div class="instructors-container">
+        <div class="instructor-card">
+            <img src="instructor1.jpg" alt="Instructor 1">
+            <h3>Sana</h3>
+            <p>Mechatronics Engineering, 4th year</p>
+        </div>
+        <div class="instructor-card">
+            <img src="instructor2.jpg" alt="Instructor 2">
+            <h3>Rand</h3>
+            <p>Mechatronics Engineering, 3rd year</p>
+        </div>
+        <div class="instructor-card">
+            <img src="instructor3.jpg" alt="Instructor 3">
+            <h3>Natalie</h3>
+            <p>Mechatronics Engineering, 4th year</p>
+        </div>
+        <div class="instructor-card">
+            <img src="instructor4.jpg" alt="Instructor 4">
+            <h3>Fiza</h3>
+            <p>Mechatronics Engineering, 4th year</p>
+        </div>
+        <div class="instructor-card">
+            <img src="instructor5.jpg" alt="Instructor 5">
+            <h3>Mahanna</h3>
+            <p>Mechatronics Engineering, 4th year</p>
+        </div>
+        <div class="instructor-card">
+            <img src="instructor6.jpg" alt="Instructor 6">
+            <h3>Fariha</h3>
+            <p>Mechatronics Engineering, 3rd year</p>
+        </div>
+        <div class="instructor-card">
+            <img src="instructor7.jpg" alt="Instructor 7">
+            <h3>Layan</h3>
+            <p>Mechatronics Engineering, 3rd year</p>
+        </div>
+    </div>
+</body>
+</html>
