@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UTB MIT Lab - About</title>
+<style>
+/* Reset & basic */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+/* Container */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    max-width: 1300px;
+    margin: 30px auto;
+    gap: 20px;
+}
+
+/* Sidebar */
+.sidebar {
+    flex: 1;
+    min-width: 250px;
+    background-image: url('starwarsbg1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    padding: 20px;
+    display: flex;
+    align-items: flex-end; /* so text is readable at bottom */
+    justify-content: center;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Main content */
+.main-content {
+    flex: 2;
+    min-width: 300px;
+    background-color: #1e1e2e;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.main-content h2 {
+    color: #c29fff;
+    margin-top: 0;
+}
+
+/* Navbar */
+nav {
+    background-color: #111111;
+    padding: 14px 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+nav a {
+    margin: 0 20px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.15em;
+}
+nav a:hover {
+    color: #c29fff;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #111111;
+    color: #bbbbbb;
+    margin-top: 30px;
+    font-size: 0.95em;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .sidebar, .main-content {
+        width: 90%;
+    }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="lab.html">Labs</a>
+  <a href="instructors.html">Instructors</a>
+  <a href="about.html">About</a>
+</nav>
+
+<div class="container">
+    <div class="main-content">
+        <h2>About</h2>
+        <p>This series is organized by students who previously participated in the MISTI-inspired labs. Our mission is to provide UTB students with experiential STEM learning opportunities, fostering creativity, problem-solving, and technical skills through hands-on projects.</p>
+    </div>
+    <div class="sidebar">
+        <p>UTB STEM Labs</p>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 UTB Student Labs | MIT-Inspired Series
+</footer>
+
+</body>
+</html>
