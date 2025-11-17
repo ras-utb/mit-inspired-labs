@@ -102,6 +102,15 @@ footer {
         width: 90%;
     }
 }
+    .about-img {
+    width: 100%;        /* takes full width of the main-content box */
+    max-width: 800px;   /* optional: prevents it from being huge on large screens */
+    height: auto;       /* keeps aspect ratio */
+    display: block;
+    margin: 20px auto 0 auto;  /* centers image and adds top margin */
+    border-radius: 10px;       /* optional rounded corners */
+}
+
 </style>
 </head>
 <body>
@@ -115,12 +124,14 @@ footer {
 
 <div class="container">
     <div class="main-content">
-        <h2>About</h2>
-        <p>This series is organized by students who previously participated in the MISTI-inspired labs. Our mission is to provide UTB students with experiential STEM learning opportunities, fostering creativity, problem-solving, and technical skills through hands-on projects.</p>
-    </div>
-    <div class="sidebar">
-        <p>UTB STEM Labs</p>
-    </div>
+    <h2>About</h2>
+    <p>This series is organized by students who previously participated in the MISTI-inspired labs. Our mission is to provide UTB students with 
+        experiential STEM learning opportunities, fostering creativity, problem-solving, and technical skills through hands-on projects.</p>
+
+    <!-- Star Wars image below About -->
+    <img src="starwarsbg1.png" alt="UTB Team Star Wars" class="about-img">
+</div>
+
 </div>
 
 <footer>
