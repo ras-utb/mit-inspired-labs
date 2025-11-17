@@ -42,6 +42,13 @@ html, body {
     color: #ffffff;
     font-weight: bold;
 }
+    .sidebar img {
+    width: 100%;       /* makes the image take full width of the sidebar */
+    height: auto;      /* keeps aspect ratio so it doesn’t get squished */
+    object-fit: cover; /* fills the box nicely; you can also use 'contain' */
+    border-radius: 8px;
+}
+
 
 /* Main content */
 .main-content {
