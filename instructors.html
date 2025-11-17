@@ -68,11 +68,15 @@ nav a:hover {
 .polaroid:hover {
     transform: scale(1.05);
 }
-.polaroid img {
-    width: 100%;
+
+    .polaroid img {
+    width: 100%;         /* image will take full width of the card */
+    height: 200px;       /* fixed height for all images */
+    object-fit: cover;   /* crops/resizes to fill area without distortion */
     border-radius: 5px;
     margin-bottom: 10px;
 }
+
 .polaroid h3 {
     margin: 5px 0;
     color: #c29fff;
