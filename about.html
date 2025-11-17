@@ -27,21 +27,20 @@ html, body {
 
 /* Sidebar */
 .sidebar {
-    flex: 1;
-    min-width: 250px;
     background-image: url('starwarsbg1.png');
-    background-size: cover;
+    background-size: contain;  /* ensures entire image is visible */
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     padding: 20px;
     display: flex;
-    align-items: flex-end; /* so text is readable at bottom */
+    align-items: flex-end; 
     justify-content: center;
     color: #ffffff;
     font-weight: bold;
 }
+
     .sidebar img {
     width: 100%;       /* makes the image take full width of the sidebar */
     height: auto;      /* keeps aspect ratio so it doesn’t get squished */
