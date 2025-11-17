@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UTB MIT-Inspired Lab Series | Instructors</title>
+<title>UTB MIT Lab - Instructors</title>
 <style>
 body {
     font-family: Arial, sans-serif;
@@ -11,7 +11,6 @@ body {
     color: #e0e0e0;
     margin: 0;
     padding: 0;
-    font-size: 1.05em;
 }
 
 /* Header */
@@ -21,11 +20,10 @@ header {
     justify-content: center;
     background-color: #000000;
     padding: 50px 20px;
-    text-align: center;
 }
 header h1 {
-    font-size: 3.5em;
     color: #c29fff;
+    font-size: 3em;
     margin: 0;
 }
 
@@ -34,58 +32,55 @@ nav {
     background-color: #111111;
     padding: 14px 0;
     text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
 }
 nav a {
     margin: 0 20px;
     text-decoration: none;
     color: #ffffff;
     font-weight: bold;
-    font-size: 1.15em;
+    font-size: 1.1em;
 }
 nav a:hover {
     color: #c29fff;
 }
 
-/* Container */
-.container {
+/* Container for instructors */
+.instructors-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 30px;
+    gap: 25px;
     width: 90%;
-    max-width: 1400px;
+    max-width: 1300px;
     margin: 30px auto;
 }
 
-/* Polaroid card */
+/* Polaroid card style */
 .polaroid {
     background-color: #1e1e2e;
-    border: 2px solid #c29fff;
     border-radius: 10px;
+    padding: 15px 10px 20px 10px;
     width: 200px;
-    padding: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.7);
     transition: transform 0.2s;
+}
+.polaroid:hover {
+    transform: scale(1.05);
 }
 .polaroid img {
     width: 100%;
     border-radius: 5px;
     margin-bottom: 10px;
 }
-.polaroid:hover {
-    transform: scale(1.05);
-}
 .polaroid h3 {
-    color: #c29fff;
     margin: 5px 0;
+    color: #c29fff;
 }
 .polaroid p {
+    margin: 3px 0;
+    font-size: 0.95em;
     color: #e0e0e0;
-    margin: 0;
 }
 
 /* Footer */
@@ -94,15 +89,18 @@ footer {
     padding: 20px;
     background-color: #111111;
     color: #bbbbbb;
-    margin-top: 20px;
+    margin-top: 30px;
     font-size: 0.95em;
 }
 
 /* Responsive */
 @media (max-width: 1000px) {
-    .container {
+    .instructors-container {
         flex-direction: column;
         align-items: center;
+    }
+    .polaroid {
+        width: 70%;
     }
 }
 </style>
@@ -113,7 +111,6 @@ footer {
     <h1>Meet Our Instructors</h1>
 </header>
 
-<!-- Navbar -->
 <nav>
   <a href="index.html">Home</a>
   <a href="lab.html">Labs</a>
@@ -121,42 +118,50 @@ footer {
   <a href="#about">About</a>
 </nav>
 
-<div class="container">
+<div class="instructors-container">
+
     <div class="polaroid">
-        <img src="instructor1.jpg" alt="Instructor 1">
-        <h3>Dr. Sarah Ahmed</h3>
-        <p>Electrical Engineering</p>
+        <img src="instructor1.jpg" alt="Sana">
+        <h3>Sana</h3>
+        <p>4th Year Mechatronics</p>
+        <p>RAS President</p>
     </div>
+
     <div class="polaroid">
-        <img src="instructor2.jpg" alt="Instructor 2">
-        <h3>Prof. Omar Khalid</h3>
-        <p>Mechanical Engineering</p>
+        <img src="instructor2.jpg" alt="Rand">
+        <h3>Rand</h3>
+        <p>3rd Year Mechatronics</p>
+        <p>RAS Vice President</p>
     </div>
+
     <div class="polaroid">
-        <img src="instructor3.jpg" alt="Instructor 3">
-        <h3>Dr. Lina Mansour</h3>
-        <p>Computer Science</p>
+        <img src="instructor3.jpg" alt="Natalie">
+        <h3>Natalie</h3>
+        <p>4th Year Mechatronics</p>
+        <p>IEEE Chair, UTB</p>
     </div>
+
     <div class="polaroid">
-        <img src="instructor4.jpg" alt="Instructor 4">
-        <h3>Eng. Faisal Rahman</h3>
-        <p>Robotics</p>
+        <img src="instructor4.jpg" alt="Fiza">
+        <h3>Fiza</h3>
+        <p>4th Year Mechatronics</p>
+        <p>RAS Public Relations</p>
     </div>
+
     <div class="polaroid">
-        <img src="instructor5.jpg" alt="Instructor 5">
-        <h3>Prof. Nadia Saleh</h3>
-        <p>Materials Science</p>
+        <img src="instructor5.jpg" alt="Fariha">
+        <h3>Fariha</h3>
+        <p>3rd Year Mechatronics</p>
+        <p>RAS Secretary</p>
     </div>
+
     <div class="polaroid">
-        <img src="instructor6.jpg" alt="Instructor 6">
-        <h3>Dr. Tariq Javed</h3>
-        <p>Software Engineering</p>
+        <img src="instructor6.jpg" alt="Mahanna">
+        <h3>Mahanna</h3>
+        <p>4th Year Mechatronics</p>
+        <p>RAS Treasurer</p>
     </div>
-    <div class="polaroid">
-        <img src="instructor7.jpg" alt="Instructor 7">
-        <h3>Eng. Amina Yusuf</h3>
-        <p>Design & Fabrication</p>
-    </div>
+
 </div>
 
 <footer>
@@ -165,4 +170,3 @@ footer {
 
 </body>
 </html>
-
