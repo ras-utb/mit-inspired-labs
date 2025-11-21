@@ -1,1 +1,56 @@
+<!-- Part 2: Wiring Multiple Inputs -->
+<div class="section">
+    <h2>Part 2: Wiring of Multiple Inputs with a Multiplexer (30 minutes)</h2>
+    <p>
+        The MPR121 Adafruit shield allows us to use up to 12 capacitive touch sensors. 
+        Often, we only need to know if the sensor is "touched" or "not-touched." 
+        The shield and library can set an automatic threshold for any object. 
+        It is designed for alligator clips, but for this lab, we will solder the connections.
+    </p>
+    <ol>
+        <li>Create a total of <strong>6 capacitive touch sensors</strong> using the copper tape. 
+            (Later, you can swap the copper tape for any material you want during your remix.)</li>
+        <li>Apply copper tape to the template pads for each sensor.</li>
+        <li>Place a wire on the pad so it sits snugly.</li>
+        <li>Cover the wire with another layer of copper tape to make the connection secure but still easily replaceable.</li>
+        <li>Ensure that copper tape on adjacent pads does <strong>not</strong> touch each other!</li>
+        <li>Connect all 6 wires to the MPR121 shield inputs on the Arduino.</li>
+    </ol>
+    <p class="checkoff">
+        <strong>Checkoff 2:</strong> Show your instructor that you have wired <strong>6 capacitive touch sensors</strong>!
+    </p>
+    <img src="hello1.png" alt="6 Capacitive Touch Sensors Wired on Template">
+</div>
+
+<!-- Arduino example code for 6 sensors -->
+<div class="section">
+    <h2>Arduino Code for 6 Capacitive Sensors</h2>
+    <pre>
+#include &lt;Wire.h&gt;
+#include "Adafruit_MPR121.h"
+
+Adafruit_MPR121 cap = Adafruit_MPR121();
+
+void setup() {
+    Serial.begin(9600);
+    if (!cap.begin(0x5A)) { 
+        while(1); // Halt if MPR121 not found
+    }
+    Serial.println("MPR121 Initialized for 6 touch sensors.");
+}
+
+void loop() {
+    uint16_t touched = cap.touched();
+
+    for (uint8_t i = 0; i &lt; 6; i++) {
+        if (touched &amp; (1 << i)) {
+            Serial.print("Sensor ");
+            Serial.print(i+1);
+            Serial.println(" touched");
+        }
+    }
+    delay(50);
+}
+    </pre>
+</div>
 
