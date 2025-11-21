@@ -1,31 +1,168 @@
-<!-- Part 2: Wiring Multiple Inputs -->
-<div class="section"> 
-    <h2>Part 2: Wiring of Multiple Inputs with a Multiplexer (30 minutes)</h2>
-    <p>
-        The MPR121 Adafruit shield allows us to use up to 12 capacitive touch sensors. 
-        Often, we only need to know if the sensor is "touched" or "not-touched." 
-        The shield and library can set an automatic threshold for any object. 
-        It is designed for alligator clips, but for this lab, we will solder the connections.
-    </p>
-    <ol>
-        <li>Create a total of <strong>6 capacitive touch sensors</strong> using the copper tape. 
-            (Later, you can swap the copper tape for any material you want during your remix.)</li>
-        <li>Apply copper tape to the template pads for each sensor.</li>
-        <li>Place a wire on the pad so it sits snugly.</li>
-        <li>Cover the wire with another layer of copper tape to make the connection secure but still easily replaceable.</li>
-        <li>Ensure that copper tape on adjacent pads does <strong>not</strong> touch each other!</li>
-        <li>Connect all 6 wires to the MPR121 shield inputs on the Arduino.</li>
-    </ol>
-    <p class="checkoff">
-        <strong>Checkoff 2:</strong> Show your instructor that you have wired <strong>6 capacitive touch sensors</strong>!
-    </p>
-    <img src="hello1.png" alt="6 Capacitive Touch Sensors Wired on Template">
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 3 – GUI & Guitar Hero</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    font-size: 1.05em;
+}
+header { background-color: #000; padding: 40px 20px; text-align: center; }
+header h1 { color: #c29fff; margin: 0; }
+header p { color: #bbbbbb; margin: 5px 0 20px 0; }
 
-<!-- Arduino example code for 6 sensors -->
-<div class="section">
-    <h2>Arduino Code for 6 Capacitive Sensors</h2>
-    <pre>
+nav {
+    background-color: #111;
+    padding: 14px 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+nav a {
+    margin: 0 20px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+nav a:hover { color: #c29fff; }
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    max-width: 1300px;
+    margin: 25px auto;
+    gap: 20px;
+}
+
+.main-content { flex: 3; min-width: 300px; }
+
+.sidebar {
+    flex: 1;
+    min-width: 250px;
+    background-color: #1e1e2e;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    text-align: center;
+}
+.sidebar img { width: 100%; max-width: 400px; border-radius: 8px; }
+
+.section {
+    background-color: #1e1e2e;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+.section h2 { color: #c29fff; margin-top: 0; }
+.section img { display: block; margin: 15px auto; max-width: 100%; }
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    margin: 15px 0;
+}
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.checkoff { color: red; font-weight: bold; margin: 10px 0; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+table, th, td { border: 1px solid #c29fff; }
+th { background-color: #000; color: #fff; }
+td { background-color: #1e1e2e; color: #fff; text-align: center; }
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #111;
+    color: #bbbbbb;
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+
+@media (max-width: 1000px) {
+    .container { flex-direction: column; }
+    .sidebar img { max-width: 100%; height: auto; }
+}
+pre {
+    background-color: #1e1e2e;
+    color: #c29fff;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Lab 3: GUI & Guitar Hero</h1>
+    <p>Create capacitive sensors and design your Guitar Hero controller!</p>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="labs.html">Labs</a>
+    <a href="instructors.html">Instructors</a>
+    <a href="about.html">About</a>
+</nav>
+
+<div class="container">
+
+    <div class="main-content">
+
+        <!-- Introduction & Safety -->
+        <div class="section">
+            <h2>Introduction & Safety</h2>
+            <p>In this lab, you will make capacitive sensors and use them as input for a Guitar Hero game.</p>
+            <ul>
+                <li>Learn the principles of capacitive sensing</li>
+                <li>Wire multiple sensors using the MPR121 multiplexer</li>
+                <li>Code a GUI in Processing</li>
+                <li>Solder and package electronics on your guitar</li>
+            </ul>
+            <h3>Safety Precautions:</h3>
+            <ul>
+                <li>Ensure Arduino is disconnected from power before wiring.</li>
+                <li>Wear safety goggles when soldering and working with electrical components.</li>
+                <li>Soldering iron is extremely hot (~500°C). Do not touch it or molten solder.</li>
+                <li>Wash hands immediately after handling solder due to lead content.</li>
+            </ul>
+        </div>
+
+        <!-- Part 1: Wiring Multiple Inputs -->
+        <div class="section">
+            <h2>Part 1: Wiring Multiple Inputs with MPR121 (30 mins)</h2>
+            <p>We will create 6 capacitive touch sensors using copper tape and wire them to the MPR121 shield.</p>
+            <ol>
+                <li>Apply copper tape to each of the 6 template pads.</li>
+                <li>Place a wire snugly on the pad.</li>
+                <li>Cover the wire with another layer of copper tape (to allow easy material swaps).</li>
+                <li>Ensure adjacent pads do not touch!</li>
+                <li>Connect wires to the MPR121 shield inputs.</li>
+            </ol>
+            <p class="checkoff">Checkoff 2: Show your instructor that 6 capacitive sensors are wired correctly.</p>
+            <img src="hello1.png" alt="6 Capacitive Touch Sensors Wired">
+        </div>
+
+        <!-- Arduino Code -->
+        <div class="section">
+            <h2>Arduino Code for 6 Capacitive Sensors</h2>
+            <pre>
 #include &lt;Wire.h&gt;
 #include "Adafruit_MPR121.h"
 
@@ -33,17 +170,14 @@ Adafruit_MPR121 cap = Adafruit_MPR121();
 
 void setup() {
     Serial.begin(9600);
-    if (!cap.begin(0x5A)) { 
-        while(1); // Halt if MPR121 not found
-    }
+    if (!cap.begin(0x5A)) { while(1); }
     Serial.println("MPR121 Initialized for 6 touch sensors.");
 }
 
 void loop() {
     uint16_t touched = cap.touched();
-
     for (uint8_t i = 0; i &lt; 6; i++) {
-        if (touched &amp; (1 << i)) {
+        if (touched &amp; (1 &lt;&lt; i)) {
             Serial.print("Sensor ");
             Serial.print(i+1);
             Serial.println(" touched");
@@ -51,6 +185,70 @@ void loop() {
     }
     delay(50);
 }
-    </pre>
+            </pre>
+        </div>
+
+        <!-- Part 2: GUI in Processing -->
+        <div class="section">
+            <h2>Part 2: GUI for Guitar Hero</h2>
+            <p>We will code a GUI in Processing to interact with the capacitive sensors.</p>
+            <pre>
+import controlP5.*;
+import processing.serial.*;
+
+ControlP5 cp5;
+PFont font;
+Serial myPort;
+String val;
+float circleY = 0;
+
+void setup() {
+    size(300, 400);
+    font = createFont("ComicSansMS", 20);
+    cp5 = new ControlP5(this);
+    cp5.addButton("START")
+       .setPosition(100, 50)
+       .setSize(100, 80)
+       .setFont(font);
+
+    println(Serial.list());
+    String portName = Serial.list()[2]; // adjust as needed
+    myPort = new Serial(this, portName, 9600);
+}
+
+void draw() {
+    background(50, 20, 100); // purple-themed
+    fill(255);
+    text("GUITAR HERO", 100, 30);
+    ellipse(100, circleY, 50, 50);
+    circleY += 1;
+    if(circleY &gt; height) circleY = 0;
+
+    if (myPort.available() &gt; 0) {
+        val = myPort.readStringUntil('\n');
+        println(val);
+    }
+}
+            </pre>
+        </div>
+
+        <!-- Part 3: Testing Guitar Hero Game -->
+        <div class="section">
+            <h2>Part 3: Test Your Guitar</h2>
+            <p>Connect your capacitive sensors to Arduino and make sure the Processing GUI receives input when sensors are touched. Test the game using the keyboard first, then with your guitar controller.</p>
+        </div>
+
+    </div>
+
+    <div class="sidebar">
+        <img src="hello1.png" alt="Lab 3 Guitar Hero">
+    </div>
+
 </div>
 
+<footer>
+&copy; 2025 UTB Student Labs | MIT-Inspired Series
+</footer>
+
+</body>
+</html>
