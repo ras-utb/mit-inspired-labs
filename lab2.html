@@ -373,13 +373,39 @@ void turnLeft() {
       <p> You may have noticed that it was difficult to get your robot to drive straight and turn a desired amount consistently.
         This is because the robot is open-loop. It has no idea where it is or where it is going. 
       We are going to close the loop next lab by adding sensors so the robot can detect where it is and where it wants to go.</p>
+ <pre><code> #include <AFMotor.h>
+
+AF_DCMotor rightMotor(1);
+AF_DCMotor leftMotor(4);
+
+void setup() {
+  rightMotor.setSpeed(200);
+  leftMotor.setSpeed(200);
+}
+
+void loop() {
+  driveCircle(8000); // Drive a circle for 2 seconds
+  while (true);
+}
+
+void driveCircle(int durationMs) {
+  rightMotor.setSpeed(200);
+  leftMotor.setSpeed(120);  // Adjust for circle radius
+  rightMotor.run(FORWARD);
+  leftMotor.run(FORWARD);
+  delay(durationMs);
+  rightMotor.run(RELEASE);
+  leftMotor.run(RELEASE);
+}</code></pre>
+
+      
      <p><span class="checkoff">Checkoff 5:</span> Ask your instructor to verify Part 5 (CCW/CW loops).</p>
     </div>
 
 
     <!-- Part 6 -->
     <div class="section">
-      <h2>Part 6: Remix Driving!</h2>
+      <h2>Part 6: Driving in Square!</h2>
       <p>Now experiment with creative trajectories. Some ideas:</p>
       <ul>
         <li>Drive in a circle with a desired radius</li>
@@ -390,7 +416,48 @@ void turnLeft() {
 
       <!-- car14.png -->
       <img src="car14.png" alt="remix driving ideas" class="inline-img">
+ <pre><code> #include <AFMotor.h>
 
+AF_DCMotor rightMotor(1);
+AF_DCMotor leftMotor(4);
+
+void setup() {
+  rightMotor.setSpeed(200);
+  leftMotor.setSpeed(200);
+}
+
+void loop() {
+  drivePolygon(4, 1000, 500); // 4 sides = square
+  while (true);
+}
+
+void drivePolygon(int sides, int sideDuration, int turnDuration) {
+  for (int i = 0; i < sides; i++) {
+    driveStraight(sideDuration);
+    turnRight90(turnDuration);
+  }
+}
+
+void driveStraight(int durationMs) {
+  rightMotor.setSpeed(200);
+  leftMotor.setSpeed(200);
+  rightMotor.run(FORWARD);
+  leftMotor.run(FORWARD);
+  delay(durationMs);
+  rightMotor.run(RELEASE);
+  leftMotor.run(RELEASE);
+}
+
+void turnRight90(int turnDuration) {
+  rightMotor.setSpeed(200);
+  leftMotor.setSpeed(200);
+  rightMotor.run(BACKWARD);
+  leftMotor.run(FORWARD);
+  delay(turnDuration);
+  rightMotor.run(RELEASE);
+  leftMotor.run(RELEASE);
+}</code></pre>
+    
     <p><span class="checkoff">Checkoff 6:</span> Ask your instructor to verify Part 6 (remix).</p>
     </div>
 
