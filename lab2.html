@@ -286,8 +286,18 @@ AF_DCMotor leftMotor(2);   // Motor connected to M2</code></pre>
         <li>Create a helper function <code>driveStraight(int durationMs)</code> that drives forward for a given time.</li>
       </ol>
 
-      <pre><code>void driveStraight(int durationMs) {
-  // set motor speed and directions (use values you tuned)
+      <pre><code>#include <AFMotor.h>
+AF_DCMotor rightMotor(1);
+AF_DCMotor leftMotor(4);
+void setup() {
+  rightMotor.setSpeed(200);
+  leftMotor.setSpeed(200);
+}
+void loop() {
+  driveStraight(1000);  // Drive forward 1 second
+  while (true);         // Stop after test
+}
+void driveStraight(int durationMs) {
   rightMotor.setSpeed(200);
   leftMotor.setSpeed(200);
   rightMotor.run(FORWARD);
@@ -295,6 +305,7 @@ AF_DCMotor leftMotor(2);   // Motor connected to M2</code></pre>
   delay(durationMs);
   rightMotor.run(RELEASE);
   leftMotor.run(RELEASE);
+
 }</code></pre>
 
       <p>Test with durations: 500, 1000, 3000 ms.</p>
@@ -308,24 +319,44 @@ AF_DCMotor leftMotor(2);   // Motor connected to M2</code></pre>
         and just alter the duration of turn to dial in 90 degrees.
         Then implement <code>turnRight()</code> and <code>turnLeft()</code>.</p>
 
-      <pre><code>void turnRight() {
-  // example: right motor backward, left motor forward for x ms
+      <pre><code>#include <AFMotor.h>
+
+AF_DCMotor rightMotor(1);
+AF_DCMotor leftMotor(4);
+void setup() {
+  rightMotor.setSpeed(200);
+  leftMotor.setSpeed(200);
+}
+void loop() {
+  turnRight();  // Test right turn
+  while (true); // Stop after test
+}
+void turnRight() {
   rightMotor.setSpeed(200);
   leftMotor.setSpeed(200);
   rightMotor.run(BACKWARD);
   leftMotor.run(FORWARD);
-  delay(350); // tune this value for ~90°
+  delay(500);   // Tune for exact 90°
   rightMotor.run(RELEASE);
   leftMotor.run(RELEASE);
 }
-
+#include <AFMotor.h>
+AF_DCMotor rightMotor(1);
+AF_DCMotor leftMotor(4);
+void setup() {
+  rightMotor.setSpeed(200);
+  leftMotor.setSpeed(200);
+}
+void loop() {
+  turnLeft();   // Test left turn
+  while (true); // Stop after test
+}
 void turnLeft() {
-  // opposite directions and tuned delay
   rightMotor.setSpeed(200);
   leftMotor.setSpeed(200);
   rightMotor.run(FORWARD);
   leftMotor.run(BACKWARD);
-  delay(350); // tune this value for ~90°
+  delay(500);   // Tune for exact 90°
   rightMotor.run(RELEASE);
   leftMotor.run(RELEASE);
 }</code></pre>
