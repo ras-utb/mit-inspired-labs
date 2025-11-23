@@ -339,7 +339,8 @@ void turnRight() {
   delay(500);   // Tune for exact 90°
   rightMotor.run(RELEASE);
   leftMotor.run(RELEASE);
-}
+}</code></pre>
+         <pre><code>
 #include <AFMotor.h>
 AF_DCMotor rightMotor(1);
 AF_DCMotor leftMotor(4);
@@ -367,6 +368,7 @@ void turnLeft() {
     <!-- Part 5 -->
     <div class="section">
       <h2>Part 5: Driving a Loop</h2>
+      <img src="car14.png" alt="remix driving ideas" class="inline-img">
       <p>In the loop() of your code, use your turning and driving functions to drive in a square with side length 50cm clockwise. Do it again going
         counterclockwise. 
         How well does it return to its starting location? What might cause this? What potential sensors could we use to fix this?.</p>
@@ -415,7 +417,7 @@ void driveCircle(int durationMs) {
       </ul>
 
       <!-- car14.png -->
-      <img src="car14.png" alt="remix driving ideas" class="inline-img">
+      
  <pre><code> #include <AFMotor.h>
 
 AF_DCMotor rightMotor(1);
