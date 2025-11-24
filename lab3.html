@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lab 3 – GUI & Guitar Hero</title>
+<title>Lab 3 – Guitar Hero Game</title>
 <style>
 body {
     font-family: Arial, sans-serif;
@@ -17,6 +17,7 @@ header { background-color: #000; padding: 40px 20px; text-align: center; }
 header h1 { color: #c29fff; margin: 0; }
 header p { color: #bbbbbb; margin: 5px 0 20px 0; }
 
+/* Navbar */
 nav {
     background-color: #111;
     padding: 14px 0;
@@ -34,6 +35,7 @@ nav a {
 }
 nav a:hover { color: #c29fff; }
 
+/* Container */
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -43,8 +45,10 @@ nav a:hover { color: #c29fff; }
     gap: 20px;
 }
 
+/* Main content */
 .main-content { flex: 3; min-width: 300px; }
 
+/* Sidebar */
 .sidebar {
     flex: 1;
     min-width: 250px;
@@ -54,8 +58,13 @@ nav a:hover { color: #c29fff; }
     box-shadow: 0 2px 6px rgba(0,0,0,0.5);
     text-align: center;
 }
-.sidebar img { width: 100%; max-width: 400px; border-radius: 8px; }
+.sidebar img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+}
 
+/* Sections */
 .section {
     background-color: #1e1e2e;
     padding: 25px;
@@ -64,7 +73,19 @@ nav a:hover { color: #c29fff; }
     box-shadow: 0 2px 6px rgba(0,0,0,0.5);
 }
 .section h2 { color: #c29fff; margin-top: 0; }
-.section img { display: block; margin: 15px auto; max-width: 100%; }
+.section img {
+    display: block;
+    margin: 15px auto;
+    max-width: 100%;
+}
+.section pre {
+    background-color: #2a1e3a;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    color: #fff;
+}
+.section code { color: #fff; font-family: monospace; }
 .video-container {
     position: relative;
     padding-bottom: 56.25%;
@@ -79,12 +100,8 @@ nav a:hover { color: #c29fff; }
     height: 100%;
     border: none;
 }
-.checkoff { color: red; font-weight: bold; margin: 10px 0; }
-table { width: 100%; border-collapse: collapse; margin: 10px 0; }
-table, th, td { border: 1px solid #c29fff; }
-th { background-color: #000; color: #fff; }
-td { background-color: #1e1e2e; color: #fff; text-align: center; }
 
+/* Footer */
 footer {
     text-align: center;
     padding: 20px;
@@ -94,154 +111,187 @@ footer {
     font-size: 0.9em;
 }
 
+/* Responsive */
 @media (max-width: 1000px) {
     .container { flex-direction: column; }
     .sidebar img { max-width: 100%; height: auto; }
-}
-pre {
-    background-color: #1e1e2e;
-    color: #c29fff;
-    padding: 15px;
-    border-radius: 8px;
-    overflow-x: auto;
 }
 </style>
 </head>
 <body>
 
 <header>
-    <h1>Lab 3: GUI & Guitar Hero</h1>
-    <p>Create capacitive sensors and design your Guitar Hero controller!</p>
+    <h1>Lab 3: Let's Make a Guitar Hero Game!</h1>
+    <p>🦺 Introduction & Safety (1 minute read)</p>
 </header>
 
 <nav>
     <a href="index.html">Home</a>
-    <a href="labs.html">Labs</a>
+    <a href="lab.html">Labs</a>
     <a href="instructors.html">Instructors</a>
     <a href="about.html">About</a>
 </nav>
 
 <div class="container">
 
+    <!-- Main Content -->
     <div class="main-content">
 
-        <!-- Introduction & Safety -->
         <div class="section">
-            <h2>Introduction & Safety</h2>
-            <p>In this lab, you will make capacitive sensors and use them as input for a Guitar Hero game.</p>
+            <p>In the game Guitar Hero, the user interacts with a screen with colored markers. Whenever the colored markers reach the bottom line, the player must press the associated buttons in time with the music. This screen that the user witnesses is known as a GUI, graphical user interface.</p>
+            <img src="guitar.png" alt="Guitar Hero Overview">
+            <p>In this lab, you'll create a Guitar Hero game GUI and custom-built guitar while learning how to:</p>
             <ul>
-                <li>Learn the principles of capacitive sensing</li>
-                <li>Wire multiple sensors using the MPR121 multiplexer</li>
-                <li>Code a GUI in Processing</li>
-                <li>Solder and package electronics on your guitar</li>
+                <li>✅ Code up a GUI using Processing</li>
+                <li>✅ Learn how to solder electronics</li>
+                <li>✅ Package electrical components together in a clean way</li>
             </ul>
-            <h3>Safety Precautions:</h3>
+            <h3>Safety Precautions</h3>
             <ul>
-                <li>Ensure Arduino is disconnected from power before wiring.</li>
-                <li>Wear safety goggles when soldering and working with electrical components.</li>
-                <li>Soldering iron is extremely hot (~500°C). Do not touch it or molten solder.</li>
-                <li>Wash hands immediately after handling solder due to lead content.</li>
+                <li>Soldering Iron Temperature: Ensure that the soldering iron is never left unattended. It reaches ~500°C, so never touch anything it is not supposed to.</li>
+                <li>Lead Poisoning: Most solder contains lead. Wash hands immediately after soldering and never touch your face.</li>
             </ul>
-        </div>
-
-        <!-- Part 1: Wiring Multiple Inputs -->
-        <div class="section">
-            <h2>Part 1: Wiring Multiple Inputs with MPR121 (30 mins)</h2>
-            <p>We will create 6 capacitive touch sensors using copper tape and wire them to the MPR121 shield.</p>
+            <img src="guitar1.png" alt="Guitar Assembly">
+            <h3>Fabrication Quest of the Day</h3>
+            <p>Today, you will code a GUI for Guitar Hero and finish electronics on the lasercut guitar:</p>
             <ol>
-                <li>Apply copper tape to each of the 6 template pads.</li>
-                <li>Place a wire snugly on the pad.</li>
-                <li>Cover the wire with another layer of copper tape (to allow easy material swaps).</li>
-                <li>Ensure adjacent pads do not touch!</li>
-                <li>Connect wires to the MPR121 shield inputs.</li>
+                <li>A GUI in Processing using Java</li>
+                <li>Lasercut Guitar with clean electronics</li>
             </ol>
-            <p class="checkoff">Checkoff 2: Show your instructor that 6 capacitive sensors are wired correctly.</p>
-            <img src="hello1.png" alt="6 Capacitive Touch Sensors Wired">
+            <p>Your instructors will provide:</p>
+            <ul>
+                <li>Guitar base</li>
+                <li>Electrical components (buttons, wire, etc.)</li>
+            </ul>
+            <h3>Software & Hardware</h3>
+            <p>Software: Processing, Arduino IDE</p>
+            <p>PPE: Safety glasses</p>
+            <p>Hardware: Pre-lasercut guitar, wire, wire cutter, buttons (x3), solder, zipties, electrical tape, Arduino Uno, multimeter, laptop</p>
+            <p>Machines: Soldering Iron</p>
         </div>
 
-        <!-- Arduino Code -->
+        <!-- Part 0 -->
         <div class="section">
-            <h2>Arduino Code for 6 Capacitive Sensors</h2>
-            <pre>
-#include &lt;Wire.h&gt;
-#include "Adafruit_MPR121.h"
-
-Adafruit_MPR121 cap = Adafruit_MPR121();
-
-void setup() {
-    Serial.begin(9600);
-    if (!cap.begin(0x5A)) { while(1); }
-    Serial.println("MPR121 Initialized for 6 touch sensors.");
-}
-
-void loop() {
-    uint16_t touched = cap.touched();
-    for (uint8_t i = 0; i &lt; 6; i++) {
-        if (touched &amp; (1 &lt;&lt; i)) {
-            Serial.print("Sensor ");
-            Serial.print(i+1);
-            Serial.println(" touched");
-        }
-    }
-    delay(50);
-}
-            </pre>
+            <h2>Part 0: Downloading Processing and its libraries (5 mins)</h2>
+            <p>Download Processing from <a href="https://processing.org/download/" target="_blank" style="color:#c29fff;">here</a></p>
+            <p>Install ControlP5 Library for the GUI:</p>
+            <ol>
+                <li>Open Processing</li>
+                <li>Sketch &gt; Import Library… &gt; Manage Libraries…</li>
+                <li>Search "ControlP5" &gt; Install</li>
+                <li>Search "Serial" &gt; Install</li>
+            </ol>
+            <img src="guitar2.png" alt="Processing Setup">
         </div>
 
-        <!-- Part 2: GUI in Processing -->
+        <!-- Part 1 -->
         <div class="section">
-            <h2>Part 2: GUI for Guitar Hero</h2>
-            <p>We will code a GUI in Processing to interact with the capacitive sensors.</p>
-            <pre>
-import controlP5.*;
-import processing.serial.*;
+            <h2>Part 1: Getting a Preliminary GUI (10 mins)</h2>
+            <p>Processing uses Java and has two main functions:</p>
+            <ul>
+                <li><strong>setup()</strong> – runs once at the start.</li>
+                <li><strong>draw()</strong> – runs repeatedly, allowing animations.</li>
+            </ul>
+            <p>We will use the ControlP5 library to create GUI elements.</p>
+            <pre><code>import controlP5.*; // import ControlP5 library
 
-ControlP5 cp5;
-PFont font;
-Serial myPort;
-String val;
+ControlP5 cp5; // create ControlP5 object
+PFont myFont;  // font object
+
+void setup(){
+    size(300, 400); // window size
+    myFont = createFont("Arial-Bold-32", 32); // bold font, size 32
+    textFont(myFont); // apply font
+}
+
+void draw(){
+    background(50, 70, 100); // background color
+    fill(255); // white text
+    text("GUITAR HERO", 50, 50); // text position
+}</code></pre>
+            <img src="guitar3.png" alt="Preliminary GUI">
+        </div>
+
+        <!-- Part 2: Add Button -->
+        <div class="section">
+            <h2>Part 2: Adding a Button</h2>
+            <pre><code>import controlP5.*; // import ControlP5 library
+
+ControlP5 cp5; // create ControlP5 object
+PFont myFont;  // font object
+
+void setup(){
+    size(300, 400); // window size
+    myFont = createFont("Arial-Bold-32", 32);
+    textFont(myFont);
+
+    cp5 = new ControlP5(this); // initialize ControlP5
+
+    // Add START button
+    cp5.addButton("START")
+       .setPosition(80, 150)
+       .setSize(140, 70)
+       .setFont(myFont)
+       .setColorCaptionLabel(color(255))
+       .setColorBackground(color(0, 150, 255))
+       .setColorActive(color(0, 200, 255));
+}
+
+void draw(){
+    background(50, 70, 100);
+    fill(255);
+    textFont(myFont);
+    text("GUITAR HERO", 40, 60);
+}</code></pre>
+            <img src="guitar4.png" alt="GUI with Button">
+        </div>
+
+        <!-- Part 3: Circle Animation -->
+        <div class="section">
+            <h2>Part 3: Adding Circle Animation</h2>
+            <pre><code>import controlP5.*; // import ControlP5 library
+
+ControlP5 cp5; 
+PFont myFont;  
 float circleY = 0;
 
-void setup() {
+void setup(){
     size(300, 400);
-    font = createFont("ComicSansMS", 20);
+    myFont = createFont("Arial-Bold-32", 32);
+    textFont(myFont);
+
     cp5 = new ControlP5(this);
+
     cp5.addButton("START")
-       .setPosition(100, 50)
-       .setSize(100, 80)
-       .setFont(font);
-
-    println(Serial.list());
-    String portName = Serial.list()[2]; // adjust as needed
-    myPort = new Serial(this, portName, 9600);
+       .setPosition(100, 120)
+       .setSize(100, 50)
+       .setFont(myFont)
+       .setColorCaptionLabel(color(255))
+       .setColorBackground(color(0, 150, 255))
+       .setColorActive(color(0, 200, 255));
 }
 
-void draw() {
-    background(50, 20, 100); // purple-themed
+void draw(){
+    background(50, 70, 100);
+
+    fill(255, 100, 100); // red circle
+    ellipse(150, circleY, 50, 50); 
+    circleY += 2; 
+    if(circleY > height){ circleY = 0; }
+
     fill(255);
-    text("GUITAR HERO", 100, 30);
-    ellipse(100, circleY, 50, 50);
-    circleY += 1;
-    if(circleY &gt; height) circleY = 0;
-
-    if (myPort.available() &gt; 0) {
-        val = myPort.readStringUntil('\n');
-        println(val);
-    }
-}
-            </pre>
-        </div>
-
-        <!-- Part 3: Testing Guitar Hero Game -->
-        <div class="section">
-            <h2>Part 3: Test Your Guitar</h2>
-            <p>Connect your capacitive sensors to Arduino and make sure the Processing GUI receives input when sensors are touched. Test the game using the keyboard first, then with your guitar controller.</p>
+    textFont(myFont);
+    text("GUITAR HERO", 50, 50);
+}</code></pre>
+            <img src="guitar5.png" alt="Animation Example">
+            <img src="guitar6.png" alt="Final GUI Preview">
         </div>
 
     </div>
 
+    <!-- Sidebar -->
     <div class="sidebar">
-        <img src="hello1.png" alt="Lab 3 Guitar Hero">
+        <img src="guitar.png" alt="Guitar Hero Sidebar">
     </div>
 
 </div>
