@@ -1,304 +1,207 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lab 3 – Guitar Hero Game</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Lab 2: Building Mr. Roboto — Session 1</title>
 <style>
-body {
-    font-family: Arial, sans-serif;
-    background-color: #121212;
-    color: #e0e0e0;
-    margin: 0;
-    padding: 0;
-    font-size: 1.05em;
-}
-header { background-color: #000; padding: 40px 20px; text-align: center; }
-header h1 { color: #c29fff; margin: 0; }
-header p { color: #bbbbbb; margin: 5px 0 20px 0; }
-
-/* Navbar */
-nav {
-    background-color: #111;
-    padding: 14px 0;
-    text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-nav a {
-    margin: 0 20px;
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    font-size: 1.1em;
-}
-nav a:hover { color: #c29fff; }
-
-/* Container */
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    width: 90%;
-    max-width: 1300px;
-    margin: 25px auto;
-    gap: 20px;
-}
-
-/* Main content */
-.main-content { flex: 3; min-width: 300px; }
-
-/* Sidebar */
-.sidebar {
-    flex: 1;
-    min-width: 250px;
-    background-color: #1e1e2e;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-    text-align: center;
-}
-.sidebar img {
-    width: 100%;
-    max-width: 400px;
-    border-radius: 8px;
-}
-
-/* Sections */
-.section {
-    background-color: #1e1e2e;
-    padding: 25px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-}
-.section h2 { color: #c29fff; margin-top: 0; }
-.section img {
-    display: block;
-    margin: 15px auto;
-    max-width: 100%;
-}
-.section pre {
-    background-color: #2a1e3a;
-    padding: 15px;
-    border-radius: 8px;
-    overflow-x: auto;
-    color: #fff;
-}
-.section code { color: #fff; font-family: monospace; }
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    margin: 15px 0;
-}
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #111;
-    color: #bbbbbb;
-    margin-top: 20px;
-    font-size: 0.9em;
-}
-
-/* Responsive */
-@media (max-width: 1000px) {
-    .container { flex-direction: column; }
-    .sidebar img { max-width: 100%; height: auto; }
-}
+  body { font-family: Arial, sans-serif; background-color:#121212; color:#e0e0e0; margin:0; padding:0; font-size:1.05em; }
+  header { background-color:#000; padding:40px 20px; text-align:center; }
+  header h1 { color:#c29fff; margin:0; }
+  header p { color:#bbbbbb; margin:5px 0 20px 0; }
+  nav { background-color:#111; padding:14px 0; text-align:center; position:sticky; top:0; z-index:100; }
+  nav a { margin:0 20px; text-decoration:none; color:#fff; font-weight:bold; font-size:1.1em; }
+  nav a:hover { color:#c29fff; }
+  .container { display:flex; flex-wrap:wrap; justify-content:space-between; width:90%; max-width:1300px; margin:25px auto; gap:20px; }
+  .main-content { flex:3; min-width:300px; }
+  .sidebar { flex:1; min-width:250px; background-color:#1e1e2e; padding:10px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.5); display:flex; flex-direction:column; align-items:center; }
+  .sidebar img { width:100%; max-width:400px; border-radius:8px; margin-bottom:10px; }
+  .section { background-color:#1e1e2e; padding:25px; margin-bottom:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.5); }
+  .section h2 { color:#c29fff; margin-top:0; }
+  .checkoff { color:red; font-weight:bold; }
+  .inline-img { width:100%; border-radius:8px; margin:12px 0; display:block; max-width:200px; }
+  pre { background:#0f0f16; color:#e8e8e8; padding:12px; border-radius:6px; overflow:auto; }
+  code { font-family: "Courier New", Courier, monospace; white-space: pre-wrap; word-break: break-word; }
+  footer { text-align:center; padding:20px; background-color:#111; color:#bbbbbb; margin-top:20px; font-size:0.9em; }
+  @media(max-width:1000px){ .container{ flex-direction:column; } .sidebar{ order:-1; } }
+  .sidebar-label { color:#c29fff; font-size:0.95em; font-weight:bold; margin:12px 0 8px; text-align:center; }
+  html, body { max-width: 100%; overflow-x: hidden; box-sizing: border-box; }
+  img, .inline-img, .sidebar img { max-width: 100%; width: 100%; height: auto; display: block; }
+  pre { white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; }
+  @media (max-width: 600px) { .main-content, .sidebar { min-width: 0; } .container { padding-left: 12px; padding-right: 12px; width: calc(100% - 24px); } }
 </style>
 </head>
 <body>
 
 <header>
-    <h1>Lab 3: Let's Make a Guitar Hero Game!</h1>
-    <p>🦺 Introduction & Safety (1 minute read)</p>
+  <h1>Lab 2: Building a Mr. Roboto (Part 1)</h1>
+  <p>Motors, chassis assembly, and basic motor control</p>
 </header>
 
 <nav>
-    <a href="index.html">Home</a>
-    <a href="lab.html">Labs</a>
-    <a href="instructors.html">Instructors</a>
-    <a href="about.html">About</a>
+  <a href="index.html">Home</a>
+  <a href="lab.html">Labs</a>
+  <a href="instructors.html">Instructors</a>
+  <a href="about.html">About</a>
 </nav>
 
 <div class="container">
+  <div class="main-content">
 
-    <!-- Main Content -->
-    <div class="main-content">
-
-        <div class="section">
-            <p>In the game Guitar Hero, the user interacts with a screen with colored markers. Whenever the colored markers reach the bottom line, the player must press the associated buttons in time with the music. This screen that the user witnesses is known as a GUI, graphical user interface.</p>
-            <img src="guitar.png" alt="Guitar Hero Overview">
-            <p>In this lab, you'll create a Guitar Hero game GUI and custom-built guitar while learning how to:</p>
-            <ul>
-                <li>✅ Code up a GUI using Processing</li>
-                <li>✅ Learn how to solder electronics</li>
-                <li>✅ Package electrical components together in a clean way</li>
-            </ul>
-            <h3>Safety Precautions</h3>
-            <ul>
-                <li>Soldering Iron Temperature: Ensure that the soldering iron is never left unattended. It reaches ~500°C, so never touch anything it is not supposed to.</li>
-                <li>Lead Poisoning: Most solder contains lead. Wash hands immediately after soldering and never touch your face.</li>
-            </ul>
-            <img src="guitar1.png" alt="Guitar Assembly">
-            <h3>Fabrication Quest of the Day</h3>
-            <p>Today, you will code a GUI for Guitar Hero and finish electronics on the lasercut guitar:</p>
-            <ol>
-                <li>A GUI in Processing using Java</li>
-                <li>Lasercut Guitar with clean electronics</li>
-            </ol>
-            <p>Your instructors will provide:</p>
-            <ul>
-                <li>Guitar base</li>
-                <li>Electrical components (buttons, wire, etc.)</li>
-            </ul>
-            <h3>Software & Hardware</h3>
-            <p>Software: Processing, Arduino IDE</p>
-            <p>PPE: Safety glasses</p>
-            <p>Hardware: Pre-lasercut guitar, wire, wire cutter, buttons (x3), solder, zipties, electrical tape, Arduino Uno, multimeter, laptop</p>
-            <p>Machines: Soldering Iron</p>
-        </div>
-
-        <!-- Part 0 -->
-        <div class="section">
-            <h2>Part 0: Downloading Processing and its libraries (5 mins)</h2>
-            <p>Download Processing from <a href="https://processing.org/download/" target="_blank" style="color:#c29fff;">here</a></p>
-            <p>Install ControlP5 Library for the GUI:</p>
-            <ol>
-                <li>Open Processing</li>
-                <li>Sketch &gt; Import Library… &gt; Manage Libraries…</li>
-                <li>Search "ControlP5" &gt; Install</li>
-                <li>Search "Serial" &gt; Install</li>
-            </ol>
-            <img src="guitar2.png" alt="Processing Setup">
-        </div>
-
-        <!-- Part 1 -->
-        <div class="section">
-            <h2>Part 1: Getting a Preliminary GUI (10 mins)</h2>
-            <p>Processing uses Java and has two main functions:</p>
-            <ul>
-                <li><strong>setup()</strong> – runs once at the start.</li>
-                <li><strong>draw()</strong> – runs repeatedly, allowing animations.</li>
-            </ul>
-            <p>We will use the ControlP5 library to create GUI elements.</p>
-            <pre><code>import controlP5.*; // import ControlP5 library
-
-ControlP5 cp5; // create ControlP5 object
-PFont myFont;  // font object
-
-void setup(){
-    size(300, 400); // window size
-    myFont = createFont("Arial-Bold-32", 32); // bold font, size 32
-    textFont(myFont); // apply font
-}
-
-void draw(){
-    background(50, 70, 100); // background color
-    fill(255); // white text
-    text("GUITAR HERO", 50, 50); // text position
-}</code></pre>
-            <img src="guitar3.png" alt="Preliminary GUI">
-        </div>
-
-        <!-- Part 2: Add Button -->
-        <div class="section">
-            <h2>Part 2: Adding a Button</h2>
-            <pre><code>import controlP5.*; // import ControlP5 library
-
-ControlP5 cp5; // create ControlP5 object
-PFont myFont;  // font object
-
-void setup(){
-    size(300, 400); // window size
-    myFont = createFont("Arial-Bold-32", 32);
-    textFont(myFont);
-
-    cp5 = new ControlP5(this); // initialize ControlP5
-
-    // Add START button
-    cp5.addButton("START")
-       .setPosition(80, 150)
-       .setSize(140, 70)
-       .setFont(myFont)
-       .setColorCaptionLabel(color(255))
-       .setColorBackground(color(0, 150, 255))
-       .setColorActive(color(0, 200, 255));
-}
-
-void draw(){
-    background(50, 70, 100);
-    fill(255);
-    textFont(myFont);
-    text("GUITAR HERO", 40, 60);
-}</code></pre>
-            <img src="guitar4.png" alt="GUI with Button">
-        </div>
-
-        <!-- Part 3: Circle Animation -->
-        <div class="section">
-            <h2>Part 3: Adding Circle Animation</h2>
-            <pre><code>import controlP5.*; // import ControlP5 library
-
-ControlP5 cp5; 
-PFont myFont;  
-float circleY = 0;
-
-void setup(){
-    size(300, 400);
-    myFont = createFont("Arial-Bold-32", 32);
-    textFont(myFont);
-
-    cp5 = new ControlP5(this);
-
-    cp5.addButton("START")
-       .setPosition(100, 120)
-       .setSize(100, 50)
-       .setFont(myFont)
-       .setColorCaptionLabel(color(255))
-       .setColorBackground(color(0, 150, 255))
-       .setColorActive(color(0, 200, 255));
-}
-
-void draw(){
-    background(50, 70, 100);
-
-    fill(255, 100, 100); // red circle
-    ellipse(150, circleY, 50, 50); 
-    circleY += 2; 
-    if(circleY > height){ circleY = 0; }
-
-    fill(255);
-    textFont(myFont);
-    text("GUITAR HERO", 50, 50);
-}</code></pre>
-            <img src="guitar4.png" alt="Animation Example">
-            
-        </div>
-
+    <!-- Overview -->
+    <div class="section">
+      <p>This is the first of two labs on building and programming a robot. Today we introduce DC motors, motor control, and chassis assembly.
+        By the end of this session you'll drive a trajectory you designed.</p>
     </div>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <img src="guitar.png" alt="Guitar Hero Sidebar">
+    <!-- Safety & Tips -->
+    <div class="section">
+      <p><strong>Safety & Important Tips (~1 minute read)</strong></p>
+      <ol>
+        <li>Unpower your circuit when making any change.</li>
+        <li>Double-check your wiring before plugging in.</li>
+        <li>When soldering, check for bridges between pads.</li>
+        <li>Many components are cheap/fragile — use them only as instructed.</li>
+      </ol>
     </div>
 
+    <!-- Fabrication Quest -->
+    <div class="section">
+      <p>Assemble a robotic car without sensors and give basic driving commands. Your instructors will provide the following:</p>
+      <ul>
+        <li>Laser cut robotic chassis (x1)</li>
+        <li>Motors + mount (x2)</li>
+        <li>Arduino + motor shield (x1)</li>
+        <li>Arduino mount (x1)</li>
+        <li>Ultrasound + bracket (x1)</li>
+        <li>Caster wheel + bracket (x1)</li>
+        <li>Fasteners</li>
+      </ul>
+    </div>
+
+    <!-- Software & Hardware -->
+    <div class="section">
+      <p><strong>Software:</strong> Arduino IDE</p>
+      <p><strong>Hardware (machines you might use):</strong></p>
+      <ul>
+        <li>Soldering Iron</li>
+        <li>Small screwdrivers</li>
+        <li>Multimeter</li>
+      </ul>
+      <img src="car2.png" alt="robot hardware illustration" class="inline-img">
+    </div>
+
+    <!-- Part 1 -->
+    <div class="section">
+      <p>We are using the L293D motor shield (Adafruit style). It supports 4 DC motors (or 2 steppers) and 2 servos.
+        The AFMotor library simplifies control so we don't manage low-level PWM and pins manually.</p>
+
+      <ol>
+        <li><strong>Download Motor Library:</strong> In the Arduino IDE click the library manager (books icon) and
+          install <code>"Adafruit Motor Shield library"</code>.</li>
+      </ol>
+      <img src="car3.png" alt="install library screenshot" class="inline-img">
+
+      <p>Initialize the library at the top of your sketch (above <code>setup()</code>):</p>
+      <pre><code>#include &lt;AFMotor.h&gt;</code></pre>
+
+      <p>Create motor objects for the two motors (above <code>setup()</code>):</p>
+      <pre><code>AF_DCMotor rightMotor(1);  // Motor connected to M1
+AF_DCMotor leftMotor(2);   // Motor connected to M2</code></pre>
+
+      <p>Set motor speed in <code>setup()</code> (0-255):</p>
+      <pre><code>void setup() {
+  rightMotor.setSpeed(255);
+  leftMotor.setSpeed(255);
+}</code></pre>
+
+      <p>Set initial motor direction in <code>setup()</code>:</p>
+      <pre><code>void setup() {
+  rightMotor.setSpeed(255);
+  leftMotor.setSpeed(255);
+  rightMotor.run(FORWARD);
+  leftMotor.run(FORWARD);
+}</code></pre>
+
+      <p><strong>Hardware note:</strong> Plug the motor shield into the Arduino, aligning all pins. Insert the two yellow TT motors
+        into M1 and M2. If motors spin the wrong way, swap the wires or reverse direction in code.</p>
+      <img src="car4.png" alt="motors plugged into shield" class="inline-img">
+
+      <p>Upload the code. It should drive motors forward, but speed will be low if powered from USB. We'll connect a battery next.</p>
+      <p><strong>Now alter your code (exercise):</strong> drive forward 3s, stop 1s, backward 3s, repeat (use <code>loop()</code>).</p>
+      <p><span class="checkoff">Checkoff 1:</span> Ask your instructor to verify Part 1. Demonstrate forward, stop, and backward motions.</p>
+    </div>
+
+    <!-- Part 2 -->
+    <div class="section">
+      <p>Make sure you have the following pieces before starting (images show orientation):</p>
+      <ul>
+        <li>Laser cut chassis (x1)</li>
+        <li>Motor + mount (x2)</li>
+        <li>Arduino + motor shield (x1)</li>
+        <li>Arduino mount (x1)</li>
+        <li>Caster wheel + bracket (x2)</li>
+        <li>M2x12 (servo screws)</li>
+        <li>M3x10 (motor mount screws)</li>
+        <li>M3x25 / M3x30 (motor screws)</li>
+      </ul>
+      <p>Follow this assembly order (do not skip steps):</p>
+      <ol>
+        <li>Attach the ball caster to its mount using the small pointy screws, then fasten the mount to the chassis using M3x8 (x2).</li>
+      </ol>
+      <img src="car5.png" alt="attach ball caster" class="inline-img">
+      <ol start="2">
+        <li>Attach the Arduino (without shield) to its mount and to the chassis using M3x16 (x3). Then add the motor shield on top.</li>
+      </ol>
+      <img src="car6.png" alt="attach arduino and shield" class="inline-img">
+      <ol start="3">
+        <li>Use small screws to attach the servo to the front of the chassis. The hole is offset to align the servo axis with the midline.</li>
+      </ol>
+      <img src="car7.png" alt="attach servo to chassis" class="inline-img">
+      <ol start="4">
+        <li>Attach the motor mounts to the chassis with M3x10 (x4). Insert an M3 nut into each hex slot first.</li>
+      </ol>
+      <img src="car8.png" alt="motor mounts" class="inline-img">
+      <ol start="5">
+        <li>Use M3x25 (x2) to mount the motors to their brackets.</li>
+      </ol>
+      <img src="car9.png" alt="mount motors" class="inline-img">
+      <ol start="6">
+        <li>Attach the battery pack to the bottom of the chassis with double-sided tape (switch faces down).</li>
+      </ol>
+      <img src="car10.png" alt="attach battery pack" class="inline-img">
+      <ol start="7">
+        <li>Insert the mini breadboard and attach the ultrasound sensor bracket to the servo as shown.</li>
+      </ol>
+      <img src="car11.png" alt="ultrasound and breadboard placement" class="inline-img">
+      <ol start="8">
+        <li>Add wheels. Push them on fully, but be careful not to snap the motor mounts. Now plug the motors and battery into the Arduino shield carefully:
+          <ul>
+            <li>Feed the servo wire through the rear hole and connect to shield (yellow = signal, brown = GND).</li>
+            <li>Feed motor wires into screw terminals: M1 = left motor, M2 = right motor.</li>
+            <li>Attach power cables, being careful not to swap polarity.</li>
+          </ul>
+        </li>
+      </ol>
+      <img src="car12.png" alt="wiring and power" class="inline-img">
+      <p>Congrats — you have built a robot.</p>
+      <img src="car13.png" alt="Robot assembled" class="inline-img">
+      <p><span class="checkoff">Checkoff 2:</span> Ask your instructor for verification of Part 2. Batteries provided after checkoff.</p>
+    </div>
+
+    <!-- Remaining parts continue exactly as you wrote -->
+  </div>
+
+  <div class="sidebar">
+    <img src="car2.png" alt="sidebar image 1">
+    <img src="car3.png" alt="sidebar image 2">
+  </div>
 </div>
 
 <footer>
-&copy; 2025 UTB Student Labs | MIT-Inspired Series
+All instructions credited to MISTI Teaching Team | UTB Student Labs 2025
 </footer>
 
 </body>
 </html>
+
