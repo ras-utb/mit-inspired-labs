@@ -143,7 +143,7 @@ code {
 
     <!-- PART 1 -->
     <div class="section">
-      <h2>Part 1: Reading Values from Photoresistors (1 hour)</h2>
+      <h2>Part 1: Reading Values from Photoresistors (A0–A2 Setup) </h2>
       <p>We’ll start with the simplest sensor: the photoresistor. It allows us to measure brightness and guide our robot toward light. ⚠️ Unplug your Arduino before breadboarding ⚠️</p>
       <ol>
         <li>Wire the photoresistor and 10kΩ resistor on the breadboard as shown. Yellow → A0, Red → 5V, Black → GND to create a voltage divider. <img src="cat1.png" class="inline" alt="Photoresistor wiring"></li>
@@ -221,43 +221,11 @@ int leftValue = analogRead(leftPhotoresistor) - ambientThresholdL;
       <p><span class="checkoff">Checkoff 2:</span> Ask instructor to verify adjusted values.</p>
     </div>
 
-    <!-- PART 3 -->
-    <div class="section">
-      <h2>Part 3: Writing a Nicer Motor Function</h2>
-      <p>Now, explicitly having to set motor direction every time we want to reverse is inefficient. Let's make a more convenient function that can command our motors from a range of -255 to 255 instead of 0-255.
-
-Fill in the if/else conditions below and place these functions at the bottom of the script.</p>
-      <pre><code>#include &lt;AFMotor.h&gt;
-
-AF_DCMotor rightMotor(1);  // Motor connected to M1
-AF_DCMotor leftMotor(2);   // Motor connected to M2
-
-void setLeftSpeed(int value) {
-    if (value &gt; ??) { leftMotor.setSpeed(value); leftMotor.run(FORWARD); }
-    else if (value &lt; ??) { leftMotor.setSpeed(-value); leftMotor.run(BACKWARD); }
-    else { leftMotor.run(RELEASE); }
-}
-
-void setRightSpeed(int value) {
-    if (value &gt; ??) { rightMotor.setSpeed(value); rightMotor.run(FORWARD); }
-    else if (value &lt; ??) { rightMotor.setSpeed(-value); rightMotor.run(BACKWARD); }
-    else { rightMotor.run(RELEASE); }
-}
-</code></pre>
-      <p> We can call our function in the same way we call any other function. Now, for the sake of testing, we will change the speed/direction of the left and right motors depending on the values of the left and right photoresistors. This allows us to test our new function. Add the following lines to your script. When you shine your light on the left/right photoresistor,
-        the left/right motor should spin forward, and when you cover the left/right photoresistor, the left/right motor spin backwards.</p>
-         <pre><code>
-// Test motor reaction to light values
-setLeftSpeed(leftValue);
-setRightSpeed(rightValue);
-</code></pre>
-      
-      <p><span class="checkoff">Checkoff 3:</span> Verify motor speed changes in response to photoresistors.</p>
-    </div>
+    
 
     <!-- PART 4 -->
     <div class="section">
-      <h2>Part 4: Light Following BANG-BANG</h2>
+      <h2>Part 3: Light Following BANG-BANG</h2>
       <p>The field of robotics control is enormous. The robot we have made is simple, but with good sensors and control it can exhibit complex behavior such as light following and wall following.
         We will start with a controller called a BANG-BANG controller and then move to a proportional controller. The code for these controllers is relatively brief but most of the work comes from tuning their constants for better performance. For best performance, you should copy your straight line speeds from the previous lab into the base speeds here.
 
@@ -266,126 +234,75 @@ This controller detects which directions has higher light intensity and applies 
         When there is little variation between the photoresistors or the overall light level is too low, the motors are turned off. Adjust the variation threshold
       and bang constant.</p>
       <pre><code>
-const int variationThreshold = 50; // Minimum difference between sensors to trigger movement
-const int bang = 50;
+#include <AFMotor.h>
+
+// ---- Sensors ----
+const int leftPhotoresistor   = A2;
+const int middlePhotoresistor = A1;
+const int rightPhotoresistor  = A0;
+
+// Your measured ambient values (normal light, no torch)
+const int ambientLeft   = ;
+const int ambientMiddle = ;
+const int ambientRight  = ;
+
+// How much above ambient counts as "light detected"
+const int RUN_DELTA = 10;   // tweak this (10–30 usually)
+
+// ---- Motors ----
+// Right motor on M1, left motor on M4
+AF_DCMotor rightMotor(1);   // M1
+AF_DCMotor leftMotor(4);    // M4  (change to 2 if you moved it to M2)
+
+const int MOTOR_SPEED = 180;
 
 void setup() {
-    Serial.begin(9600); // Initialize Serial Monitor
-
-    // Set initial motor speed
-    setLeftSpeed();  // TODO: Copy speed from previous section
-    setRightSpeed();
+  Serial.begin(9600);
 }
 
 void loop() {
-    // Read light intensity from photoresistors
-    int rightValue = analogRead(rightPhotoresistor) - ambientThresholdR;
-    int middleValue = analogRead(middlePhotoresistor) - ambientThresholdM;
-    int leftValue = analogRead(leftPhotoresistor) - ambientThresholdL;
+  // Read all three sensors
+  int leftRaw   = analogRead(leftPhotoresistor);
+  int middleRaw = analogRead(middlePhotoresistor);
+  int rightRaw  = analogRead(rightPhotoresistor);
 
-    // Print sensor values to Serial Monitor for debugging
-    Serial.print("Left: ");
-    Serial.print(leftValue);
-    Serial.print("  Middle: ");
-    Serial.print(middleValue);
-    Serial.print("  Right: ");
-    Serial.println(rightValue);
+  // Debug print
+  Serial.print("Left: ");   Serial.print(leftRaw);
+  Serial.print("  Middle: "); Serial.print(middleRaw);
+  Serial.print("  Right: ");  Serial.println(rightRaw);
 
-    // TODO: Calculate the average light level
-    int averageLight = ;
+  // Decide if each sensor sees "extra light"
+  bool leftActive   = leftRaw   > (ambientLeft   + RUN_DELTA);
+  bool middleActive = middleRaw > (ambientMiddle + RUN_DELTA);
+  bool rightActive  = rightRaw  > (ambientRight  + RUN_DELTA);
 
-    // Determine if there is little variation in light intensity
-    int maxDifference = max(abs(middleValue - leftValue), abs(middleValue - rightValue));
+  // If ANY sensor sees extra light → run
+  bool anythingActive = leftActive || middleActive || rightActive;
 
-    // Light is ambient or too uniform; stop the robot (Hint: || is OR)
-    if () {
-        setLeftSpeed(0);
-        setRightSpeed(0);
-    } else if () {
-        // Middle light is greater than left AND right (Hint: && is AND)
-        setLeftSpeed(100);
-        setRightSpeed(100);
-    } else if () {
-        // Brightest light is to the left; turn left
-        setLeftSpeed(100);
-        setRightSpeed(100 + bang);
-    } else if () {
-        // Brightest light is to the right; turn right
-        setLeftSpeed(100 + bang);
-        setRightSpeed(100);
-    }
+  if (anythingActive) {
+    // RUN
+    rightMotor.setSpeed(MOTOR_SPEED);
+    leftMotor.setSpeed(MOTOR_SPEED);
+    rightMotor.run(FORWARD);
+    leftMotor.run(FORWARD);
+  } else {
+    // STOP
+    rightMotor.setSpeed(0);
+    leftMotor.setSpeed(0);
+    rightMotor.run(RELEASE);
+    leftMotor.run(RELEASE);
+  }
 
-    delay(50); // Small delay for stability
+  delay(100);
 }
 </code></pre>
-      <p><span class="checkoff">Checkoff 4:</span> Ask your instructor for a check-off on completing Part (4). Show the robot following the light.</p>
+      <p><span class="checkoff">Checkoff 3:</span> Ask your instructor for a check-off on completing Part (4). Show the robot following the light.</p>
     </div>
 
-    <!-- PART 5 -->
-    <div class="section">
-      <h2>Part 5: Light Following Proportional Controller</h2>
-      <p>Proportional control is the first step of a PID controller (a classic controller used all over robotics). 
-        This controller changes the size of the speed boost based off the amount of light intensity deviation between the middle and sides. 
-        The response is proportional to the error instead of a constant value like in BANG-BANG. Here, the error is the amount by which one side is greater than the middle. 
-        The new constant to adjust is the proportional constant which multiplies this error to result in a motor command. 
-        We will change the proportional constant for a stronger/weaker response.</p>
-      <pre><code>
-const float Kp = 1.0; // Proportional gain for the controller VALUE TO CHANGE
-const int BASE_SPEED = 80;
-
-void setup() {
-    Serial.begin(9600); // Initialize Serial Monitor
-}
-
-void loop() {
-    // Read light intensity from photoresistors
-    int rightValue = analogRead(rightPhotoresistor) - ambientThresholdR;
-    int middleValue = analogRead(middlePhotoresistor) - ambientThresholdM;
-    int leftValue = analogRead(leftPhotoresistor) - ambientThresholdL;
-
-    // Print sensor values to Serial Monitor for debugging
-    Serial.print("Left: ");
-    Serial.print(leftValue);
-    Serial.print("  Middle: ");
-    Serial.print(middleValue);
-    Serial.print("  Right: ");
-    Serial.println(rightValue);
-
-    // Calculate the average light level
-    int averageLight = ;
-
-    if () {
-        // Light is ambient or too uniform; stop the robot
-        setLeftSpeed(0);
-        setRightSpeed(0);
-    } else {
-        // Calculate error signals for proportional control
-        if (leftValue > rightValue) {
-            int error = middleValue - leftValue;
-        }
-        else{
-            int error = - (middleValue - rightValue);
-        }
-
-        // Calculate motor speeds based on proportional control
-        int leftSpeed = BASE_SPEED + Kp * error;
-        int rightSpeed = BASE_SPEED - Kp * error;
-
-        // Set motor speeds and directions
-        setLeftSpeed(leftSpeed);
-        setRightSpeed(rightSpeed);
-    }
-
-    delay(50); // Small delay for smoother control
-}
-                    
-</code></pre>
-      <p><span class="checkoff">Checkoff 5:</span> Show proportional control in action.</p>
-    </div>
-
+   
     <!-- PART 6 -->
     <div class="section">
-      <h2>Part 6: Ultrasound Connection</h2>
+      <h2>Part 5: Ultrasound Connection</h2>
       <img src="cat4.png" class="inline" alt="Ultrasound wiring">
       <p>While the photoresistors are a rather simple sensor, the framework we have made will allow us to slot in another more complex sensor.
         We will use a ultrasonic distance sensor to follow a wall. Connect HC-SR04 with servo. Use double female header to access pins 5 and 6. 
@@ -395,7 +312,7 @@ void loop() {
         Then, plug the HC-SR04 Vcc, Trig, Echo, GND into 5v, pin 5, pin 6, and GND respectively.</p>
 
 
-      <p><span class="checkoff">Checkoff 6:</span> Verify wiring of ultrasonic sensor with your instructors.</p>
+      <p><span class="checkoff">Checkoff 5:</span> Verify wiring of ultrasonic sensor with your instructors.</p>
     </div>
 
     <!-- PART 7 -->
