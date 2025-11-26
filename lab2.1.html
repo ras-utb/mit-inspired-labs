@@ -148,24 +148,9 @@ code {
       <ol>
         <li>Wire the photoresistor and 10kΩ resistor on the breadboard as shown. Yellow → A0, Red → 5V, Black → GND to create a voltage divider. <img src="cat1.png" class="inline" alt="Photoresistor wiring"></li>
         <li>Read values via analog pin A0. Use the following code:
-        <pre><code>#include &lt;AFMotor.h&gt;
 
-// Pin assignments for photoresistors
-const int Photoresistor = A0;
-
-void setup() {
-    Serial.begin(9600); // Initialize Serial Monitor
-}
-
-void loop() {
-    int photoValue = analogRead(Photoresistor);
-    Serial.print("PhotoResistor: ");
-    Serial.println(photoValue);
-    delay(20);
-}
-</code></pre></li>
-        <li>Check the ambient value in the room, then shine your flashlight directly to see max value.</li>
-        <p><span class="checkoff">Checkoff 1:</span> Ask your instructor to verify adding/testing photoresistor and show serial monitor values.</p>
+          
+        <p><span class="checkoff">Checkoff 1:</span> Ask your instructor to verify adding/testing photoresistor </p>
         <li>Add 2 more resistors and photoresistors pair, wiring to A1 and A2. Ensure you have spaced them out and 
           angled them slightly forward. Refer to images below
           <img src="cat2.png" class="inline"><img src="cat3.png" class="inline"></li>
@@ -302,7 +287,7 @@ void loop() {
    
     <!-- PART 6 -->
     <div class="section">
-      <h2>Part 5: Ultrasound Connection</h2>
+      <h2>Part 4: Ultrasound Connection</h2>
       <img src="cat4.png" class="inline" alt="Ultrasound wiring">
       <p>While the photoresistors are a rather simple sensor, the framework we have made will allow us to slot in another more complex sensor.
         We will use a ultrasonic distance sensor to follow a wall. Connect HC-SR04 with servo. Use double female header to access pins 5 and 6. 
@@ -312,12 +297,12 @@ void loop() {
         Then, plug the HC-SR04 Vcc, Trig, Echo, GND into 5v, pin 5, pin 6, and GND respectively.</p>
 
 
-      <p><span class="checkoff">Checkoff 5:</span> Verify wiring of ultrasonic sensor with your instructors.</p>
+      <p><span class="checkoff">Checkoff 4:</span> Verify wiring of ultrasonic sensor with your instructors.</p>
     </div>
 
     <!-- PART 7 -->
     <div class="section">
-      <h2>Part 7: Using the Ultrasound</h2>
+      <h2>Part 5: Using the Ultrasound</h2>
       <p>This is a very common sensor and there are many tutorials of how to use it online. You will rarely know exactly how to program a sensor from memory.
         Use the internet to make/find a function called measureDistance() that returns an integer of the distance from the ultrasonic sensor. 
         Then, upload the following code and move your hand in front of the ultrasonic sensor and make sure it responds as you expect.</p>
@@ -344,12 +329,12 @@ void loop() {
 
     delay(20);
 </code></pre>
-      <p><span class="checkoff">Checkoff 7:</span> Ask your instructor for a check-off on completing Part (7). Show the ultrasound working..</p>
+      <p><span class="checkoff">Checkoff 5:</span> Ask your instructor for a check-off on completing Part (5). Show the ultrasound working..</p>
     </div>
 
     <!-- PART 8 -->
     <div class="section">
-      <h2>Part 8: Wall Following</h2>
+      <h2>Part 6: Wall Following</h2>
       <img src="cat7.png" class="inline" alt="Wall following setup">
        <p>Now we can use this function and our proportional controller to track a wall. Angle your ultrasonic sensor at about 80degrees from straight forward 
         (pointing mostly left). It is important that it is not at 90 degrees.
@@ -417,13 +402,13 @@ void loop() {
                     
                     
 </code></pre>
-      <p><span class="checkoff">Checkoff 8:</span>Ask your instructor for a check-off on completing Part (8) Wall Following.</p>
+      <p><span class="checkoff">Checkoff 6:</span>Ask your instructor for a check-off on completing Part (6) Wall Following.</p>
     
     </div>
 
     <!-- PART 9 -->
     <div class="section">
-      <h2>Part 9: Remix Sensor</h2>
+      <h2>Part 7: Remix Sensor</h2>
       <p>Now that know how to write code for a given sensor, pick a sensor/output that you think will be useful for your project and make it work. 
         This could be spinning a stepper motor, using a temperature or color sensor, or even the IMU. If you are unsure of a direction, ask your instructor for 
         suggestions.
@@ -437,7 +422,7 @@ void loop() {
         <li>Servo motor</li>
         <li>Stepper motor</li>
       </ul>
-      <p><span class="checkoff">Checkoff 9:</span> Verify implementation of your chosen sensor/output.</p>
+      <p><span class="checkoff">Checkoff 7:</span> Verify implementation of your chosen sensor/output.</p>
     </div>
 
   </div>
