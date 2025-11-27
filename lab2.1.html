@@ -337,65 +337,64 @@ void loop() {
         (Mirror of the image below).
        The following code follows a right wall. Alter it and tune the proportional constants to follow a left wall.</p>
       <pre><code>
-// Pin assignments for HC-SR04
-const int trigPin = 5;  // Trigger pin 
-const int echoPin = 6; // Echo pin
+#include <AFMotor.h>
 
-// Create motor objects for two motors
-AF_DCMotor rightMotor(1);  // Motor connected to M1
-AF_DCMotor leftMotor(2); // Motor connected to M2
+// Motors
+AF_DCMotor motorLeft(1);   // M1
+AF_DCMotor motorRight(4);  // M2
 
-// Desired distance from the wall (in cm)
-const int targetDistance = 25; // Adjust as needed
-
-// Proportional control gains
-const float KpLeft = 1.0;  // Proportional gain for the left motor
-const float KpRight = 1.0; // Proportional gain for the right motor
-
-// Base motor speed (0-255)
-const int baseSpeedLeft = 60;
-const int baseSpeedRight = 60;
+// Ultrasonic pins
+const int trigPin = 5;
+const int echoPin = 6;
 
 void setup() {
-    Serial.begin(9600); // Initialize Serial Monitor
+  Serial.begin(9600);
 
-    // Set up HC-SR04 pins
-    pinMode(trigPin, OUTPUT);
-    pinMode(echoPin, INPUT);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+
+  motorLeft.setSpeed(150);
+  motorRight.setSpeed(150);
+}
+
+long getDistance() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+
+  digitalWrite(trigPin, LOW);
+
+  long duration = pulseIn(echoPin, HIGH);
+  long distance = duration * 0.034 / 2; // cm
+  return distance;
+}
+
+void moveForward() {
+  motorLeft.run(FORWARD);
+  motorRight.run(FORWARD);
+}
+
+void stopMotors() {
+  motorLeft.run(RELEASE);  
+  motorRight.run(RELEASE);
 }
 
 void loop() {
-    // Measure distance using HC-SR04
-    int distance = measureDistance();
+  long distance = getDistance();
 
-    // Calculate the error
-    int error = targetDistance - distance;
+  Serial.print("Distance = ");
+  Serial.println(distance);
 
-    // Calculate speed adjustments based on proportional control
-    int leftAdjustment = KpLeft * error;
-    int rightAdjustment = KpRight * error;
+  if (distance < 20 && distance > 0) {  
+    stopMotors();
+  } else {
+    moveForward();
+  }
 
-    // Determine motor speeds
-    int leftMotorSpeed = constrain(baseSpeedLeft - leftAdjustment, 0, 100);
-    int rightMotorSpeed = constrain(baseSpeedRight + rightAdjustment, 0, 100);
-
-    // Print debugging information
-    Serial.print("Distance: ");
-    Serial.print(distance);
-    Serial.print(" cm  Error: ");
-    Serial.print(error);
-    Serial.print("  Left Speed: ");
-    Serial.print(leftMotorSpeed);
-    Serial.print("  Right Speed: ");
-    Serial.println(rightMotorSpeed);
-
-    // Apply motor speeds straight movement
-    setLeftSpeed(leftMotorSpeed);
-    setRightSpeed(rightMotorSpeed);
-
-    delay(50); // Small delay for stability
+  delay(100);
 }
-                    
                     
 </code></pre>
       <p><span class="checkoff">Checkoff 6:</span>Ask your instructor for a check-off on completing Part (6) Wall Following.</p>
