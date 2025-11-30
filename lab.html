@@ -19,7 +19,7 @@
   .section { background-color:#1e1e2e; padding:25px; margin-bottom:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.5); }
   .section h2 { color:#c29fff; margin-top:0; }
   .checkoff { color:red; font-weight:bold; }
-  .inline-img { width:100%; border-radius:8px; margin:12px 0; display:block; max-width:200px; }
+  .inline-img { width:100%; border-radius:8px; margin:12px 0; display:block; max-width:400px; }
   pre { background:#0f0f16; color:#e8e8e8; padding:12px; border-radius:6px; overflow:auto; }
   code { font-family: "Courier New", Courier, monospace; white-space: pre-wrap; word-break: break-word; }
   footer { text-align:center; padding:20px; background-color:#111; color:#bbbbbb; margin-top:20px; font-size:0.9em; }
@@ -34,7 +34,7 @@
 
 <header>
   <h1>Lab 3: Let's Make a Guitar Hero Game!</h1>
-  <p>Part (1): Getting a Preliminary GUI</p>
+  <p>Part 1: GUI, Processing, and Preliminary Coding</p>
 </header>
 
 <nav>
@@ -47,16 +47,75 @@
 <div class="container">
   <div class="main-content">
 
-    <!-- Part 1 Overview -->
+    <!-- Introduction -->
     <div class="section">
-      <img src="guitar2.png" alt="Processing download link" class="inline-img">
-      <p>Processing uses a programming language called Java. Just like Arduino, it has two main functions: <code>setup()</code> and <code>draw()</code>. <code>setup()</code> runs once at the beginning. <code>draw()</code> runs continuously at 60 frames per second, letting you create animations. To make a basic window, we will use the ControlP5 library, which contains pre-built functions for GUIs.</p>
-      <p>Library documentation: <a href="https://processing.org/download" target="_blank" style="color:#c29fff;">https://processing.org/download</a></p>
+      <img src="guitar.png" alt="Guitar Hero illustration" class="inline-img">
+      <p>In the game Guitar Hero, the user interacts with a screen with colored markers. Whenever the colored markers reach the bottom line, the player must press the associated buttons in time with the music. This screen that the user witnesses is known as a GUI, graphical user interface. In this lab, you'll create a Guitar Hero game GUI and custom-built guitar while learning how to:</p>
+      <ul>
+        <li>✅ Code up a GUI using Processing</li>
+        <li>✅ Learn how to solder electronics</li>
+        <li>✅ Package electrical components together in a clean way</li>
+      </ul>
+      <p>Before we start, please make sure you understand the following safety precautions:</p>
+      <ul>
+        <li>Soldering Iron Temperature: Ensure that the soldering iron is never left unattended. It reaches temperatures of ~500 degrees Celsius so never make it touch anything it is not supposed to.</li>
+        <li>Lead Poisoning: Most solder contains lead. This is very toxic if ingested. Always wash your hands immediately after soldering and never touch your face.</li>
+      </ul>
+      <img src="guitar1.png" alt="Fabrication Quest illustration" class="inline-img">
+      <p>Fabrication Quest of the Day:<br>
+      Today, you will code a GUI for Guitar Hero:</p>
+      <ul>
+        <li>(A) A GUI in Processing using Java (x1)</li>
+        <li>(B) Finish the electronics on the lasercut guitar (x1)</li>
+      </ul>
+      <p>Your instructors will provide you with the following:</p>
+      <ul>
+        <li>(B) The Guitar base (x1)</li>
+        <li>(C) Electrical components (buttons, wire, etc.) (x1)</li>
+      </ul>
     </div>
 
-    <!-- Part 1: Basic Window -->
+    <!-- Software & Hardware -->
     <div class="section">
-      <p>Basic window code in Processing:</p>
+      <h2>Software & Hardware</h2>
+      <p><strong>Software:</strong> Processing, Arduino IDE (should have downloaded in a previous lab)</p>
+      <p><strong>PPE:</strong> Safety glasses</p>
+      <p><strong>Hardware:</strong></p>
+      <ul>
+        <li>Pre-lasercut guitar</li>
+        <li>Wire</li>
+        <li>Wire Cutter</li>
+        <li>Buttons (x3)</li>
+        <li>Solder</li>
+        <li>Zipties</li>
+        <li>Electrical Tape</li>
+        <li>Arduino Uno</li>
+        <li>Multimeter</li>
+        <li>Laptop</li>
+      </ul>
+      <p><strong>Machines:</strong> Soldering Iron</p>
+    </div>
+
+    <!-- Part 0: Downloading Processing -->
+    <div class="section">
+      <h2>Part 0: Downloading Processing and its Libraries</h2>
+      <p>Setup:</p>
+      <ul>
+        <li>Download Processing (~5 mins)</li>
+        <li>Install ControlP5 Library for the GUI</li>
+        <li>Open Processing</li>
+        <li>Click Sketch > Import Library… > Manage Libraries > ControlP5 > Install</li>
+        <li>Click Sketch > Import Library… > Manage Libraries > Serial > Install</li>
+      </ul>
+      <p>Processing download link: <a href="https://processing.org/download" target="_blank" style="color:#c29fff;">https://processing.org/download</a></p>
+      <img src="guitar2.png" alt="Processing download screenshot" class="inline-img">
+    </div>
+
+    <!-- Part 1: Preliminary GUI -->
+    <div class="section">
+      <h2>Part 1: Getting a Preliminary GUI (10 mins)</h2>
+      <p>Processing uses Java. <code>setup()</code> runs once at the beginning and <code>draw()</code> runs continuously at 60 frames per second. To make a basic window, we will use the ControlP5 library, which provides GUI elements like buttons.</p>
+
       <pre><code>import controlP5.*;
 
 ControlP5 cp5;
@@ -70,13 +129,10 @@ void draw(){
     fill(0, 0, 0);
     text("GUITAR HERO", 100, 30);
 }</code></pre>
-      <p>You should see a dark blue window with "GUITAR HERO".</p>
+      <p>You should get a dark blue window with "GUITAR HERO".</p>
       <img src="guitar3.png" alt="Basic window screenshot" class="inline-img">
-    </div>
 
-    <!-- Part 1: Adding Button -->
-    <div class="section">
-      <p>Now, let's add a button and font:</p>
+      <p>Next, let's add a button and font:</p>
       <pre><code>import controlP5.*;
 PFont font;
 
@@ -97,12 +153,8 @@ void draw(){
     fill(0, 0, 0);
     text("GUITAR HERO", 100, 30);
 }</code></pre>
-      <p>Rerun and you should see a "START" button.</p>
       <img src="guitar4.png" alt="Window with button" class="inline-img">
-    </div>
 
-    <!-- Part 1: Adding Animation -->
-    <div class="section">
       <p>Finally, add a simple circle animation:</p>
       <pre><code>import controlP5.*;
 PFont font;
@@ -130,18 +182,15 @@ void draw(){
     fill(0, 0, 0);
     text("GUITAR HERO", 100, 30);
 }</code></pre>
-      <p>You should see a moving circle on the window. Awesome, now you know how to make a basic window, add a button, and create a simple animation.</p>
       <img src="guitar5.png" alt="Animation screenshot" class="inline-img">
-      <p><span class="checkoff">Checkoff 1:</span> Ask your instructor for verification of Part (1) and show your animation.</p>
+
+      <p><span class="checkoff">Checkoff 1:</span> Ask your instructor for a check-off on completing Part (1) and showing your animation.</p>
     </div>
 
   </div>
 
   <div class="sidebar">
-    <img src="guitar2.png" alt="Processing download">
-    <img src="guitar3.png" alt="Basic window screenshot">
-    <img src="guitar4.png" alt="Window with button">
-    <img src="guitar5.png" alt="Animation screenshot">
+    <img src="guitar.png" alt="Guitar Hero illustration">
   </div>
 </div>
 
@@ -151,3 +200,4 @@ All instructions credited to MISTI Teaching Team | UTB Student Labs 2025
 
 </body>
 </html>
+
