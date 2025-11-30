@@ -1,80 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Labs – MIT-Inspired Lab Series</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Lab 3: Guitar Hero Game — Part 1</title>
 <style>
-body { font-family: Arial, sans-serif; background-color:#121212; color:#e0e0e0; margin:0; padding:0; }
-header { background-color:#000; padding:40px 20px; text-align:center; }
-header h1 { color:#c29fff; margin:0; }
-header p { color:#bbbbbb; margin:5px 0 20px 0; }
-.container { width:90%; max-width:1000px; margin:20px auto; }
-.lab-box { background-color:#1e1e2e; padding:20px; margin-bottom:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.5);}
-.lab-box h2 { color:#c29fff; margin-top:0; font-size:1.8em; }
-.lab-box ul { list-style:none; padding-left:0; }
-.lab-box ul li { margin-bottom:8px; }
-a { color:#ffffff; text-decoration:none; }
-a:hover { color:#c29fff; }
-
-/* Navbar */
-nav { background-color:#111; padding:14px 0; text-align:center; position:sticky; top:0; z-index:100; }
-nav a { margin:0 20px; text-decoration:none; color:#fff; font-weight:bold; font-size:1.1em; }
-nav a:hover { color:#c29fff; }
-
-/* Footer */
-footer { text-align:center; padding:20px; background-color:#111; color:#bbbbbb; margin-top:20px; font-size:0.9em; }
-.credit { font-size:0.85em; color:#888; margin-top:10px; }
+  body { font-family: Arial, sans-serif; background-color:#121212; color:#e0e0e0; margin:0; padding:0; font-size:1.05em; }
+  header { background-color:#000; padding:40px 20px; text-align:center; }
+  header h1 { color:#c29fff; margin:0; }
+  header p { color:#bbbbbb; margin:5px 0 20px 0; }
+  nav { background-color:#111; padding:14px 0; text-align:center; position:sticky; top:0; z-index:100; }
+  nav a { margin:0 20px; text-decoration:none; color:#fff; font-weight:bold; font-size:1.1em; }
+  nav a:hover { color:#c29fff; }
+  .container { display:flex; flex-wrap:wrap; justify-content:space-between; width:90%; max-width:1300px; margin:25px auto; gap:20px; }
+  .main-content { flex:3; min-width:300px; }
+  .sidebar { flex:1; min-width:250px; background-color:#1e1e2e; padding:10px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.5); display:flex; flex-direction:column; align-items:center; }
+  .sidebar img { width:100%; max-width:400px; border-radius:8px; margin-bottom:10px; }
+  .section { background-color:#1e1e2e; padding:25px; margin-bottom:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.5); }
+  .section h2 { color:#c29fff; margin-top:0; }
+  .checkoff { color:red; font-weight:bold; }
+  .inline-img { width:100%; border-radius:8px; margin:12px 0; display:block; max-width:200px; }
+  pre { background:#0f0f16; color:#e8e8e8; padding:12px; border-radius:6px; overflow:auto; }
+  code { font-family: "Courier New", Courier, monospace; white-space: pre-wrap; word-break: break-word; }
+  footer { text-align:center; padding:20px; background-color:#111; color:#bbbbbb; margin-top:20px; font-size:0.9em; }
+  @media(max-width:1000px){ .container{ flex-direction:column; } .sidebar{ order:-1; } }
+  html, body { max-width: 100%; overflow-x: hidden; box-sizing: border-box; }
+  img, .inline-img, .sidebar img { max-width: 100%; width: 100%; height: auto; display: block; }
+  pre { white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; }
+  @media (max-width: 600px) { .main-content, .sidebar { min-width: 0; } .container { padding-left: 12px; padding-right: 12px; width: calc(100% - 24px); } }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>Labs & Sessions</h1>
-  <p>Click on a lab to view session details and instructions</p>
+  <h1>Lab 3: Let's Make a Guitar Hero Game!</h1>
+  <p>Part (1): Getting a Preliminary GUI</p>
 </header>
 
 <nav>
   <a href="index.html">Home</a>
   <a href="lab.html">Labs</a>
-   <a href="instructors.html">Instructors</a>
+  <a href="instructors.html">Instructors</a>
   <a href="about.html">About</a>
 </nav>
 
 <div class="container">
+  <div class="main-content">
 
-  <!-- LAB 1 -->
-  <div class="lab-box">
-    <h2>Lab 1: 3D Printing a Keychain</h2>
-    <ul>
-      <li><a href="lab1.html">Session 1 – Tuesday 18 Nov 12-2 PM</a></li>
-      <li><a href="lab1.1.html">Session 2 – Thursday 20 Nov 1-3 PM</a></li>
-    </ul>
+    <!-- Part 1 Overview -->
+    <div class="section">
+      <img src="guitar2.png" alt="Processing download link" class="inline-img">
+      <p>Processing uses a programming language called Java. Just like Arduino, it has two main functions: <code>setup()</code> and <code>draw()</code>. <code>setup()</code> runs once at the beginning. <code>draw()</code> runs continuously at 60 frames per second, letting you create animations. To make a basic window, we will use the ControlP5 library, which contains pre-built functions for GUIs.</p>
+      <p>Library documentation: <a href="https://processing.org/download" target="_blank" style="color:#c29fff;">https://processing.org/download</a></p>
+    </div>
+
+    <!-- Part 1: Basic Window -->
+    <div class="section">
+      <p>Basic window code in Processing:</p>
+      <pre><code>import controlP5.*;
+
+ControlP5 cp5;
+
+void setup(){
+    size(300, 400);
+}
+
+void draw(){
+    background(50, 70, 100);
+    fill(0, 0, 0);
+    text("GUITAR HERO", 100, 30);
+}</code></pre>
+      <p>You should see a dark blue window with "GUITAR HERO".</p>
+      <img src="guitar3.png" alt="Basic window screenshot" class="inline-img">
+    </div>
+
+    <!-- Part 1: Adding Button -->
+    <div class="section">
+      <p>Now, let's add a button and font:</p>
+      <pre><code>import controlP5.*;
+PFont font;
+
+ControlP5 cp5;
+
+void setup(){
+    size(300, 400);
+    font = createFont("ComicSansMS", 20);
+    cp5 = new ControlP5(this);
+    cp5.addButton("START")
+        .setPosition(100, 50)
+        .setSize(100, 80)
+        .setFont(font);
+}
+
+void draw(){
+    background(50, 70, 100);
+    fill(0, 0, 0);
+    text("GUITAR HERO", 100, 30);
+}</code></pre>
+      <p>Rerun and you should see a "START" button.</p>
+      <img src="guitar4.png" alt="Window with button" class="inline-img">
+    </div>
+
+    <!-- Part 1: Adding Animation -->
+    <div class="section">
+      <p>Finally, add a simple circle animation:</p>
+      <pre><code>import controlP5.*;
+PFont font;
+
+ControlP5 cp5;
+float circleY = 0;
+
+void setup(){
+    size(300, 400);
+    font = createFont("ComicSansMS", 20);
+    cp5 = new ControlP5(this);
+    cp5.addButton("START")
+        .setPosition(100, 50)
+        .setSize(100, 80)
+        .setFont(font);
+}
+
+void draw(){
+    background(50, 70, 100);
+    ellipse(100, circleY, 50, 50);
+    circleY = circleY + 1;
+    if(circleY > height) {
+      circleY = 0;
+    }
+    fill(0, 0, 0);
+    text("GUITAR HERO", 100, 30);
+}</code></pre>
+      <p>You should see a moving circle on the window. Awesome, now you know how to make a basic window, add a button, and create a simple animation.</p>
+      <img src="guitar5.png" alt="Animation screenshot" class="inline-img">
+      <p><span class="checkoff">Checkoff 1:</span> Ask your instructor for verification of Part (1) and show your animation.</p>
+    </div>
+
   </div>
 
-  <!-- LAB 2 -->
-  <div class="lab-box">
-    <h2>Lab 2: Building a Mr. Roboto</h2>
-    <ul>
-      <li><a href="lab2.html">Session 1 – Tuesday 25 Nov 12-2 PM</a></li>
-      <li><a href="lab2.1.html">Session 2 – Thursday 27 Nov 1-3 PM</a></li>
-    </ul>
+  <div class="sidebar">
+    <img src="guitar2.png" alt="Processing download">
+    <img src="guitar3.png" alt="Basic window screenshot">
+    <img src="guitar4.png" alt="Window with button">
+    <img src="guitar5.png" alt="Animation screenshot">
   </div>
-
-  <!-- LAB 3 -->
-  <div class="lab-box">
-    <h2>Lab 3: GUI & Guitar Hero</h2>
-    <ul>
-      <li><a href="lab3.html">Session 1 – Tuesday 2 Dec 12-3 PM</a></li>
-      
-    </ul>
-  </div>
-
 </div>
 
 <footer>
-  &copy; 2025 UTB Student Labs | MIT-Inspired Series
-  <div class="credit">All instructions adapted from the MISTI teaching team</div>
+All instructions credited to MISTI Teaching Team | UTB Student Labs 2025
 </footer>
 
 </body>
