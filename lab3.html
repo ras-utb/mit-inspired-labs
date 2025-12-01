@@ -3,13 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Lab 3: Let's Make a Guitar Hero Game!
-</title>
+<title>Lab 3: Let's Make a Guitar Hero Game!</title>
 <style>
   body { font-family: Arial, sans-serif; background-color:#121212; color:#e0e0e0; margin:0; padding:0; font-size:1.05em; }
   header { background-color:#000; padding:40px 20px; text-align:center; }
   header h1 { color:#c29fff; margin:0; }
-  header p { color:#bbbbbb; margin:5px 0 20px 0; }
   nav { background-color:#111; padding:14px 0; text-align:center; position:sticky; top:0; z-index:100; }
   nav a { margin:0 20px; text-decoration:none; color:#fff; font-weight:bold; font-size:1.1em; }
   nav a:hover { color:#c29fff; }
@@ -18,14 +16,12 @@
   .sidebar { flex:1; min-width:250px; background-color:#1e1e2e; padding:10px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.5); display:flex; flex-direction:column; align-items:center; }
   .sidebar img { width:100%; max-width:400px; border-radius:8px; margin-bottom:10px; }
   .section { background-color:#1e1e2e; padding:25px; margin-bottom:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.5); }
-  .section h2 { color:#c29fff; margin-top:0; }
   .checkoff { color:red; font-weight:bold; }
   .inline-img { width:100%; border-radius:8px; margin:12px 0; display:block; max-width:200px; }
   pre { background:#0f0f16; color:#e8e8e8; padding:12px; border-radius:6px; overflow:auto; }
   code { font-family: "Courier New", Courier, monospace; white-space: pre-wrap; word-break: break-word; }
   footer { text-align:center; padding:20px; background-color:#111; color:#bbbbbb; margin-top:20px; font-size:0.9em; }
   @media(max-width:1000px){ .container{ flex-direction:column; } .sidebar{ order:-1; } }
-  .sidebar-label { color:#c29fff; font-size:0.95em; font-weight:bold; margin:12px 0 8px; text-align:center; }
   html, body { max-width: 100%; overflow-x: hidden; box-sizing: border-box; }
   img, .inline-img, .sidebar img { max-width: 100%; width: 100%; height: auto; display: block; }
   pre { white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; }
@@ -35,130 +31,141 @@
 <body>
 
 <header>
-  <h1>Lab 3: Guitar Hero — Session 1</h1>
-  <p>Building the Guitar Hero controller & integrating with Processing</p>
+  <h1>Lab 3: Let's Make a Guitar Hero Game!</h1>
 </header>
-
-<nav>
-  <a href="index.html">Home</a>
-  <a href="lab.html">Labs</a>
-  <a href="instructors.html">Instructors</a>
-  <a href="about.html">About</a>
-</nav>
 
 <div class="container">
   <div class="main-content">
 
-    <!-- Overview -->
     <div class="section">
-      <p>This lab teaches you how to build a Guitar Hero controller with buttons and sensors, connect it to an Arduino, and interface with Processing for gameplay. By the end, you will have a playable mini Guitar Hero setup and understand how hardware input controls software in real-time.</p>
-    </div>
-
-    <!-- Safety & Tips -->
-    <div class="section">
-      <p><strong>Safety & Important Tips (~1 minute read)</strong></p>
-      <ol>
-        <li>Disconnect Arduino from USB or power supply when wiring buttons or sensors.</li>
-        <li>Double-check polarity when connecting LEDs and buzzers.</li>
-        <li>Do not short any wires or sensors to avoid damage.</li>
-        <li>Use resistors where instructed to prevent burning components.</li>
-      </ol>
-    </div>
-
-    <!-- Components -->
-    <div class="section">
-      <p>Components you will need (provided by instructors):</p>
+      <h2>Overview</h2>
+      <p>In the game Guitar Hero, the user interacts with a screen with colored markers. Whenever the colored markers reach the bottom line, the player must press the associated buttons in time with the music. This screen that the user witnesses is known as a GUI, graphical user interface.</p>
+      <p>In this lab, you'll create a Guitar Hero game GUI and custom-built guitar while learning how to:</p>
       <ul>
-        <li>Arduino Uno + USB cable</li>
-        <li>Push buttons (x5 for frets)</li>
-        <li>Piezo buzzer (optional)</li>
-        <li>Wires & breadboard</li>
-        <li>LEDs (optional)</li>
-        <li>Enclosure box / guitar outline</li>
+        <li>✅ Code up a GUI using Processing</li>
+        <li>✅ Learn how to solder electronics</li>
+        <li>✅ Package electrical components together in a clean way</li>
       </ul>
-      <img src="guitar1.png" alt="Guitar Hero parts" class="inline-img">
     </div>
 
-    <!-- Part 1 -->
     <div class="section">
-      <p>Start by wiring the buttons to the Arduino:</p>
-      <ol>
-        <li>Connect one side of each push button to a digital pin (e.g., D2–D6).</li>
-        <li>Connect the other side to GND.</li>
-        <li>Use pull-up resistors in code or hardware to avoid floating pins.</li>
-      </ol>
-      <img src="guitar2.png" alt="Button wiring diagram" class="inline-img">
-
-      <p>Upload the basic test code to Arduino to verify each button press prints to Serial Monitor:</p>
-      <pre><code>const int buttonPins[] = {2,3,4,5,6};
-void setup() {
-  Serial.begin(9600);
-  for(int i=0;i&lt;5;i++){ pinMode(buttonPins[i], INPUT_PULLUP); }
-}
-void loop() {
-  for(int i=0;i&lt;5;i++){
-    if(digitalRead(buttonPins[i]) == LOW){
-      Serial.println("Button " + String(i+1) + " pressed");
-      delay(200);
-    }
-  }
-}</code></pre>
-
-      <p><span class="checkoff">Checkoff 1:</span> Ask your instructor to verify button wiring and Serial Monitor output.</p>
+      <h2>🦺 Safety & Important Tips</h2>
+      <ul>
+        <li><strong>Soldering Iron Temperature:</strong> Ensure that the soldering iron is never left unattended. It reaches temperatures of ~500 degrees Celsius so never make it touch anything it is not supposed to.</li>
+        <li><strong>Lead Poisoning:</strong> Most solder contains lead. This is very toxic if ingested. Always wash your hands immediately after soldering and never touch your face.</li>
+      </ul>
     </div>
 
-    <!-- Part 2 -->
     <div class="section">
-      <p>Next, integrate Arduino with Processing:</p>
-      <ol>
-        <li>Open Processing and install the <code>Serial</code> library if not present.</li>
-        <li>Use the following code to read Arduino input and visualize notes:</li>
-      </ol>
-      <pre><code>import processing.serial.*;
-Serial arduino;
+      <h2>🔨 Fabrication Quest of the Day</h2>
+      <p>Today, you will code a GUI for Guitar Hero:</p>
+      <ul>
+        <li>(A) A GUI in Processing using Java (x1)</li>
+        <li>(B) Finish the electronics on the lasercut guitar (x1)</li>
+      </ul>
+      <p>Your instructors will provide you with:</p>
+      <ul>
+        <li>(B) The Guitar base (x1)</li>
+        <li>(C) Electrical components (buttons, wire, etc.) (x1)</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>🏗️ Software & Hardware</h2>
+      <p><strong>Software:</strong> Processing, Arduino IDE (should have downloaded in a previous lab)</p>
+      <p><strong>PPE:</strong> Safety glasses</p>
+      <p><strong>Hardware:</strong> Pre-lasercut guitar, Wire, Wire Cutter, Buttons (x3), Solder, Zipties, Electrical Tape, Arduino Uno, Multimeter, Laptop</p>
+      <p><strong>Machines:</strong> Soldering Iron</p>
+    </div>
+
+    <div class="section">
+      <h2>Part (0): Downloading Processing and its libraries</h2>
+      <p>Setup:</p>
+      <ul>
+        <li>Download Processing (5 mins)</li>
+        <li>Install ControlP5 Library for the GUI</li>
+        <li>Open Processing → Sketch → Import Library… → Manage Libraries → ControlP5 → Install</li>
+        <li>Install Serial library the same way</li>
+      </ul>
+      <img src="guitar2.png" alt="Processing setup" class="inline-img">
+    </div>
+
+    <div class="section">
+      <h2>Part (1): Getting a Preliminary GUI (10 mins)</h2>
+      <p>Processing uses Java with <code>setup()</code> and <code>draw()</code>. Setup runs once; draw runs 60 times per second, letting you create simple animations. We'll use ControlP5 for buttons.</p>
+      <pre><code>import controlP5.*;
+
+ControlP5 cp5;
+PFont myFont;
+
 void setup(){
-  size(600,400);
-  arduino = new Serial(this, "COM3", 9600);
+    size(300, 400);
+    myFont = createFont("Arial-Bold-32", 32);
 }
-void draw(){
-  background(0);
-  if(arduino.available() &gt; 0){
-    String inData = arduino.readStringUntil('\n');
-    if(inData != null){
-      println(inData);
-      // visualize pressed buttons here
-    }
-  }
-}</code></pre>
-      <img src="guitar3.png" alt="Processing serial demo" class="inline-img">
-      <p><span class="checkoff">Checkoff 2:</span> Ask instructor to verify Processing receives input from Arduino and prints button presses.</p>
-    </div>
 
-    <!-- Part 3 -->
-    <div class="section">
-      <p>Once input works, add a simple game loop in Processing:</p>
-      <ol>
-        <li>Draw falling notes and map them to buttons.</li>
-        <li>Check for timing match when button is pressed.</li>
-        <li>Provide feedback (hit/miss) and score.</li>
-      </ol>
-      <img src="guitar4.png" alt="Game visualization" class="inline-img">
-
-      <pre><code>// Example pseudo-code
 void draw(){
-  background(0);
-  // move notes down
-  // check button presses
-  // update score
+    background(50, 70, 100);
+    fill(255);
+    textFont(myFont);
+    text("GUITAR HERO", 50, 50);
 }</code></pre>
-      <p><span class="checkoff">Checkoff 3:</span> Ask instructor to verify notes visualization and basic scoring works.</p>
+      <img src="guitar3.png" alt="Preliminary GUI" class="inline-img">
+
+      <p>Next, add a START button:</p>
+      <pre><code>import controlP5.*;
+
+ControlP5 cp5;
+PFont myFont;
+
+void setup(){
+    size(300, 400);
+    myFont = createFont("Arial-Bold-32", 32);
+    cp5 = new ControlP5(this);
+    cp5.addButton("START").setPosition(100,120).setSize(100,50).setFont(myFont).setColorCaptionLabel(color(255)).setColorBackground(color(0,150,255)).setColorActive(color(0,200,255));
+}
+
+void draw(){
+    background(50, 70, 100);
+    fill(255);
+    textFont(myFont);
+    text("GUITAR HERO", 50, 50);
+}</code></pre>
+      <img src="guitar4.png" alt="GUI with button" class="inline-img">
+
+      <p>Finally, add a simple animation:</p>
+      <pre><code>import controlP5.*;
+
+ControlP5 cp5;
+PFont myFont;
+float circleY = 0;
+
+void setup(){
+    size(300, 400);
+    myFont = createFont("Arial-Bold-32", 32);
+    cp5 = new ControlP5(this);
+    cp5.addButton("START").setPosition(100,120).setSize(100,50).setFont(myFont).setColorCaptionLabel(color(255)).setColorBackground(color(0,150,255)).setColorActive(color(0,200,255));
+}
+
+void draw(){
+    background(50, 70, 100);
+    fill(255);
+    textFont(myFont);
+    text("GUITAR HERO", 50, 50);
+    fill(255,160,180);
+    ellipse(150, circleY, 50, 50);
+    circleY += 2;
+    if(circleY > height){ circleY = 0; }
+}</code></pre>
+      <img src="guitar5.png" alt="GUI with animation" class="inline-img">
+
+      <p><span class="checkoff">Checkoff 1:</span> Ask your instructor for a check-off on completing Part (1) and showing your animation.</p>
     </div>
 
   </div>
 
   <div class="sidebar">
+    <img src="guitar.png" alt="Guitar Image">
     <img src="guitar1.png" alt="Guitar Hero parts">
-    <img src="guitar2.png" alt="Button wiring diagram">
   </div>
 </div>
 
