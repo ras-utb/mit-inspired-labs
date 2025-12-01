@@ -16,6 +16,7 @@
   .sidebar { flex:1; min-width:250px; background-color:#1e1e2e; padding:10px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.5); display:flex; flex-direction:column; align-items:center; }
   .sidebar img { width:100%; max-width:400px; border-radius:8px; margin-bottom:10px; }
   .section { background-color:#1e1e2e; padding:25px; margin-bottom:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.5); }
+  .section h2 { color:#c29fff; margin-top:0; }
   .checkoff { color:red; font-weight:bold; }
   .inline-img { width:100%; border-radius:8px; margin:12px 0; display:block; max-width:200px; }
   pre { background:#0f0f16; color:#e8e8e8; padding:12px; border-radius:6px; overflow:auto; }
@@ -34,9 +35,18 @@
   <h1>Lab 3: Let's Make a Guitar Hero Game!</h1>
 </header>
 
+<!-- Navigation bar -->
+<nav>
+  <a href="index.html">Home</a>
+  <a href="labs.html">Labs</a>
+  <a href="instructors.html">Instructors</a>
+  <a href="about.html">About</a>
+</nav>
+
 <div class="container">
   <div class="main-content">
 
+    <!-- Overview -->
     <div class="section">
       <h2>Overview</h2>
       <p>In the game Guitar Hero, the user interacts with a screen with colored markers. Whenever the colored markers reach the bottom line, the player must press the associated buttons in time with the music. This screen that the user witnesses is known as a GUI, graphical user interface.</p>
@@ -48,14 +58,17 @@
       </ul>
     </div>
 
+    <!-- Safety Tips -->
     <div class="section">
       <h2>🦺 Safety & Important Tips</h2>
       <ul>
         <li><strong>Soldering Iron Temperature:</strong> Ensure that the soldering iron is never left unattended. It reaches temperatures of ~500 degrees Celsius so never make it touch anything it is not supposed to.</li>
         <li><strong>Lead Poisoning:</strong> Most solder contains lead. This is very toxic if ingested. Always wash your hands immediately after soldering and never touch your face.</li>
       </ul>
+      <img src="guitar1.png" alt="Guitar Hero parts" class="inline-img">
     </div>
 
+    <!-- Fabrication Quest -->
     <div class="section">
       <h2>🔨 Fabrication Quest of the Day</h2>
       <p>Today, you will code a GUI for Guitar Hero:</p>
@@ -70,6 +83,7 @@
       </ul>
     </div>
 
+    <!-- Software & Hardware -->
     <div class="section">
       <h2>🏗️ Software & Hardware</h2>
       <p><strong>Software:</strong> Processing, Arduino IDE (should have downloaded in a previous lab)</p>
@@ -78,9 +92,9 @@
       <p><strong>Machines:</strong> Soldering Iron</p>
     </div>
 
+    <!-- Part 0 -->
     <div class="section">
       <h2>Part (0): Downloading Processing and its libraries</h2>
-      <p>Setup:</p>
       <ul>
         <li>Download Processing (5 mins)</li>
         <li>Install ControlP5 Library for the GUI</li>
@@ -90,9 +104,11 @@
       <img src="guitar2.png" alt="Processing setup" class="inline-img">
     </div>
 
+    <!-- Part 1 -->
     <div class="section">
       <h2>Part (1): Getting a Preliminary GUI (10 mins)</h2>
       <p>Processing uses Java with <code>setup()</code> and <code>draw()</code>. Setup runs once; draw runs 60 times per second, letting you create simple animations. We'll use ControlP5 for buttons.</p>
+      
       <pre><code>import controlP5.*;
 
 ControlP5 cp5;
@@ -121,7 +137,13 @@ void setup(){
     size(300, 400);
     myFont = createFont("Arial-Bold-32", 32);
     cp5 = new ControlP5(this);
-    cp5.addButton("START").setPosition(100,120).setSize(100,50).setFont(myFont).setColorCaptionLabel(color(255)).setColorBackground(color(0,150,255)).setColorActive(color(0,200,255));
+    cp5.addButton("START")
+       .setPosition(100,120)
+       .setSize(100,50)
+       .setFont(myFont)
+       .setColorCaptionLabel(color(255))
+       .setColorBackground(color(0,150,255))
+       .setColorActive(color(0,200,255));
 }
 
 void draw(){
@@ -143,7 +165,13 @@ void setup(){
     size(300, 400);
     myFont = createFont("Arial-Bold-32", 32);
     cp5 = new ControlP5(this);
-    cp5.addButton("START").setPosition(100,120).setSize(100,50).setFont(myFont).setColorCaptionLabel(color(255)).setColorBackground(color(0,150,255)).setColorActive(color(0,200,255));
+    cp5.addButton("START")
+       .setPosition(100,120)
+       .setSize(100,50)
+       .setFont(myFont)
+       .setColorCaptionLabel(color(255))
+       .setColorBackground(color(0,150,255))
+       .setColorActive(color(0,200,255));
 }
 
 void draw(){
