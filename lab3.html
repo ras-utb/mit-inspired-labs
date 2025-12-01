@@ -8,6 +8,7 @@
   body { font-family: Arial, sans-serif; background-color:#121212; color:#e0e0e0; margin:0; padding:0; font-size:1.05em; }
   header { background-color:#000; padding:40px 20px; text-align:center; }
   header h1 { color:#c29fff; margin:0; }
+  header h3 { color:#ff99aa; margin:10px 0 0 0; font-weight:normal; }
   nav { background-color:#111; padding:14px 0; text-align:center; position:sticky; top:0; z-index:100; }
   nav a { margin:0 20px; text-decoration:none; color:#fff; font-weight:bold; font-size:1.1em; }
   nav a:hover { color:#c29fff; }
@@ -23,6 +24,7 @@
   code { font-family: "Courier New", Courier, monospace; white-space: pre-wrap; word-break: break-word; }
   footer { text-align:center; padding:20px; background-color:#111; color:#bbbbbb; margin-top:20px; font-size:0.9em; }
   @media(max-width:1000px){ .container{ flex-direction:column; } .sidebar{ order:-1; } }
+  .sidebar-label { color:#c29fff; font-size:0.95em; font-weight:bold; margin:12px 0 8px; text-align:center; }
   html, body { max-width: 100%; overflow-x: hidden; box-sizing: border-box; }
   img, .inline-img, .sidebar img { max-width: 100%; width: 100%; height: auto; display: block; }
   pre { white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; }
@@ -33,6 +35,7 @@
 
 <header>
   <h1>Lab 3: Let's Make a Guitar Hero Game!</h1>
+  <h3>🎸 Rock Your Code and Strum Some Fun! 🎶</h3>
 </header>
 
 <nav>
@@ -57,14 +60,14 @@
       </ul>
     </div>
 
-    <!-- Safety Tips -->
+    <!-- Safety & Tips -->
     <div class="section">
       <h2>🦺 Safety & Important Tips</h2>
+      <p>Before we start, please make sure you understand the following safety precautions:</p>
       <ul>
         <li><strong>Soldering Iron Temperature:</strong> Ensure that the soldering iron is never left unattended. It reaches temperatures of ~500 degrees Celsius so never make it touch anything it is not supposed to.</li>
         <li><strong>Lead Poisoning:</strong> Most solder contains lead. This is very toxic if ingested. Always wash your hands immediately after soldering and never touch your face.</li>
       </ul>
-      <img src="guitar1.png" alt="Guitar Hero parts" class="inline-img">
     </div>
 
     <!-- Fabrication Quest -->
@@ -73,7 +76,7 @@
       <p>Today, you will code a GUI for Guitar Hero:</p>
       <ul>
         <li>(A) A GUI in Processing using Java (x1)</li>
-        <li>(B) Finish the electronics on the lasercut guitar (x1)</li>
+        <li>(B) Lasercut Guitar with clean electronics (x1)</li>
       </ul>
       <p>Your instructors will provide you with the following:</p>
       <ul>
@@ -87,49 +90,50 @@
       <h2>🏗️ Software & Hardware</h2>
       <p><strong>Software:</strong> Processing, Arduino IDE (should have downloaded in a previous lab)</p>
       <p><strong>PPE:</strong> Safety glasses</p>
-      <p><strong>Hardware:</strong> Pre-lasercut guitar, Wire, Wire Cutter, Buttons (x3), Solder, Zipties, Electrical Tape, Arduino Uno, Multimeter, Laptop</p>
+      <p><strong>Hardware:</strong> Pre-lasercut guitar, wire, wire cutter, buttons (x3), solder, zipties, electrical tape, Arduino Uno, multimeter, laptop</p>
       <p><strong>Machines:</strong> Soldering Iron</p>
     </div>
 
-    <!-- Part 0 -->
+    <!-- Part (0) -->
     <div class="section">
-      <h2>Part (0): Downloading Processing and its Libraries</h2>
-      <p>Setup:</p>
-      <ul>
+      <h2>Part (0): Downloading Processing and its libraries</h2>
+      <ol>
         <li>Download Processing (5 mins)</li>
         <li>Install ControlP5 Library for the GUI</li>
         <li>Open Processing</li>
-        <li>Click Sketch &gt; Import Library… &gt; Manage Libraries &gt; ControlP5 &gt; Install</li>
-        <li>Click Sketch &gt; Import Library… &gt; Manage Libraries &gt; Serial</li>
-      </ul>
-      <img src="guitar2.png" alt="Processing setup" class="inline-img">
+        <li>Click Sketch > Import Library… > Manage Libraries > ControlP5 > Install</li>
+        <li>Click Sketch > Import Library… > Manage Libraries > Serial</li>
+      </ol>
+      <img src="guitar2.png" alt="Processing Setup" class="inline-img">
     </div>
 
-    <!-- Part 1 -->
+    <!-- Part (1) -->
     <div class="section">
       <h2>Part (1): Getting a Preliminary GUI (10 mins)</h2>
-      <p>Processing uses a programming language called Java. Just like Arduino, it has two main functions: <code>setup()</code> and <code>draw()</code>. <code>setup()</code> is similar to the setup() in Arduino. It runs once at the beginning. <code>draw()</code> is synonymous with <code>loop()</code> from Arduino where the function runs over and over. <code>draw()</code>, in fact, runs 60 times a second. This means that you can make simple animations!</p>
-      <p>To make a basic window, we will introduce you to a library, controlP5. A library is basically someone else's code and you borrow the functions that they have written and simply call them. Most libraries have their documentation online. Learning to look up documentation is an important skill for any programmer.</p>
-      <p>Let’s test some preliminary code:</p>
-      <pre><code>import controlP5.*; // import ControlP5 library
+      <p>Processing uses a programming language called Java. Just like Arduino, it has two main functions: <strong>setup()</strong> and <strong>draw()</strong>. setup() runs once at the beginning. draw() runs over and over, 60 times a second, allowing animations.</p>
+      <p>We will use the <strong>ControlP5</strong> library to make buttons. Copy the following code:</p>
+      <pre><code>import controlP5.*;
 
-ControlP5 cp5; // create ControlP5 object
-PFont myFont;  // this is our special bold font
+ControlP5 cp5;
+PFont myFont;
 
 void setup(){
-    size(300, 400); // window size (width, height)
+    size(300, 400);
     myFont = createFont("Arial-Bold-32", 32);
 }
 
 void draw(){
-    background(50, 70, 100); // background color of the window
-    fill(255);                // white text
-    textFont(myFont);         // bold font
+    background(50, 70, 100);
+    fill(255);
+    textFont(myFont);
     text("GUITAR HERO", 50, 50);
 }</code></pre>
-      <img src="guitar3.png" class="inline-img">
-      <p>Next, let's add a Button and bold font:</p>
+      <p>You should get a dark blue window with Guitar Hero.</p>
+      <img src="guitar3.png" alt="Preliminary GUI" class="inline-img">
+
+      <p>Next, let's add a button:</p>
       <pre><code>import controlP5.*;
+
 ControlP5 cp5;
 PFont myFont;
 
@@ -138,35 +142,69 @@ void setup(){
     myFont = createFont("Arial-Bold-32", 32);
     cp5 = new ControlP5(this);
     cp5.addButton("START")
-       .setPosition(100,120)
-       .setSize(100,50)
+       .setPosition(100, 120)
+       .setSize(100, 50)
        .setFont(myFont)
        .setColorCaptionLabel(color(255))
-       .setColorBackground(color(0,150,255))
-       .setColorActive(color(0,200,255));
+       .setColorBackground(color(0, 150, 255))
+       .setColorActive(color(0, 200, 255));
 }
 
 void draw(){
-    background(50,70,100);
+    background(50, 70, 100);
     fill(255);
     textFont(myFont);
-    text("GUITAR HERO",50,50);
+    text("GUITAR HERO", 50, 50);
 }</code></pre>
-      <img src="guitar4.png" class="inline-img">
-      <p>Adding a circle animation below the title:</p>
-      <pre><code>// state for circle
+      <img src="guitar4.png" alt="GUI with button" class="inline-img">
+
+      <p>Now, let's animate a circle:</p>
+      <pre><code>import controlP5.*;
+
+ControlP5 cp5;
+PFont myFont;
 float circleY = 0;
 
+void setup(){
+    size(300, 400);
+    myFont = createFont("Arial-Bold-32", 32);
+    cp5 = new ControlP5(this);
+    cp5.addButton("START")
+       .setPosition(100, 120)
+       .setSize(100, 50)
+       .setFont(myFont)
+       .setColorCaptionLabel(color(255))
+       .setColorBackground(color(0, 150, 255))
+       .setColorActive(color(0, 200, 255));
+}
+
 void draw(){
-    background(50,70,100);
+    background(50, 70, 100);
     fill(255);
     textFont(myFont);
-    text("GUITAR HERO",50,50);
-    fill(255,160,180);
-    ellipse(150,circleY,50,50);
-    circleY+=2;
-    if(circleY>height){circleY=0;}
+    text("GUITAR HERO", 50, 50);
+
+    fill(255, 160, 180);
+    ellipse(150, circleY, 50, 50);
+    circleY += 2;
+    if(circleY > height){ circleY = 0; }
 }</code></pre>
-      <img src="guitar5.png" class="inline-img">
+      <img src="guitar5.png" alt="GUI animation" class="inline-img">
       <p><span class="checkoff">Checkoff 1:</span> Ask your instructor for a check-off on completing Part (1) and showing your animation.</p>
     </div>
+
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <img src="guitar.png" alt="Guitar Hero image">
+    <img src="guitar.png" alt="Guitar Hero image">
+  </div>
+</div>
+
+<footer>
+All instructions credited to MISTI Teaching Team | UTB Student Labs 2025
+</footer>
+
+</body>
+</html>
