@@ -63,11 +63,11 @@
     <!-- Safety & Tips -->
     <div class="section">
       <h2>🦺 Safety & Important Tips</h2>
-      <p>Before we start, please make sure you understand the following safety precautions:</p>
       <ul>
         <li><strong>Soldering Iron Temperature:</strong> Ensure that the soldering iron is never left unattended. It reaches temperatures of ~500 degrees Celsius so never make it touch anything it is not supposed to.</li>
         <li><strong>Lead Poisoning:</strong> Most solder contains lead. This is very toxic if ingested. Always wash your hands immediately after soldering and never touch your face.</li>
       </ul>
+      <img src="guitar1.png" alt="Soldering Safety" class="inline-img">
     </div>
 
     <!-- Fabrication Quest -->
@@ -78,7 +78,7 @@
         <li>(A) A GUI in Processing using Java (x1)</li>
         <li>(B) Lasercut Guitar with clean electronics (x1)</li>
       </ul>
-      <p>Your instructors will provide you with the following:</p>
+      <p>Your instructors will provide you with:</p>
       <ul>
         <li>(B) The Guitar base (x1)</li>
         <li>(C) Electrical components (buttons, wire, etc.) (x1)</li>
@@ -94,7 +94,7 @@
       <p><strong>Machines:</strong> Soldering Iron</p>
     </div>
 
-    <!-- Part (0) -->
+    <!-- Part 0 -->
     <div class="section">
       <h2>Part (0): Downloading Processing and its libraries</h2>
       <ol>
@@ -107,11 +107,10 @@
       <img src="guitar2.png" alt="Processing Setup" class="inline-img">
     </div>
 
-    <!-- Part (1) -->
+    <!-- Part 1 -->
     <div class="section">
       <h2>Part (1): Getting a Preliminary GUI (10 mins)</h2>
       <p>Processing uses a programming language called Java. Just like Arduino, it has two main functions: <strong>setup()</strong> and <strong>draw()</strong>. setup() runs once at the beginning. draw() runs over and over, 60 times a second, allowing animations.</p>
-      <p>We will use the <strong>ControlP5</strong> library to make buttons. Copy the following code:</p>
       <pre><code>import controlP5.*;
 
 ControlP5 cp5;
@@ -128,7 +127,6 @@ void draw(){
     textFont(myFont);
     text("GUITAR HERO", 50, 50);
 }</code></pre>
-      <p>You should get a dark blue window with Guitar Hero.</p>
       <img src="guitar3.png" alt="Preliminary GUI" class="inline-img">
 
       <p>Next, let's add a button:</p>
@@ -193,18 +191,124 @@ void draw(){
       <p><span class="checkoff">Checkoff 1:</span> Ask your instructor for a check-off on completing Part (1) and showing your animation.</p>
     </div>
 
+    <!-- Part 2 -->
+    <div class="section">
+      <h2>Part (2): Adding a Button (15 mins)</h2>
+      <p>We want our guitar to have buttons. Buttons can read as 3.3 V or 0 V.</p>
+      <p>To understand how the button is wired internally, we need a multimeter. Use the continuity mode we learned about in a previous lab.</p>
+      <p>When the multimeter beeps, it means the two legs of the button are connected.</p>
+      <p>Normally, a button has two legs: unconnected when unpressed, connected when pressed.</p>
+      <p>The buttons we are using have four legs.</p>
+      <p>To find the correct orientation of the button:</p>
+      <ul>
+        <li>Place the button on a breadboard and test with a multimeter.</li>
+        <li>This is optional but useful if you want to check it safely.</li>
+        <li>Or, if you usually solder, you can solder the button directly to wires and connect it to the Arduino.</li>
+        <li>The important thing is to know which pins connect when pressed.</li>
+      </ul>
+      <p>Here is an example wiring:</p>
+      <ul>
+        <li>Button leg 1 → Arduino pin 2</li>
+        <li>Button leg 2 → GND</li>
+      </ul>
+      <p>Repeat for the other buttons (pin 3 and pin 4).</p>
+
+      <pre><code>int pushButtonA = 4;
+int pushButtonB = 3; //TODO: Put the correct pin number
+int pushButtonC = 2; //TODO: Put the correct pin number
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(pushButtonA, INPUT_PULLUP);
+  pinMode(pushButtonB, INPUT_PULLUP);
+  pinMode(pushButtonC, INPUT_PULLUP);
+}
+
+void loop() {
+  int buttonStateA = digitalRead(pushButtonA);
+  if (!buttonStateA) { Serial.println("A"); }
+
+  int buttonStateB = digitalRead(pushButtonB);
+  if (!buttonStateB) { Serial.println("B"); }
+
+  int buttonStateC = digitalRead(pushButtonC);
+  if (!buttonStateC) { Serial.println("C"); }
+
+  delay(1);
+}</code></pre>
+      <p>If you connected the button to Pin 2, then pressing the button prints "A" in the Serial Monitor. Repeat for Pin 3 and Pin 4 for "B" and "C".</p>
+      <p><span class="checkoff">Checkoff 2:</span> Show that your Serial Monitor prints A, B, C when you press the buttons.</p>
+    </div>
+
+    <!-- Part 3 -->
+    <div class="section">
+      <h2>Part (3): Adding Serial Communication in Processing (20 mins)</h2>
+      <p>Close the Arduino Serial Monitor before running the Processing file, or you will get a "port busy" error.</p>
+      <p>This code connects Processing to Arduino via Serial:</p>
+      <img src="guitar8.png" alt="Serial Connection Diagram" class="inline-img">
+      <pre><code>import processing.serial.*;
+
+Serial myPort;  
+String val = "";
+
+void setup() {
+  size(300, 400);
+  String portName = "COM3";
+  myPort = new Serial(this, portName, 9600);
+  println("Connected to " + portName);
+}
+
+void draw() {
+  background(50, 70, 100);
+  fill(0);
+  text("GUITAR HERO", 100, 30);
+
+  if (myPort.available() > 0) {
+    String incoming = myPort.readStringUntil('\n');
+    if (incoming != null) { val = incoming.trim(); }
+  }
+
+  println(val);
+}</code></pre>
+      <p><span class="checkoff">Checkoff 3:</span> Show your instructor that you have working Serial communication with Arduino and Processing.</p>
+    </div>
+
+    <!-- Part 4 -->
+    <div class="section">
+      <h2>Part (4): Testing the Game with Keyboard and Breadboard (20 mins)</h2>
+      <p>Download the game folder: <a href="https://github.com/fzaman500/mit-gtl-bahrain-2025-guitar-hero" target="_blank" style="color:#c29fff;">Guitar Hero Link</a></p>
+      <p>Open the Processing file <strong>rhythmgame.pde</strong> under Processing/rhythmgame folder.</p>
+      <p>Install the Sound library via Processing Library Manager (author: The Processing Foundation).</p>
+      <p>Make sure the Arduino Serial Monitor is closed before running Processing.</p>
+      <p>Edit line 68 to match your trackdata location:</p>
+      <pre><code>trackData = new TrackData("/Users/STEAM/mit-gtl-bahrain-2025-guitar-hero/Processing/rhythmgame/data/trackinfo.txt");</code></pre>
+      <p>Test the game using arrow keys first, then test the Serial-connected breadboard buttons.</p>
+      <p><span class="checkoff">Checkoff 4:</span> Show your instructor that your breadboard controller works and explain the Serial code.</p>
+    </div>
+
+    <!-- Part 5 -->
+    <div class="section">
+      <h2>Part (5): Learning Soldering (15 mins)</h2>
+      <p>Soldering connects two electrical components using melted metal (solder). Heat the solder with the iron to make a strong electrical connection.</p>
+      <p>Set the iron to 450°C. Ask instructors for help if needed.</p>
+      <p>YouTube soldering tutorial: <a href="https://youtu.be/Qps9woUGkvI" target="_blank" style="color:#c29fff;">https://youtu.be/Qps9woUGkvI</a></p>
+      <p>Quick steps:</p>
+      <ol>
+        <li>Cut and strip wire to expose metal. <img src="guitar9.png" alt="Wire preparation" class="inline-img"></li>
+        <li>Bring solder, iron, wire, and button leg together. Let the solder melt and solidify.</li>
+        <li>Insulate wires using electrical tape or heatshrink. Heat with heatgun. <img src="guitar10.png" alt="Heatshrink example" class="inline-img"></li>
+      </ol>
+      <p><span class="checkoff">Checkoff 5:</span> Your guitar should be soldered and heatshrinked fully now!</p>
+    </div>
+
+    <!-- Part 6 -->
+    <div class="section">
+      <h2>Part (6): Test the Guitar Hero Game Finally (10 mins)</h2>
+      <p>Button closest to Arduino → Pin 2, middle → Pin 3, farthest → Pin 4. Big black wire → GND.</p>
+      <p>Use the same Arduino code that printed A, B, C earlier. Make sure the Processing port is correct.</p>
+      <p>Test your guitar with the game and see the score increase!</p>
+      <p><span class="checkoff">Checkoff 6:</span> Show that your guitar works with the Guitar Hero game.</p>
+    </div>
+
   </div>
 
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <img src="guitar.png" alt="Guitar Hero image">
-    <img src="guitar7.png" alt="Guitar Hero image">
-  </div>
-</div>
-
-<footer>
-All instructions credited to MISTI Teaching Team | UTB Student Labs 2025
-</footer>
-
-</body>
-</html>
